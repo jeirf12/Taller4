@@ -1,21 +1,32 @@
 <?php
-echo "<link rel='stylesheet' type='text/css' href='Vista/css/estilos.css'>";
-require('Modelo/clsConexion.php');
-require('Modelo/clsSesion.php');
+/*
+require 'modelo/clsConexion.php';
 
-$sesion = new clsSesion();
+$conexion = new clsConexion('localhost','bdproductos','root','');
+$conexion->conectar();
+var_dump($conexion->estado);*/
 
-if ($sesion->existeSesion()) {
-  require('Controlador/gestionProducto.php');
-} else if( isset($_REQUEST['usuario']) && isset($_REQUEST['contrasenia']) ) {
-  $usuario = $_REQUEST['usuario'];
-  $clave = $_REQUEST['contrasenia'];
-  if ($sesion->existeUsuario($usuario, $clave)) {
-    require('Controlador/gestionProducto.php');
-  }else {
-    $errorLogin = "<p>Contraseña o usuario incorrectos, verifique los datos y vuelva acceder</p>";
-    require('Vista/inicioSesion.php');
-  } 
-} else {
-  require('Vista/inicioSesion.php');
+$controlador = 'Sesion';
+
+if($sesion)
+
+
+
+
+
+if(isset($_REQUEST['c'])){
+    $controlador = $_REQUEST['c'];
+    $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Listar';
+    
+    require_once "controlador/controlador.$controlador";
+    $controlador = "controlador".$controlador;
+    $controlador = new $controlador;
+    call_user_func(array($controlador,$accion));
+}
+else{
+    require_once "controlador/controlador.$controlador";
+    
+    $controlador = "controlador".$controlador;
+    $controlador = new $controlador;
+    $controlador->Listar();          
 }
