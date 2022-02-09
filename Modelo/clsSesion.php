@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of clsSesion
- *
- * @author AdrianFelipe
- */
 class clsSesion {
 
     private $conexion;
@@ -19,23 +8,24 @@ class clsSesion {
     public function __construct($pconexion) {
         $this->conexion = $pconexion;
         $this->conexion->conectar();
+        $this->auxPDO = $this->conexion->conexionPDO;
         session_start();
     }
 
   
     public function fijarSesion($usuario) {
-        $_SESSION['nombre'] = $usuario['usu_nombre'];
-        $_SESSION['email'] = $usuario['usu_email'];
-        $_SESSION['clave'] = $usuario['usu_password'];
-        $_SESSION['rol'] = $usuario['usu_rol'];
+        $_SESSION['nombre'] = $usuario->USU_NOMBRE;
+        $_SESSION['email'] = $usuario->USU_EMAIL;
+        $_SESSION['clave'] = $usuario->USU_PASSWORD;
+        $_SESSION['rol'] = $usuario->USU_ROL;
     }
 
     public function datoUsuario() {
-        return $_SESSION['usuario'];
+        return $_SESSION['nombre'];
     }
 
     public function existeSesion() {
-        return isset($_SESSION['usuario']);
+        return isset($_SESSION['nombre']);
     }
 
     public function datosSesion() {
@@ -61,17 +51,23 @@ class clsSesion {
     }
     
      public function existeUsuario($usuario, $clave) {
-        $resultado = false;
+        $resultado = '';
         try {
-            $sql = "SELECT * FROM USUARIO WHERE USU_NOMBRE = '$usuario' AND USU_PASSWORD = '$clave' ";
-            $consulta = $this->conexion->getConexion()->query($sql);
-            while ($fila = $consulta->fetch_assoc()) {
-                $fila['usu_password'] = password_hash($fila['usu_password'], PASSWORD_DEFAULT);//proteccion de inyeccion
-                if (password_verify($clave, $fila['usu_password'])) {
+
+             $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
+            $consulta=$this->auxPDO->prepare($consulta);
+            $consulta->execute(array($usuario,$clave));
+        
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $fila){
+              //  var_dump($fila);
+                 $auxpass=password_hash($fila->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
+                if (password_verify($clave, $auxpass)) {
                     $this->fijarSesion($fila);
-                    $resultado = true;
+                    $resultado = $fila->USU_ROL;
                 }
             }
+            
+ 
         } catch (Exception $ex) {
             echo "Ocurrio un error " . $ex;
         }

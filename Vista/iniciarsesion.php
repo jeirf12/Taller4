@@ -13,7 +13,7 @@
 
   <div class="container">
     <button type="submit">Regresar</button>
-    <form action="" method="post">
+    <form action="?c=Sesion&a=existeusuario" method="post">
       <label for="correo">Correo</label>
       <input type="email" name="correo">
       <label for="contrasenia">Contraseña</label>

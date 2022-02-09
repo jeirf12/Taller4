@@ -16,7 +16,26 @@ class controladorSesion {
     public function iniciarSesion(){
         require_once 'vista/iniciarsesion.php'; 
     }
-          
+    
+    public function existeUsuario(){
+        $usuario = $_REQUEST['correo'];
+        $clave = $_REQUEST['contrasenia'];
+        $resultado = $this->sesion->existeUsuario($usuario, $clave);
+        if($resultado=='admin'){
+            require 'vista/principaladmin.php';
+        }
+        if($resultado=='noadmin'){
+            require 'vista/principalusuario.php';
+        }
+        else{
+            $error = 'ERROR: Usuario no registrado';
+            require 'vusta/iniciarsesion.php';
+        }
+    }
+    
+    public funtion cerrarSesion(){
+        $sesion->cerrarSesion();
+    }
     public function registrarUsuario($nombre, $clave, $correo){
         $resultado;
         $usuario = new clsUsuario();
