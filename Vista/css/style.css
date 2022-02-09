@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+  padding: 2%;
+  align-items: center;
+}
+
+.header-content{
+  margin: 0;
+  padding: 0;
+}
+
+.close-sesion {
+  border: 2px solid yellow;
+  border-radius: 15px;
+}
+
+.header img {
+  width: 25%;
+}
+
+.button-back {
+  margin: 1% 0 0 2%;
+  display: block;
+}
+
+
