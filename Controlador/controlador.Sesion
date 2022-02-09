@@ -25,7 +25,8 @@ class controladorSesion {
         $usuario->__SET('correo',$correo);
         $usuario->__SET('rol','noadmin');
         $resultado = $this->sesion->registrarUsuario($usuario);
-        return $resultado;
+        /* return $resultado; */
+        header('Location: index.php');
 
     }
 }
