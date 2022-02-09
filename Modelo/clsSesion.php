@@ -1,53 +1,63 @@
 <?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of clsSesion
+ *
+ * @author AdrianFelipe
+ */
 class clsSesion {
-  private $conexion;
 
-  public function __construct(){
-    $this->conexion = new clsConexion();
-    session_start();
-  }
+    private $conexion;
+    private $auxPDO;
 
-  public function existeUsuario($usuario, $clave) {
-    $resultado = false;
-    try {
-      $sql = "SELECT * FROM PERSONA WHERE USUARIO = '$usuario' AND CLAVE = '$clave' ";
-      $consulta = pg_query($sql); // --> consulta con postgres
-      /* $consulta = $this->conexion->getConexion()->query($sql); // --> consulta con mysql */
-      while ($fila = pg_fetch_assoc($consulta)){ // --> fetch_assoc de postgres
-      /* while ($fila = $consulta->fetch_assoc()){ // --> fetch_assoc de mysql */
-        $fila['clave'] = password_hash($fila['clave'], PASSWORD_DEFAULT);
-        if(password_verify($clave, $fila['clave'])) {
-          $this->fijarSesion($fila);
-          $resultado = true;
-        }
-      }
-    } catch( Exception $ex ) {
-      echo "Ocurrio un error ".$ex;
+    public function __construct($pconexion) {
+        $this->conexion = $pconexion;
+        session_start();
     }
-    return $resultado;
-  }
 
-  public function fijarSesion($usuario) {
-    $_SESSION['nombre'] = $usuario['nombre'];
-    $_SESSION['usuario'] = $usuario['usuario'];
-    $_SESSION['clave'] = $usuario['clave'];
-    $_SESSION['rol'] = $usuario['rol'];
-  }
+    public function existeUsuario($usuario, $clave) {
+        $resultado = false;
+        try {
+            $sql = "SELECT * FROM USUARIO WHERE USU_NOMBRE = '$usuario' AND USU_PASSWORD = '$clave' ";
+            $consulta = $this->conexion->getConexion()->query($sql); 
+            while ($fila = $consulta->fetch_assoc()) { 
+                $this->fijarSesion($fila);
+                $resultado = true;
+            }
+        } catch (Exception $ex) {
+            echo "Ocurrio un error " . $ex;
+        }
+        return $resultado;
+    }
 
-  public function datoUsuario(){
-    return $_SESSION['usuario'];
-  }
+    public function fijarSesion($usuario) {
+        $_SESSION['nombre'] = $usuario['usu_nombre'];
+        $_SESSION['email'] = $usuario['usu_email'];
+        $_SESSION['clave'] = $usuario['usu_password'];
+        $_SESSION['rol'] = $usuario['usu_rol'];
+    }
 
-  public function existeSesion(){
-    return isset($_SESSION['usuario']);
-  }
+    public function datoUsuario() {
+        return $_SESSION['usuario'];
+    }
 
-  public function datosSesion(){
-    return $_SESSION;
-  }
+    public function existeSesion() {
+        return isset($_SESSION['usuario']);
+    }
 
-  public function cerrarSesion(){
-    session_unset();
-    session_destroy();
-  }
+    public function datosSesion() {
+        return $_SESSION;
+    }
+
+    public function cerrarSesion() {
+        session_unset();
+        session_destroy();
+    }
+
 }
