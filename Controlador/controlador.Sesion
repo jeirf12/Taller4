@@ -1,13 +1,15 @@
 <?php
 require 'Modelo/clsSesion.php';
+require 'Modelo/clsConexion.php'; 
 
 class controladorSesion {
           //atributos
     private $sesion;
-    private $conexion = new clsConexion('localhost','taller4','root','');
+    private $conexion;
     private $usuario;
     //metodos
     public function __construct(){
+        $this->conexion =  new clsConexion('localhost','taller4','root','');
         $this->sesion = new clsSesion($this->conexion);
     }
     
@@ -15,15 +17,15 @@ class controladorSesion {
         require_once 'vista/iniciarsesion.php'; 
     }
           
-    public funtion registrarUsuario($nombre, $clave, $correo){
+    public function registrarUsuario($nombre, $clave, $correo){
         $resultado;
         $usuario = new clsUsuario();
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);
         $usuario->__SET('correo',$correo);
         $usuario->__SET('rol','noadmin');
-        &resultado = $this->sesion->registrarUsuario($usuario);
-        return resultado;
+        $resultado = $this->sesion->registrarUsuario($usuario);
+        return $resultado;
 
     }
 }

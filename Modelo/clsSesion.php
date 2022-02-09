@@ -60,18 +60,22 @@ class clsSesion {
         return $resultado;
     }
     
-      public function existeUsuario($usuario, $clave) {
+     public function existeUsuario($usuario, $clave) {
         $resultado = false;
         try {
             $sql = "SELECT * FROM USUARIO WHERE USU_NOMBRE = '$usuario' AND USU_PASSWORD = '$clave' ";
-            $consulta = $this->conexion->getConexion()->query($sql); 
-            while ($fila = $consulta->fetch_assoc()) { 
-                $this->fijarSesion($fila);
-                $resultado = true;
+            $consulta = $this->conexion->getConexion()->query($sql);
+            while ($fila = $consulta->fetch_assoc()) {
+                $fila['usu_password'] = password_hash($fila['usu_password'], PASSWORD_DEFAULT);//proteccion de inyeccion
+                if (password_verify($clave, $fila['usu_password'])) {
+                    $this->fijarSesion($fila);
+                    $resultado = true;
+                }
             }
         } catch (Exception $ex) {
             echo "Ocurrio un error " . $ex;
         }
         return $resultado;
     }
+
 }
