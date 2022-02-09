@@ -1,0 +1,25 @@
+<?php
+require 'modelo/clsProductoCRUD.php';
+
+class controladorProducto {
+    //atributos
+    private $crud;
+    private $conexion = new clsConexion('localhost','taller4','root','');
+    //metodos
+    public function __construct(){
+        $this->crud = new clsProductoCRUD(conexion);
+    }
+    public function Listar(){
+        require_once 'vista/paginaProductos.php';
+    }
+    public function Formulario(){
+        
+    }
+    public function Crear(){
+        
+    }
+    public function Eliminar(){
+        $this->crud->Eliminar($_REQUEST['codigo']);
+        header('Location: index.php');
+    }
+}
