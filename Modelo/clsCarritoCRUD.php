@@ -1,6 +1,6 @@
 <?php
-require 'modelo/clsConexion.php';
-require 'modelo/clsProducto.php';
+require 'Modelo/clsConexion.php';
+require 'Modelo/clsProducto.php';
 
 class clsCarritoCRUD {
     //atributos
@@ -80,5 +80,9 @@ class clsCarritoCRUD {
         catch (Exception $ex){
             die($ex->getMessage());
         }
+    }
+    
+    public function ComprarProductos(){
+        
     }
 }

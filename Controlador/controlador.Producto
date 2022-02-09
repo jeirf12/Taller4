@@ -7,7 +7,7 @@ class controladorProducto {
     private $conexion = new clsConexion('localhost','taller4','root','');
     //metodos
     public function __construct(){
-        $this->crud = new clsProductoCRUD(conexion);
+        $this->crud = new clsProductoCRUD($this->conexion);
     }
     public function Listar(){
         require_once 'vista/paginaProductos.php';

@@ -1,4 +1,5 @@
 <?php
+require 'Modelo/clsSesion.php';
 
 class controladorSesion {
           //atributos
@@ -7,7 +8,7 @@ class controladorSesion {
     private $usuario;
     //metodos
     public function __construct(){
-    $this->sesion = new clsSesion($this->conexion);
+        $this->sesion = new clsSesion($this->conexion);
     }
     
     public function iniciarSesion(){
@@ -15,12 +16,14 @@ class controladorSesion {
     }
           
     public funtion registrarUsuario($nombre, $clave, $correo){
+        $resultado;
         $usuario = new clsUsuario();
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);
         $usuario->__SET('correo',$correo);
         $usuario->__SET('rol','noadmin');
-        return $this->sesion->registrarUsuario($usuario);
+        &resultado = $this->sesion->registrarUsuario($usuario);
+        return resultado;
 
     }
 }

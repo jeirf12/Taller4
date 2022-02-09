@@ -6,7 +6,7 @@ $conexion = new clsConexion('localhost','bdproductos','root','');
 $conexion->conectar();
 var_dump($conexion->estado);*/
 
-$controlador = 'Usuario';
+$controlador = 'Sesion';
 
 if(isset($_REQUEST['c'])){
     $controlador = $_REQUEST['c'];

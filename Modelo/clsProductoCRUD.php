@@ -39,9 +39,9 @@ class clsProductoCRUD {
     }
     public function Crear($obj){
         try{
-            $consulta = "INSERT INTO producto (nombre,precio) VALUES (?,?)";
+            $consulta = "INSERT INTO PRODUCTO (PRO_NOMBRE,PRO_PRECIO,PRO_IMAGEN,PRO_DESCRIPCION,PRO_CANTIDAD) VALUES (?,?,?,?,?)";
             $this->auxPDO->prepare($consulta)->execute(
-                    array($obj->nombre,$obj->precio));
+                    array($obj->nombre,$obj->precio,$obj->imagen,$obj->descripcion,$obj->cantidad));
         }
         catch (Exception $ex){
             die($ex->getMessage());
@@ -49,7 +49,7 @@ class clsProductoCRUD {
     }
     public function Editar($obj){
          try{
-            $consulta = "UPDATE producto SET nombre=?, precio=? WHERE codigo =?";
+            $consulta = "UPDATE PRODUCTO SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?  WHERE codigo =?";
             $this->auxPDO->prepare($consulta)->execute(
                     array($obj->nombre, $obj->precio, $obj->codigo));
         }
