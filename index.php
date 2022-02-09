@@ -6,17 +6,11 @@ $conexion = new clsConexion('localhost','bdproductos','root','');
 $conexion->conectar();
 var_dump($conexion->estado);*/
 
-$controlador = 'Sesion';
-
-if($sesion)
-
-
-
-
+$controlador = 'Usuario';
 
 if(isset($_REQUEST['c'])){
     $controlador = $_REQUEST['c'];
-    $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Listar';
+    $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'iniciarSesion';
     
     require_once "controlador/controlador.$controlador";
     $controlador = "controlador".$controlador;
@@ -28,5 +22,5 @@ else{
     
     $controlador = "controlador".$controlador;
     $controlador = new $controlador;
-    $controlador->Listar();          
+    $controlador->iniciarSesion();          
 }

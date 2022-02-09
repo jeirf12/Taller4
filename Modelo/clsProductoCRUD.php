@@ -1,6 +1,6 @@
 <?php
-require 'modelo/clsConexion.php';
-require 'modelo/clsProducto.php';
+require 'Modelo/clsConexion.php';
+require 'Modelo/clsProducto.php';
 
 class clsProductoCRUD {
     //atributos
@@ -22,9 +22,12 @@ class clsProductoCRUD {
             $resultado = array();
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
-                $auxProducto->__SET('codigo',$obj->codigo);
-                $auxProducto->__SET('nombre',$obj->nombre);
-                $auxProducto->__SET('precio',$obj->precio);
+                $auxProducto->__SET('id',$obj->pro_id);
+                $auxProducto->__SET('nombre',$obj->pro_nombre);
+                $auxProducto->__SET('precio',$obj->pro_precio);
+                $auxProducto->__SET('imagen',$obj->pro_imagen);
+                $auxProducto->__SET('descripcion',$obj->pro_descripcion);
+                $auxProducto->__SET('cantidad',$obj->pro_cantidad);
                 $resultado [] = $auxProducto;
             }
         }

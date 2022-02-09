@@ -18,24 +18,11 @@ class clsSesion {
 
     public function __construct($pconexion) {
         $this->conexion = $pconexion;
+        $this->conexion->conectar();
         session_start();
     }
 
-    public function existeUsuario($usuario, $clave) {
-        $resultado = false;
-        try {
-            $sql = "SELECT * FROM USUARIO WHERE USU_NOMBRE = '$usuario' AND USU_PASSWORD = '$clave' ";
-            $consulta = $this->conexion->getConexion()->query($sql); 
-            while ($fila = $consulta->fetch_assoc()) { 
-                $this->fijarSesion($fila);
-                $resultado = true;
-            }
-        } catch (Exception $ex) {
-            echo "Ocurrio un error " . $ex;
-        }
-        return $resultado;
-    }
-
+  
     public function fijarSesion($usuario) {
         $_SESSION['nombre'] = $usuario['usu_nombre'];
         $_SESSION['email'] = $usuario['usu_email'];
@@ -60,4 +47,31 @@ class clsSesion {
         session_destroy();
     }
 
+    public function registrarUsuario($obj){
+        $resultado= false;
+        try{
+            $consulta = "INSERT INTO USUARIO (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,?)";
+            $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->clave,$obj->correo,$obj->rol));
+            $resultado=true;
+        }
+        catch (Exception $ex){
+            die($ex->getMessage());
+        }
+        return $resultado;
+    }
+    
+      public function existeUsuario($usuario, $clave) {
+        $resultado = false;
+        try {
+            $sql = "SELECT * FROM USUARIO WHERE USU_NOMBRE = '$usuario' AND USU_PASSWORD = '$clave' ";
+            $consulta = $this->conexion->getConexion()->query($sql); 
+            while ($fila = $consulta->fetch_assoc()) { 
+                $this->fijarSesion($fila);
+                $resultado = true;
+            }
+        } catch (Exception $ex) {
+            echo "Ocurrio un error " . $ex;
+        }
+        return $resultado;
+    }
 }

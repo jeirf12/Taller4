@@ -1,5 +1,5 @@
 <?php
-require 'modelo/clsProductoCRUD.php';
+require 'Modelo/clsProductoCRUD.php';
 
 class controladorProducto {
     //atributos

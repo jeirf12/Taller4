@@ -1,31 +1,26 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/**
- * Description of controlador
- *
- * @author AdrianFelipe
- */
 class controladorSesion {
-    //atributos
+          //atributos
     private $sesion;
     private $conexion = new clsConexion('localhost','taller4','root','');
+    private $usuario;
     //metodos
     public function __construct(){
     $this->sesion = new clsSesion($this->conexion);
-    session_start();
     }
     
-    public function existeUsuario($usuario, $clave){
-        $this->sesion->existeUsuario($usuario,$clave);
+    public function iniciarSesion(){
+        require_once 'vista/iniciarsesion.php'; 
     }
-    
-    //
-    
+          
+    public funtion registrarUsuario($nombre, $clave, $correo){
+        $usuario = new clsUsuario();
+        $usuario->__SET('nombre',$nombre);
+        $usuario->__SET('clave',$clave);
+        $usuario->__SET('correo',$correo);
+        $usuario->__SET('rol','noadmin');
+        return $this->sesion->registrarUsuario($usuario);
+
+    }
 }

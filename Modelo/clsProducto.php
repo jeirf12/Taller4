@@ -2,9 +2,12 @@
 
 class clsProducto {
     //atributos
-    private $codigo;
+    private $id;
     private $nombre;
     private $precio;
+    private $imagen;
+    private $descripcion;
+    private $cantidad;
     
     //metodos
     public function __construct() {}
