@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body> 
-  <header class="header">
-    <img src="" alt="header">
-    <p>adrian</p>
-    <button type="submit">cerrar sesión</button>
-  </header>
-
+  <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <form action="" method="post">
-      <input type="hidden" name="id">
+    <form action="?c=Producto&a=guardar" method="post">
+      <input type="hidden" name="id" value="<?php echo $producto->__get('id'); ?>">
       <label for="imagen">Imagen</label>  
-      <input type="file" name="imagen">
+      <input type="file" name="imagen" value="<?php echo $producto->__get('imagen'); ?>">
       <label for="nombre">Nombre</label>
-      <input type="text" name="nombre">
+      <input type="text" name="nombre" value="<?php echo $producto->__get('nombre'); ?>">
       <label for="descripcion">Descripcion</label>
-      <input type="text" name="descripcion">
+      <input type="text" name="descripcion" value="<?php echo $producto->__get('descripcion'); ?>">
       <label for="cantidad">Cantidad</label>
-      <input type="number" name="cantidad">
+      <input type="number" name="cantidad" value="<?php echo $producto->__get('cantidad'); ?>">
       <label for="precio">Precio/Unidad</label>
-      <input type="number" name="precio">
-      <button type="submit">Regresar</button>
+      <input type="number" name="precio" value="<?php echo $producto->__get('precio'); ?>">
+      <button type="submit" action="?c=Sesion&a=volver">Regresar</button>
       <button type="submit">Guardar</button>
     </form>
   </div>

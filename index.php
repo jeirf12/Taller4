@@ -30,6 +30,11 @@ else{
     
     $controlador = "controlador".$controlador;
     $controlador = new $controlador;
+
     $controlador->iniciarSesion();     
     //asdfasdfasdf
 }*/
+
+    $controlador->iniciarSesion();          
+}
+
