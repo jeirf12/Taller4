@@ -13,8 +13,8 @@
       <a href="#" class="close">X</a>
       <h2>Mi primer Modal</h2>
       <p>Desea eliminar el producto?</p>
-      <button action="?c=Sesion&a=VolverPrincipal" type="submit">no</button>
-      <button action="?c=Producto&a=Eliminar" type="submit">si</button>
+      <button type="submit">no</button>
+      <button type="submit">si</button>
     </div>  
   </div>
 </body>

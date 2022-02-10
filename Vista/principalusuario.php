@@ -1,25 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php require_once "Vista/header.php"; ?>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="Vista/css/style.css">
+  <link rel="stylesheet" type="text/css" href="Vista/css/card.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <img src="Vista/css/logo.svg" alt="header">
+    </div>
+    <div class="header-content">
+      <p>adrian</p>
+    </div>
+    <div class="header-content">
+      <button class="close-sesion" type="submit">cerrar sesión</button>
+    </div>
+  </header>
   <div class="container">
     <button class="button-back" type="submit">Regresar</button>
-    <?php if(isset($productos)): ?>
-    <?php foreach($productos as $producto): ?>
     <div class="card">
-      <img src="<?php echo $producto->__get('imagen'); ?>" alt="Avatar-Product" style="width:100%">
+      <img src="Vista/css/coco.jfif" alt="Avatar-Product" style="width:100%">
       <div class="card-content">
-        <h4><?php echo $producto->__get('nombre'); ?></h4>
-        <p>Precio: <?php echo $producto->__get('precio'); ?></p>
-        <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
-        <p>descripcion: <?php echo $producto->__get('descripcion'); ?></p>
-        <button type="submit" action="?c=Carrito&a=Guardar&codP=<?php echo $producto->__get('id');?>&codUsu=<?php echo $usuario->__get('id'); ?>">Agregar Carrito</button>
+        <h4>coco</h4>
+        <p>Precio: 12000</p>
+        <p>Cantidad: 120</p>
+        <p>descripcion: no se</p>
       </div>
     </div>
-    <?php endforeach; ?>
-    <?php else: ?>
-      <p class="messages">Lo sentimos! 
-        En este momento no hay productos disponibles</p>
-    <?php endif; ?>
+    <div class="card">
+      <img src="Vista/css/coco.jfif" alt="Avatar-Product" style="width:100%">
+      <div class="card-content">
+        <h4>coco</h4>
+        <p>Precio: 12000</p>
+        <p>Cantidad: 120</p>
+        <p>descripcion: no se</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Vista/css/coco.jfif" alt="Avatar-Product" style="width:100%">
+      <div class="card-content">
+        <h4>coco</h4>
+        <p>Precio: 12000</p>
+        <p>Cantidad: 120</p>
+        <p>descripcion: no se</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="Vista/css/coco.jfif" alt="Avatar-Product" style="width:100%">
+      <div class="card-content">
+        <h4>coco</h4>
+        <p>Precio: 12000</p>
+        <p>Cantidad: 120</p>
+        <p>descripcion: no se</p>
+      </div>
+    </div>
   </div>
 </body>
 </html>
