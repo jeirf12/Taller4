@@ -1,6 +1,7 @@
 <?php
 require 'Modelo/clsSesion.php';
 require 'Modelo/clsConexion.php'; 
+require 'Modelo/clsUsuario.php'; 
 
 class controladorSesion {
           //atributos
@@ -29,12 +30,12 @@ class controladorSesion {
         }
         else{
             $error = 'ERROR: Usuario no registrado';
-            require 'vusta/iniciarsesion.php';
+            require 'vista/iniciarsesion.php';
         }
     }
     
-    public funtion cerrarSesion(){
-        $sesion->cerrarSesion();
+    public function cerrarSesion(){
+        $this->$sesion->cerrarSesion();
     }
     public function registrarUsuario($nombre, $clave, $correo){
         $resultado;
@@ -42,9 +43,7 @@ class controladorSesion {
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);
         $usuario->__SET('correo',$correo);
-        $usuario->__SET('rol','noadmin');
         $resultado = $this->sesion->registrarUsuario($usuario);
         return $resultado;
-
     }
 }

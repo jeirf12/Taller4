@@ -39,9 +39,9 @@ class clsSesion {
 
     public function registrarUsuario($obj){
         $resultado= false;
-        try{
-            $consulta = "INSERT INTO USUARIO (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,?)";
-            $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->clave,$obj->correo,$obj->rol));
+        try{ $consulta = "INSERT INTO USUARIO (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,'noadmin')";
+            $consulta=$this->auxPDO->prepare($consulta);
+            $consulta->execute(array($obj->nombre,$obj->clave,$obj->correo));
             $resultado=true;
         }
         catch (Exception $ex){

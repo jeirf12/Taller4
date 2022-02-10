@@ -1,11 +1,19 @@
 <?php
+
+
+
+$controlador = 'Sesion';
+require_once "controlador/controlador.$controlador";
+$controlador = "controlador".$controlador;
+$controlador = new $controlador;
+var_dump($controlador->registrarUsuario('asdf','asdf','prueba'));
 /*
 require 'modelo/clsConexion.php';
 
 $conexion = new clsConexion('localhost','bdproductos','root','');
 $conexion->conectar();
 var_dump($conexion->estado);*/
-
+/*
 $controlador = 'Sesion';
 
 if(isset($_REQUEST['c'])){
@@ -24,4 +32,4 @@ else{
     $controlador = new $controlador;
     $controlador->iniciarSesion();     
     //asdfasdfasdf
-}
+}*/
