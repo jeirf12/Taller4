@@ -33,6 +33,5 @@ class clsConexion {
         $this->estado = FALSE;
         $this->conexionPDO = null;
     }
-    
     public function __GET($atr){return $this->$atr;}
 }

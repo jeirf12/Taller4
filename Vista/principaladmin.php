@@ -24,7 +24,7 @@
           <td><?php echo $producto->__get('precio'); ?></td>
           <td><?php echo $producto->__get('cantidad'); ?></td>
           <td><?php echo $producto->__get('descripcion'); ?></td>
-          <td><button type="submit" action="?c=Producto&a=Formulario&codigo=<?php echo producto->id ?>">editar</button></td>
+          <td><button type="submit" action="?c=Producto&a=Formulario&codigo=<?php echo $producto->id ;?>">editar</button></td>
           <td><button type="submit" >eliminar</button></td>
         </tr>
       <?php endforeach; ?>
