@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <header class="header">
-    <img src="" alt="header">
-    <p>adrian</p>
-    <button type="submit">cerrar sesión</button>
-  </header>
-
+  <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <button type="submit">Agregar</button>
+    <button type="submit" action="?c=Producto&a=Formulario">Agregar</button>
+    <?php if(isset($productos)): ?>
     <table>
       <thead>
-        <th>Imagen</th>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>descripcion</th>
-        <th></th>
-        <th></th>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>descripcion</th>
+          <th></th>
+          <th></th>
+        </tr>
       </thead>
       <tbody>
-        <td>Null</td>
-        <td>coco</td>
-        <td>12000</td>
-        <td>120</td>
-        <td>no se</td>
-        <td><button>editar</button></td>
-        <td><button action="modalEliminarAdmin.html">eliminar</button></td>
+      <?php foreach($productos as $producto): ?>
+        <tr>
+          <td><?php echo $producto->__get('imagen'); ?></td>
+          <td><?php echo $producto->__get('nombre'); ?></td>
+          <td><?php echo $producto->__get('precio'); ?></td>
+          <td><?php echo $producto->__get('cantidad'); ?></td>
+          <td><?php echo $producto->__get('descripcion'); ?></td>
+          <td><button type="submit" action="?c=Producto&a=Formulario&codigo=<?php echo producto->id ?>">editar</button></td>
+          <td><button type="submit" >eliminar</button></td>
+        </tr>
+      <?php endforeach; ?>
       </tbody>
     </table>
+    <?php else: ?>
+      <p class="messages">No hay productos registrados todavia</p>
+    <?php endif; ?>
   </div>
 </body>
 </html>
