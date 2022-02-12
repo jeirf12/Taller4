@@ -2,7 +2,7 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <button type="submit" action="?c=Producto&a=Formulario">Agregar</button>
+    <button class="button-success" type="submit" action="?c=Producto&a=Formulario">Agregar</button>
     <?php if(isset($productos)): ?>
     <table>
       <thead>
@@ -24,8 +24,8 @@
           <td><?php echo $producto->__get('precio'); ?></td>
           <td><?php echo $producto->__get('cantidad'); ?></td>
           <td><?php echo $producto->__get('descripcion'); ?></td>
-          <td><button type="submit" action="?c=Producto&a=Formulario&codigo=<?php echo producto->id ?>">editar</button></td>
-          <td><button type="submit" >eliminar</button></td>
+          <td><button type="submit" action="?c=Producto&a=CrearEditar&id=<?php echo $producto->__get('id'); ?>">editar</button></td>
+          <td><button type="submit" action="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>" >eliminar</button></td>
         </tr>
       <?php endforeach; ?>
       </tbody>

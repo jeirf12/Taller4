@@ -12,12 +12,12 @@
       <img src="Vista/css/logo.svg" alt="header">
     </div>
     <?php if(isset($existeSesion) && $existeSesion): ?>
-    <div class="header-content">
-      <p><?php echo $usuario->__get('nombre'); ?></p>
+<div class="header-content">
+      <p><?php echo $usuarionombre; ?></p>
     </div>
     <div class="header-content">
-      <button action="?c=Sesion&a=CerrarSesion" class="close-sesion" type="submit">cerrar sesión</button>
+      <button class="close-sesion button-google" action="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</button>
     </div>
-    <?php endif; ?>
-  </header>
+  <?php endif; ?>
+</header>
 

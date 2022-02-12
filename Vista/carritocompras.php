@@ -2,6 +2,7 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
+    <?php require_once "Vista/botonVolver.php"; ?>
     <h1>Carrito de compras</h1>
     <?php if(isset($compras)): ?>
       <?php foreach($compras as $compra): ?>

@@ -3,17 +3,20 @@
   padding: 0;
 }
 
+/* body{ */
+/*   background: linear-gradient(to bottom right, #33475b, #0033cc, #ff77cc, rgb(255, 122, 89)); */
+/* } */
+
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: red;
-  padding: 2%;
   align-items: center;
 }
 
 .header-content{
   margin: 0;
-  padding: 0;
+  padding: 2%;
 }
 
 .close-sesion {
@@ -27,16 +30,91 @@
 
 .button-back {
   margin: 1% 0 0 2%;
-  display: block;
 }
 
 .messages {
   text-align: center;
   font-weight: bold;
   font-size: 6rem;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 2%;
   white-space: pre-line;
 }
 
+h1 { 
+  text-align: center;
+}
 
+.form-register, .form-login, .form-save {
+  min-width: 300px;
+  max-width: 400px;
+  border: 1px solid #E1E1E1;
+  border-radius: 15px;
+  padding: 2%;
+  margin: 2% auto;
+}
+
+label, input {
+  display: block;
+  width: 90%;
+}
+
+label, input, button{
+  padding: 10px;
+}
+
+.form-register button {
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  color: #FFF;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  padding: 1% 2%;
+  margin-top: 0;
+}
+
+.form-login span{
+  padding-top: 10px;
+  text-align: center;
+}
+
+.form-login button {
+  width: 97%;
+}
+
+.container {
+  padding: 0 0 0 2%;
+}
+
+.container button {
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  color: #FFF;
+}
+
+.form-save {
+  margin-top: 0;
+  padding: 8px 2%;
+}
+
+.form-save label, input{
+  padding: 6px;
+}
+
+.button-success {
+  background: rgb(100, 200, 255);
+}
+
+.button-danger {
+  background: rgb(255, 51, 57);
+}
+
+.button-google {
+  background: rgb(10, 73, 255);
+}

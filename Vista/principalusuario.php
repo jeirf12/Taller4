@@ -2,7 +2,9 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <button class="button-back" type="submit">Regresar</button>
+    <div class="content-button">
+      <?php require_once "Vista/botonVolver.php"; ?>
+    </div>
     <?php if(isset($productos)): ?>
     <?php foreach($productos as $producto): ?>
     <div class="card">
