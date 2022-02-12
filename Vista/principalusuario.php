@@ -4,6 +4,7 @@
   <div class="container">
     <div class="content-button">
       <?php require_once "Vista/botonVolver.php"; ?>
+      <button class="button-google">Ver carrito</button>
     </div>
     <?php if(isset($productos)): ?>
     <?php foreach($productos as $producto): ?>
