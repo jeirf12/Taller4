@@ -16,6 +16,5 @@ else{
     $controlador = "controlador".$controlador;
     $controlador = new $controlador;
     $accion = 'Listar'; 
-  
 }
 call_user_func(array($controlador,$accion));
