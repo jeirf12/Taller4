@@ -15,7 +15,7 @@ drop table if exists USUARIO;
 /*==============================================================*/
 create table CARRITOCOMPRAS
 (
-   CARR_ID              int not null,
+   CARR_ID              int not null AUTO_INCREMENT,
    PRO_ID               int not null,
    USU_ID               int not null,
    CARR_CANT            int not null,
@@ -27,7 +27,7 @@ create table CARRITOCOMPRAS
 /*==============================================================*/
 create table PRODUCTO
 (
-   PRO_ID               int not null,
+   PRO_ID               int not null AUTO_INCREMENT,
    PRO_NOMBRE           varchar(50) not null,
    PRO_PRECIO           int not null,
    PRO_IMAGEN           longblob not null,
@@ -35,14 +35,16 @@ create table PRODUCTO
    PRO_CANTIDAD         int not null,
    PRO_CATEGORIA        varchar(50) not null,
    primary key (PRO_ID)
-);
+
+)
+;
 
 /*==============================================================*/
 /* Table: USUARIO                                               */
 /*==============================================================*/
 create table USUARIO
 (
-   USU_ID               int not null,
+   USU_ID               int not null AUTO_INCREMENT,
    CARR_ID              int,
    USU_NOMBRE           varchar(50) not null,
    USU_PASSWORD         varchar(50) not null,
