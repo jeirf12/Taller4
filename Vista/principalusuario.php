@@ -3,8 +3,12 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <div class="content-button">
-      <button class="button-google" action="?c=Carrito&ObtenerProductos">Ver carrito</button>
-      <button class="button-danger" action="?c=Sesion&iniciarSesion">Iniciar Sesion</button>
+      <form action="?c=Carrito&ObtenerProductos" method="post">
+        <button class="button-google">Ver carrito</button>
+      </form>
+      <form action="?c=Sesion&iniciarSesion" method="post">
+        <button class="button-danger">Iniciar Sesion</button>
+      </form>
     </div>
     <?php if(isset($productos)): ?>
     <?php foreach($productos as $producto): ?>
