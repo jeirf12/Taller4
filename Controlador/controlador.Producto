@@ -49,8 +49,7 @@ class controladorProducto {
          }else{
              $resultado = $this->crud->crear($auxProducto);
          }
-         
-         
+
          if($resultado){
              $mensaje = 'El producto se ha creado correctamente.';
              

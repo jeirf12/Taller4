@@ -7,6 +7,7 @@ class clsUsuario {
     private $clave;
     private $correo;
     private $rol;
+    private $carid;
     
     //metodos
     public function __construct() {}

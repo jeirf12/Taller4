@@ -53,7 +53,7 @@ class clsProductoCRUD {
     public function Editar($obj){
         $resultado = false;
          try{
-            $consulta = "UPDATE PRODUCTO SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?, PRO_CATEGORIA=?  WHERE codigo =?";
+            $consulta = "UPDATE PRODUCTO SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?, PRO_CATEGORIA=?  WHERE PRO_ID =?";
             $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->precio,$obj->imagen,$obj->descripcion,$obj->cantidad,$obj->categoria,$obj->id));
             $resultado = true;
         }
@@ -64,7 +64,7 @@ class clsProductoCRUD {
     }
     public function Eliminar($codigo){
          try{
-            $consulta = "DELETE FROM producto WHERE codigo=?";
+            $consulta = "DELETE FROM producto WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));
         }
         catch (Exception $ex){
@@ -74,7 +74,7 @@ class clsProductoCRUD {
     
     public function Obtener($codigo){
          try{
-            $consulta = $this->auxPDO->prepare("SELECT * FROM producto WHERE codigo=?");
+            $consulta = $this->auxPDO->prepare("SELECT * FROM producto WHERE PRO_ID=?");
             $consulta->execute(array($codigo));
             
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
