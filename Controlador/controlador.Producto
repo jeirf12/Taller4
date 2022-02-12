@@ -1,15 +1,22 @@
 <?php
-
-require 'Modelo/clsProductoCRUD.php';
-
+require_once 'Modelo/clsConexion.php'; 
+require_once 'Modelo/clsProductoCRUD.php';
+require_once 'Modelo/clsProducto.php'; 
 class controladorProducto {
     //atributos
     private $crud;
-    private $conexion = new clsConexion('localhost','taller4','root','');
+    private $conexion;
     //metodos
     public function __construct(){
+        $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsProductoCRUD($this->conexion);
     }
+    
+    public function volver(){
+        header('Location: index.php');
+    }
+    
+      
     public function Listar(){
         $existeSesion = false;
         $productos = $this->crud->Listar();
@@ -17,10 +24,10 @@ class controladorProducto {
             $existeSesion = true;
             $usuarionombre = $_SESSION['nombre'];
         }
-        if($_SESSION['rol']=='admin'){
-            require 'vista/principaladmin';
+        if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
+            require 'vista/principaladmin.php';
         }else{
-            require 'vista/principalusuario';
+            require 'vista/principalusuario.php';
         }
     }
     

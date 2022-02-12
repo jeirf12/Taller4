@@ -1,6 +1,6 @@
 <?php
-require 'Modelo/clsConexion.php';
-require 'Modelo/clsProducto.php';
+
+require_once 'Modelo/clsProducto.php';
 
 class clsProductoCRUD {
     //atributos
@@ -18,17 +18,17 @@ class clsProductoCRUD {
         try{
             $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO");
             $consulta->execute();
-
             $resultado = array();
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+             //   var_dump($obj);
                 $auxProducto = new clsProducto();
-                $auxProducto->__SET('id',$obj->pro_id);
-                $auxProducto->__SET('nombre',$obj->pro_nombre);
-                $auxProducto->__SET('precio',$obj->pro_precio);
-                $auxProducto->__SET('imagen',$obj->pro_imagen);
-                $auxProducto->__SET('descripcion',$obj->pro_descripcion);
-                $auxProducto->__SET('cantidad',$obj->pro_cantidad);
-                $auxProducto->__SET('categoria',$obj->pro_categoria);
+                $auxProducto->__SET('id',$obj->PRO_ID);
+                $auxProducto->__SET('nombre',$obj->PRO_NOMBRE);
+                $auxProducto->__SET('precio',$obj->PRO_PRECIO);
+                $auxProducto->__SET('imagen',$obj->PRO_IMAGEN);
+                $auxProducto->__SET('descripcion',$obj->PRO_DESCRIPCION);
+                $auxProducto->__SET('cantidad',$obj->PRO_CANTIDAD);
+                $auxProducto->__SET('categoria',$obj->PRO_CATEGORIA);
                 $resultado [] = $auxProducto;
             }
         }
