@@ -19,9 +19,9 @@ a {
   pointer-events: none;
   transition: all 1s;
 }
-#miModal:target {
-  opacity: 1;
+.show {
   pointer-events: auto;
+  opacity: 1;
 }
 .close {
   background: #606061;

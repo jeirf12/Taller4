@@ -9,10 +9,13 @@
       <div class="card">
         <img src="css/coco.jfif" alt="" style="width:100%">
         <div class="card-content">
-          <h4><?php echo $compra->__get('nombre'); ?></h4>
-          <p>cantidad: <?php echo $compra->__get('cantidad'); ?></p>
-          <p>Precio total: <?php echo $compra->__get('precio'); ?></p>
-          <button type="submit" action="?c=Carrito&a=Eliminar&codigo=<?php echo $compra->__get('id'); ?>">Quitar Compra</button>
+          <h4><?php echo $compras[0]->__get('nombre'); ?></h4>
+          <p>cantidad: <span contenteditable="true"><?php echo $compras[1]->__get('cantidad'); ?></span></p>
+          <p>Precio total: <?php echo $compras[0]->__get('precio') * $compras[1]->__get('cantidad'); ?></p>
+          <?php if(isset($editarCarrito) && $editarCarrito): ?>
+            <button class="button-google" type="submit" action="?c=Carrito&a=CrearEditar&carid=<?php echo $compras[1]->__get('carid'); ?>&proid=<?php echo $compras[0]->__get('id'); ?>">Editar Compra</button>
+          <?php endif; ?>
+          <button class="button-danger" type="submit" action="?c=Carrito&a=Eliminar&carid=<?php echo $compras[1]->__get('carid'); ?>&proid=<?php echo $compras[0]->__get('id'); ?>">Quitar Compra</button>
         </div>
       </div>
       <?php endforeach; ?>
