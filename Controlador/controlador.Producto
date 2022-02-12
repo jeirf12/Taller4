@@ -11,16 +11,57 @@ class controladorProducto {
         $this->crud = new clsProductoCRUD($this->conexion);
     }
     public function Listar(){
-        require_once 'vista/paginaProductos.php';
+        $existeSesion = false;
+        $productos = $this->crud->Listar();
+        if(isset($_SESSION['nombre'])){
+            $existeSesion = true;
+            $usuarionombre = $_SESSION['nombre'];
+        }
+        if($_SESSION['rol']=='admin'){
+            require 'vista/principaladmin';
+        }else{
+            require 'vista/principalusuario';
+        }
     }
-    public function Formulario(){
+    
+    public function CrearEditar(){
+        if($_REQUEST['id']!=NULL){
+            $producto = $this->crud->obtener($_REQUEST('id'));
+        }
+        require 'vista/guardarproducto.php';
         
     }
+    
     public function Crear(){
-        
+         $resultado = false;
+         $auxProducto = new clsProducto();
+         $auxProducto->__SET('nombre',$_REQUEST['nombre']);
+         $auxProducto->__SET('precio',$_REQUEST['precio']);
+         $auxProducto->__SET('imagen',$_REQUEST['imagen']);
+         $auxProducto->__SET('descripcion',$_REQUEST['descripcion']);
+         $auxProducto->__SET('cantidad',$_REQUEST['cantidad']);
+         $auxProducto->__SET('categoria',$_REQUEST['categoria']);
+       
+         if($_REQUEST['id']!=NULL){
+             $auxProducto ->__SET('id',$_REQUEST['id']);
+             $resultado = $this->crud->editar($auxProducto);
+             
+         }else{
+             $resultado = $this->crud->crear($auxProducto);
+         }
+
+         if($resultado){
+             $mensaje = 'El producto se ha creado correctamente.';
+             
+         }else{
+             $mensaje = 'ERROR: No se ha podido crear el producto.';
+         }
+         header('Location: index.php');
+         //require 'index.php'; //todo
     }
+    
     public function Eliminar(){
-        $this->crud->Eliminar($_REQUEST['codigo']);
+        $this->crud->Eliminar($_REQUEST['id']);
         header('Location: index.php');
     }
 }

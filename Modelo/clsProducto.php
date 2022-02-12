@@ -8,6 +8,7 @@ class clsProducto {
     private $imagen;
     private $descripcion;
     private $cantidad;
+    private $categoria;
     
     //metodos
     public function __construct() {}

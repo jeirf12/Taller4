@@ -19,7 +19,29 @@ class clsSesion {
         $_SESSION['clave'] = $usuario->USU_PASSWORD;
         $_SESSION['rol'] = $usuario->USU_ROL;
     }
-
+    public function obtenerUsuario($id){
+        
+        try{ 
+            $consulta = "SELECT * FROM USUARIO WHERE USU_ID=?";
+            $consulta=$this->auxPDO->prepare($consulta);
+            
+            $consulta->execute(array($id));
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+                $auxUsuario = new clsUsuario();
+                $auxUsuario->__SET('id',$obj->usu_id);
+                $auxUsuario->__SET('carid',$obj->carr_id);
+                $auxUsuario->__SET('nombre',$obj->usu_nombre);
+                $auxUsuario->__SET('clave',$obj->usu_password);
+                $auxUsuario->__SET('correo',$obj->usu_email);
+                $auxUsuario->__SET('rol',$obj->usu_rol);
+ 
+            }          
+        }
+        catch (Exception $ex){
+            die($ex->getMessage());
+        }
+         return $auxUsuario;
+    }
     public function datoUsuario() {
         return $_SESSION['nombre'];
     }
