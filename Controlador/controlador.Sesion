@@ -18,6 +18,10 @@ class controladorSesion {
         require_once 'vista/iniciarsesion.php'; 
     }
     
+    public function volver(){
+        header('Location: index.php');
+    }
+    
     public function existeUsuario(){
         $usuario = $_REQUEST['correo'];
         $clave = $_REQUEST['contrasenia'];
@@ -37,13 +41,21 @@ class controladorSesion {
     public function cerrarSesion(){
         $this->$sesion->cerrarSesion();
     }
-    public function registrarUsuario($nombre, $clave, $correo){
+    public function registrarUsuario(){
+        $nombre = $_REQUEST['nombre'];
+        $correo = $_REQUEST['correo'];
+        $clave = $_REQUEST['contrasenia'];
         $resultado;
         $usuario = new clsUsuario();
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);
         $usuario->__SET('correo',$correo);
         $resultado = $this->sesion->registrarUsuario($usuario);
-        return $resultado;
+        if($resultado){
+            $mensaje = 'Usuario registrado correctamente. Inicie sesion.';
+        }else{
+            $mensaje = 'ERROR: Usuario no registrado';
+        }
+        require 'vista/iniciarsesion.php';
     }
 }
