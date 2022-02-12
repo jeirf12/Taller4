@@ -1,20 +1,6 @@
 <?php
 
-
-
-$controlador = 'Sesion';
-require_once "controlador/controlador.$controlador";
-$controlador = "controlador".$controlador;
-$controlador = new $controlador;
-var_dump($controlador->registrarUsuario('asdf','asdf','prueba'));
-/*
-require 'modelo/clsConexion.php';
-
-$conexion = new clsConexion('localhost','bdproductos','root','');
-$conexion->conectar();
-var_dump($conexion->estado);*/
-/*
-$controlador = 'Sesion';
+$controlador = 'Producto';
 
 if(isset($_REQUEST['c'])){
     $controlador = $_REQUEST['c'];
@@ -23,13 +9,13 @@ if(isset($_REQUEST['c'])){
     require_once "controlador/controlador.$controlador";
     $controlador = "controlador".$controlador;
     $controlador = new $controlador;
-    call_user_func(array($controlador,$accion));
+ 
 }
 else{
     require_once "controlador/controlador.$controlador";
-    
     $controlador = "controlador".$controlador;
     $controlador = new $controlador;
-    $controlador->iniciarSesion();     
-    //asdfasdfasdf
-}*/
+    $accion = 'Listar'; 
+  
+}
+call_user_func(array($controlador,$accion));

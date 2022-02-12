@@ -1,7 +1,7 @@
 <?php
-require 'Modelo/clsSesion.php';
-require 'Modelo/clsConexion.php'; 
-require 'Modelo/clsUsuario.php'; 
+require_once 'Modelo/clsSesion.php';
+require_once 'Modelo/clsConexion.php'; 
+require_once 'Modelo/clsUsuario.php'; 
 
 class controladorSesion {
           //atributos
@@ -18,8 +18,13 @@ class controladorSesion {
         require_once 'vista/iniciarsesion.php'; 
     }
     
+     
     public function volver(){
         header('Location: index.php');
+    }
+    
+    public function index(){
+        require 'vista/principalusuario.php';
     }
     
     public function existeUsuario(){

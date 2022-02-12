@@ -1,5 +1,5 @@
 <?php
-require 'Modelo/clsConexion.php';
+
 require 'Modelo/clsCarrito.php';
 
 class clsCarritoCRUD {
@@ -15,13 +15,16 @@ class clsCarritoCRUD {
     }
     
     public function Crear($obj){
+        $resultado = false;
         try{
-            $consulta = "INSERT INTO CARRITOCOMPRAS (CARR_ID,PRO_ID,USU_ID,CARR_CANT) VALUES (?,?,?,?)";
-            $this->auxPDO->prepare($consulta)->execute(array($obj->carid,$obj->proid,$obj->usuid,$obj->cantidad));
+            $consulta = "INSERT INTO CARRITOCOMPRAS (PRO_ID,USU_ID,CARR_CANT) VALUES (?,?,?)";
+            $this->auxPDO->prepare($consulta)->execute(array($obj->proid,$obj->usuid,$obj->cantidad));
+            $resultado = true;
         }
         catch (Exception $ex){
             die($ex->getMessage());
         }
+        return $resultado;
     }
     public function Editar($obj){
         $resultado = false;
@@ -71,5 +74,5 @@ class clsCarritoCRUD {
         return $resultado;
     }
 
-    
+
 }
