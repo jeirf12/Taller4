@@ -2,20 +2,30 @@
 require_once 'Modelo/clsSesion.php';
 require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsUsuario.php'; 
+require_once 'Modelo/clsProductoCRUD.php';
 
 class controladorSesion {
           //atributos
     private $sesion;
     private $conexion;
     private $usuario;
+    private $crud;
     //metodos
     public function __construct(){
         $this->conexion =  new clsConexion('localhost','taller4','root','');
         $this->sesion = new clsSesion($this->conexion);
+        $this->crud = new clsProductoCRUD($this->conexion);
+        
     }
     
     public function iniciarSesion(){
-        require_once 'vista/iniciarsesion.php'; 
+                require_once 'vista/iniciarsesion.php'; 
+     /*   $existeSesion = $this->existeSesion();
+        if(!$existeSesion){
+                  require_once 'vista/iniciarsesion.php'; 
+        }else{
+            require_once 'vista/principalusuario.php';
+        }*/
     }
     
      
@@ -28,13 +38,16 @@ class controladorSesion {
     }
     
     public function existeUsuario(){
-        $usuario = $_REQUEST['correo'];
+        $productos = $this->crud->Listar();
+        $correo = $_REQUEST['correo'];
         $clave = $_REQUEST['contrasenia'];
-        $resultado = $this->sesion->existeUsuario($usuario, $clave);
-        if($resultado=='admin'){
+        $existeSesion = true;
+        $usuario = $this->sesion->existeUsuario($correo, $clave);
+        if($usuario->__get('rol')=='admin'){
             require 'vista/principaladmin.php';
-        }
-        if($resultado=='noadmin'){
+        }else
+        if($usuario->__get('rol')=='noadmin'){
+            //header('Location: index.php');
             require 'vista/principalusuario.php';
         }
         else{
@@ -43,14 +56,21 @@ class controladorSesion {
         }
     }
     
-    public function cerrarSesion(){
-        $this->$sesion->cerrarSesion();
+    public function existeSesion(){
+        return $this->sesion->existeSesion();
     }
-    public function registrarUsuario(){
+    
+    public function cerrarSesion(){
+        $this->sesion->cerrarSesion();
+        header("Location: index.php");
+    }
+    public function RegistrarUsuario(){
+        require 'vista/registrarusuario.php';
         $nombre = $_REQUEST['nombre'];
         $correo = $_REQUEST['correo'];
         $clave = $_REQUEST['contrasenia'];
         $resultado;
+        var_dump($nombre,$correo,$clave);
         $usuario = new clsUsuario();
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);

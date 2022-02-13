@@ -28,12 +28,12 @@ class clsSesion {
             $consulta->execute(array($id));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxUsuario = new clsUsuario();
-                $auxUsuario->__SET('id',$obj->usu_id);
-                $auxUsuario->__SET('carid',$obj->carr_id);
-                $auxUsuario->__SET('nombre',$obj->usu_nombre);
-                $auxUsuario->__SET('clave',$obj->usu_password);
-                $auxUsuario->__SET('correo',$obj->usu_email);
-                $auxUsuario->__SET('rol',$obj->usu_rol);
+                  $auxUsuario->__SET('id',$obj->USU_ID);
+                $auxUsuario->__SET('carid',$obj->CARR_ID);
+                $auxUsuario->__SET('nombre',$obj->USU_NOMBRE);
+                $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
+                $auxUsuario->__SET('correo',$obj->USU_EMAIL);
+                $auxUsuario->__SET('rol',$obj->USU_ROL);
  
             }          
         }
@@ -73,19 +73,26 @@ class clsSesion {
     }
     
      public function existeUsuario($usuario, $clave) {
-        $resultado = '';
-        try {
 
+        try {
+            
              $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($usuario,$clave));
         
-            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $fila){
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
               //  var_dump($fila);
-                 $auxpass=password_hash($fila->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
+                 $auxpass=password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
                 if (password_verify($clave, $auxpass)) {
-                    $this->fijarSesion($fila);
-                    $resultado = $fila->USU_ROL;
+                    $this->fijarSesion($obj);
+                     $auxUsuario = new clsUsuario();
+                  $auxUsuario->__SET('id',$obj->USU_ID);
+                $auxUsuario->__SET('carid',$obj->CARR_ID);
+                $auxUsuario->__SET('nombre',$obj->USU_NOMBRE);
+                $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
+                $auxUsuario->__SET('correo',$obj->USU_EMAIL);
+                $auxUsuario->__SET('rol',$obj->USU_ROL);
+                   return $auxUsuario;
                 }
             }
             
@@ -93,7 +100,7 @@ class clsSesion {
         } catch (Exception $ex) {
             echo "Ocurrio un error " . $ex;
         }
-        return $resultado;
+        return null;
     }
 
 }

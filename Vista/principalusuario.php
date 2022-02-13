@@ -16,7 +16,7 @@
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
         <p>descripcion: <?php echo $producto->__get('descripcion'); ?></p>
         <div class="content-button">
-          <a class="button-success" type="submit" href="?c=Carrito&a=CrearEditar&codP=<?php echo $producto->__get('id');?>&codUsu=<?php echo $usuario->__get('id'); ?>">Agregar Carrito</a>
+          <a class="button-success" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo $usuario->__get('id'); ?>">Agregar Carrito</a>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2022 a las 00:30:01
+-- Tiempo de generación: 13-02-2022 a las 03:55:40
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -33,6 +33,13 @@ CREATE TABLE `carritocompras` (
   `USU_ID` int(11) NOT NULL,
   `CARR_CANT` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `carritocompras`
+--
+
+INSERT INTO `carritocompras` (`CARR_ID`, `PRO_ID`, `USU_ID`, `CARR_CANT`) VALUES
+(1, 1, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -73,6 +80,16 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`USU_ID`, `CARR_ID`, `USU_NOMBRE`, `USU_PASSWORD`, `USU_EMAIL`, `USU_ROL`) VALUES
+(1, NULL, 'adrian', 'adrian', 'adrian@gmail.com', 'admin'),
+(2, NULL, 'jhonfer', 'jhonfer', 'jhonfer@gmail.com', 'admin'),
+(3, NULL, 'juana', 'juana', 'juana@gmail.com', 'noadmin'),
+(4, NULL, 'oscar', 'oscar', 'oscar@gmail.com', 'noadmin');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -105,7 +122,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carritocompras`
 --
 ALTER TABLE `carritocompras`
-  MODIFY `CARR_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CARR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -117,7 +134,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `USU_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `USU_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

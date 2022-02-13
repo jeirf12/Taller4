@@ -2,6 +2,7 @@
 require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsProductoCRUD.php';
 require_once 'Modelo/clsProducto.php'; 
+
 class controladorProducto {
     //atributos
     private $crud;

@@ -1,14 +1,15 @@
 <?php
-
+require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsCarritoCRUD.php';
-require 'Modelo/clsCarrito.php';
+require_once 'Modelo/clsCarrito.php';
 
 class controladorCarrito {
     //atributos
     private $crud;
-    private $conexion = new clsConexion('localhost','taller4','root','');
+    private $conexion; 
     //metodos
     public function __construct(){
+          $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsCarritoCRUD($this->conexion);
     }
     public function Listar(){
@@ -57,7 +58,7 @@ class controladorCarrito {
          }
          $auxCarrito->__SET('proid',$_REQUEST['proid']);
          $auxCarrito->__SET('usuid',$_REQUEST['usuid']);
-         $auxCarrito->__SET('cantidad',$_REQUEST['cantidad']);
+         $auxCarrito->__SET('cantidad',1);
          return $auxCarrito;
     }
    
