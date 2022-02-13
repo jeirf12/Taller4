@@ -3,11 +3,13 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <div class="content-button">
-        <a class="button-google" href="?c=Carrito&ObtenerProductos">Ver carrito</a>
-        <a class="button-danger" href="?c=Sesion&iniciarSesion">Iniciar Sesion</a>
+    <a class="button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($usuario) ? $usuario->__get('id') : " "; ?>">Ver carrito</a>
+    <?php if(isset($this->existeSesion) && !$this->existeSesion): ?>
+      <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
+    <?php endif; ?>
     </div>
-    <?php if(isset($productos)): ?>
-    <?php foreach($productos as $producto): ?>
+    <?php if(isset($this->productos)): ?>
+    <?php foreach($this->productos as $producto): ?>
     <div class="card">
       <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product" style="width:100%">
       <div class="card-content">
@@ -16,7 +18,7 @@
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
         <p>descripcion: <?php echo $producto->__get('descripcion'); ?></p>
         <div class="content-button">
-          <a class="button-success" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo $usuario->__get('id'); ?>">Agregar Carrito</a>
+          <a class="button-success" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo isset($usuario) ? $usuario->__get('id') : " "; ?>">Agregar Carrito</a>
         </div>
       </div>
     </div>

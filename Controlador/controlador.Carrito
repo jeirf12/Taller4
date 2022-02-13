@@ -9,40 +9,48 @@ class controladorCarrito {
     private $conexion; 
     //metodos
     public function __construct(){
-          $this->conexion = new clsConexion('localhost','taller4','root','');
+        $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsCarritoCRUD($this->conexion);
     }
     public function Listar(){
-        $existeSesion = false;
-        $productos = $this->crud->ObtenerProducto($_REQUEST('codUsu'));
-        if(isset($_SESSION['nombre'])){
-            $existeSesion = true;
-            $usuarionombre = $_SESSION['nombre'];
+        $compras = $this->crud->ObtenerProductos($_REQUEST['codUsu']);
+        if($_SESSION['existeSesion']){
+            $usuario = new clsUsuario();
+            $usuario->__set('id', $_SESSION['id']);
+            $usuario->__set('nombre', $_SESSION['nombre']);
         }
-            require 'vista/carritocompras.php';
+        /* require 'vista/carritocompras.php'; */
+        /* var_dump($this->existeSesion); */
     }
     
        
     public function CrearEditar(){
-         $resultado = false;
-         $auxOp;
-         $auxCarrito = $this->ObtenerCarritoVista();
-         if(isset($auxCarrito->carid)){
-             $auxOp='editado';
-             $resultado = $this->crud->Editar($auxCarrito);
-         }else{
-              $auxOp='creado';
-             $resultado = $this->crud->Crear($auxCarrito);
-         }
+         $this->existeSesion = $this->isSesion();
+         var_dump($_SESSION['existeSesion']);
+         if($this->existeSesion) {
+             $resultado = false;
+             $auxOp;
+             $auxCarrito = $this->ObtenerCarritoVista();
+             if(isset($auxCarrito->carid)){
+                 $auxOp='editado';
+                 $resultado = $this->crud->Editar($auxCarrito);
+             }else{
+                 $auxOp='creado';
+                 $resultado = $this->crud->Crear($auxCarrito);
+             }
 
-         if($resultado){
-            $mensaje = 'El producto se ha '.$auxOp.' al carrito correctamente.';
-             
-         }else{
-             $mensaje = 'ERROR: No se ha '.$auxOp.' el producto.';
+           if($resultado){
+                $mensaje = 'El producto se ha '.$auxOp.' al carrito correctamente.';     
+             }else{
+                $mensaje = 'ERROR: No se ha '.$auxOp.' el producto.';
+             }
+             /* header('Location: index.php'); */
+             /* $this->Listar(); */
+         } else {
+            /* header('Location: index.php'); */
+            /* $this->sesion->iniciarSesion(); */
          }
-         header('Location: index.php');
-         //require 'index.php'; //todo
+         var_dump($this->existeSesion);
     }
     
     public function Eliminar(){
@@ -60,6 +68,10 @@ class controladorCarrito {
          $auxCarrito->__SET('usuid',$_REQUEST['usuid']);
          $auxCarrito->__SET('cantidad',1);
          return $auxCarrito;
+    }
+
+    public function isSesion(){
+        return isset($_SESSION['nombre']);
     }
    
 }

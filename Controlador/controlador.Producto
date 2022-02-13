@@ -7,24 +7,20 @@ class controladorProducto {
     //atributos
     private $crud;
     private $conexion;
+    private $productos;
+    private $usuario;
+    private $existeSesion;
     //metodos
     public function __construct(){
         $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsProductoCRUD($this->conexion);
+        $this->existeSesion = false;
     }
     
-    public function volver(){
-        header('Location: index.php');
-    }
-    
-      
     public function Listar(){
-        $existeSesion = false;
-        $productos = $this->crud->Listar();
-        if(isset($_SESSION['nombre'])){
-            $existeSesion = true;
-            $usuarionombre = $_SESSION['nombre'];
-        }
+        $this->productos = $this->crud->Listar();
+        $this->existeSesion = isset($_SESSION['nombre']);
+        $this->validaSesion();
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
             require 'vista/principaladmin.php';
         }else{
@@ -33,9 +29,14 @@ class controladorProducto {
     }
     
     public function CrearEditar(){
-        if($_REQUEST['id']!=NULL){
-            $producto = $this->crud->obtener($_REQUEST('id'));
+        $isForm = false;
+        /* $this->existeSesion = true; */
+        if(isset($_REQUEST['proid'])){
+            $producto = $this->crud->Obtener($_REQUEST['proid']);
         }
+        /* $this->validaSesion(); */
+        var_dump($this->existeSesion);
+        /* echo $this->existeSesion; */
         require 'vista/guardarproducto.php';
         
     }
@@ -45,7 +46,8 @@ class controladorProducto {
          $auxProducto = new clsProducto();
          $auxProducto->__SET('nombre',$_REQUEST['nombre']);
          $auxProducto->__SET('precio',$_REQUEST['precio']);
-         $auxProducto->__SET('imagen',$_REQUEST['imagen']);
+         $auxProducto->__SET('imagen',$this->validaImagen($_REQUEST['imagen']));
+         /* $auxProducto->__SET('imagen',$_REQUEST['imagen']); */
          $auxProducto->__SET('descripcion',$_REQUEST['descripcion']);
          $auxProducto->__SET('cantidad',$_REQUEST['cantidad']);
          $auxProducto->__SET('categoria',$_REQUEST['categoria']);
@@ -64,12 +66,34 @@ class controladorProducto {
          }else{
              $mensaje = 'ERROR: No se ha podido crear el producto.';
          }
+         /* echo $_REQUEST['imagen']; */
          header('Location: index.php');
-         //require 'index.php'; //todo
     }
     
     public function Eliminar(){
         $this->crud->Eliminar($_REQUEST['id']);
         header('Location: index.php');
+    }
+
+    public function validaSesion(){
+        if($this->existeSesion){
+            $this->usuario = new clsUsuario();
+            $this->usuario->__set('id', $_SESSION['id']);
+            $this->usuario->__set('nombre', $_SESSION['nombre']);
+        }
+    }
+
+    public function validaImagen($img){
+        $data = "";
+        $size = $_FILES[$img]['size'];
+        /* $allows = array("image/jpg", "image/jpeg", "imagen/png"); */
+        if ($size > 0){
+            $img_tmp = $_FILES[$img]['tmp_name'];
+            $data = fopen($img_tmp, "r");
+            $data_img = fread($data, $size);
+            fclose($data);
+            $data = addslashes($data_img);
+        } 
+        return $data;
     }
 }

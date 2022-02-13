@@ -12,9 +12,9 @@
     <div class="header-content">
       <img src="Vista/css/logo.svg" alt="header">
     </div>
-    <?php if(isset($existeSesion) && $existeSesion): ?>
+    <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
 <div class="header-content">
-      <p><?php echo $usuario->__get('nombre'); ?></p>
+      <p><?php echo $this->usuario->__get('nombre'); ?></p>
     </div>
     <div class="header-content">
       <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
