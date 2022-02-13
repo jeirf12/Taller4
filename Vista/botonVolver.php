@@ -1,5 +1,5 @@
 <?php if(isset($isForm) && !$isForm): ?>
-<button class="button-back button-danger" type="submit" action="?s=Sesion&a=volver">Regresar</button>
+<a class="button-back button-danger" type="submit" href="?s=Sesion&a=volver">Regresar</a>
 <?php else: ?>
-<button class="button-danger" type="submit" action="?s=Sesion&a=volver">Regresar</button>
+<a class="button-back button-danger" type="submit" href="?s=Sesion&a=volver">Regresar</a>
 <?php endif; ?>

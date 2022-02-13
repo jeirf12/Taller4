@@ -3,12 +3,8 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <div class="content-button">
-      <form action="?c=Carrito&ObtenerProductos" method="post">
-        <button class="button-google">Ver carrito</button>
-      </form>
-      <form action="?c=Sesion&iniciarSesion" method="post">
-        <button class="button-danger">Iniciar Sesion</button>
-      </form>
+        <a class="button-google" href="?c=Carrito&ObtenerProductos">Ver carrito</a>
+        <a class="button-danger" href="?c=Sesion&iniciarSesion">Iniciar Sesion</a>
     </div>
     <?php if(isset($productos)): ?>
     <?php foreach($productos as $producto): ?>
@@ -19,7 +15,9 @@
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
         <p>descripcion: <?php echo $producto->__get('descripcion'); ?></p>
-        <button class="button-success" type="submit" action="?c=Carrito&a=CrearEditar&codP=<?php echo $producto->__get('id');?>&codUsu=<?php echo $usuario->__get('id'); ?>">Agregar Carrito</button>
+        <div class="content-button">
+          <a class="button-success" type="submit" href="?c=Carrito&a=CrearEditar&codP=<?php echo $producto->__get('id');?>&codUsu=<?php echo $usuario->__get('id'); ?>">Agregar Carrito</a>
+        </div>
       </div>
     </div>
     <?php endforeach; ?>

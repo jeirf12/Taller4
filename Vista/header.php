@@ -17,7 +17,7 @@
       <p><?php echo $usuario->__get('nombre'); ?></p>
     </div>
     <div class="header-content">
-      <button class="close-sesion button-google" action="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</button>
+      <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
     </div>
   <?php endif; ?>
 </header>

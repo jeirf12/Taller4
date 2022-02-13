@@ -12,10 +12,14 @@
           <h4><?php echo $compras[0]->__get('nombre'); ?></h4>
           <p>cantidad: <span contenteditable="true"><?php echo $compras[1]->__get('cantidad'); ?></span></p>
           <p>Precio total: <?php echo $compras[0]->__get('precio') * $compras[1]->__get('cantidad'); ?></p>
-          <?php if(isset($editarCarrito) && $editarCarrito): ?>
-            <button class="button-google" type="submit" action="?c=Carrito&a=CrearEditar&carid=<?php echo $compras[1]->__get('carid'); ?>&proid=<?php echo $compras[0]->__get('id'); ?>">Editar Compra</button>
-          <?php endif; ?>
-          <button class="button-danger" type="submit" action="?c=Carrito&a=Eliminar&carid=<?php echo $compras[1]->__get('carid'); ?>&proid=<?php echo $compras[0]->__get('id'); ?>">Quitar Compra</button>
+          <div>
+            <?php if(isset($editarCarrito) && $editarCarrito): ?>
+              <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&carid=<?php echo $compras[1]->__get('carid'); ?>&proid=<?php echo $compras[0]->__get('id'); ?>">Editar Compra</a>
+            <?php endif; ?>
+          </div>
+          <div>
+            <a class="button-danger" type="submit" href="?c=Carrito&a=Eliminar&carid=<?php echo $compras[1]->__get('carid'); ?>&proid=<?php echo $compras[0]->__get('id'); ?>">Quitar Compra</a>
+          </div>
         </div>
       </div>
       <?php endforeach; ?>

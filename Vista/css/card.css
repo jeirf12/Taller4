@@ -19,6 +19,7 @@
   padding: 2px 16px;
 }
 
-.card-content button {
+.card-content div {
   margin: 16px 0 16px 0;
+  cursor: pointer;
 }
