@@ -10,6 +10,7 @@ class controladorProducto {
     private $productos;
     private $usuario;
     private $existeSesion;
+    private $datosSesion;
     //metodos
     public function __construct(){
         $this->conexion = new clsConexion('localhost','taller4','root','');
@@ -20,6 +21,7 @@ class controladorProducto {
     public function Listar(){
         $this->productos = $this->crud->Listar();
         $this->existeSesion = isset($_SESSION['nombre']);
+        $this->datosSesion = urlencode(base64_encode(serialize($_SESSION)));
         $this->validaSesion();
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
             require 'vista/principaladmin.php';
@@ -30,7 +32,8 @@ class controladorProducto {
     
     public function CrearEditar(){
         $isForm = false;
-        /* $this->existeSesion = true; */
+        /* $this->existeSesion = isset(unserialize(base64_decode($_REQUEST['sn']))); */
+        /* var_dump(unserialize(base64_decode($_REQUEST['sn']))); */
         if(isset($_REQUEST['proid'])){
             $producto = $this->crud->Obtener($_REQUEST['proid']);
         }
