@@ -21,7 +21,6 @@ class controladorProducto {
     public function Listar(){
         $this->productos = $this->crud->Listar();
         $this->existeSesion = isset($_SESSION['nombre']);
-        $this->datosSesion = urlencode(base64_encode(serialize($_SESSION)));
         $this->validaSesion();
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
             require 'vista/principaladmin.php';
@@ -32,16 +31,12 @@ class controladorProducto {
     
     public function CrearEditar(){
         $isForm = false;
-        /* $this->existeSesion = isset(unserialize(base64_decode($_REQUEST['sn']))); */
-        /* var_dump(unserialize(base64_decode($_REQUEST['sn']))); */
+        $this->existeSesion = isset($_SESSION['nombre']);
+        $this->validaSesion();
         if(isset($_REQUEST['proid'])){
             $producto = $this->crud->Obtener($_REQUEST['proid']);
         }
-        /* $this->validaSesion(); */
-        var_dump($this->existeSesion);
-        /* echo $this->existeSesion; */
         require 'vista/guardarproducto.php';
-        
     }
     
     public function Crear(){
@@ -55,10 +50,9 @@ class controladorProducto {
          $auxProducto->__SET('cantidad',$_REQUEST['cantidad']);
          $auxProducto->__SET('categoria',$_REQUEST['categoria']);
        
-         if(!isset($_REQUEST['id'])){
+         if(isset($_REQUEST['id'])){
              $auxProducto ->__SET('id',$_REQUEST['id']);
              $resultado = $this->crud->editar($auxProducto);
-             
          }else{
              $resultado = $this->crud->crear($auxProducto);
          }
@@ -69,10 +63,7 @@ class controladorProducto {
          }else{
              $mensaje = 'ERROR: No se ha podido crear el producto.';
          }
-       
-         
          header('Location: index.php');
-         
     }
     
     public function Eliminar(){
@@ -98,8 +89,6 @@ class controladorProducto {
             $data =  fopen($_FILES['imagen']['tmp_name'],'r');
             $data_img = fread($data, $size);
             fclose($data);
-           // $data_img = addslashes($data_img);
-           // $data_img = addslashes(file_get_contents($tmpname));
         } 
         return $data_img;
     }

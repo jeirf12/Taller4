@@ -9,7 +9,7 @@ class clsSesion {
         $this->conexion = $pconexion;
         $this->conexion->conectar();
         $this->auxPDO = $this->conexion->conexionPDO;
-        session_start();
+        if (!$this->existeSesion()){ session_start(); }
     }
 
   

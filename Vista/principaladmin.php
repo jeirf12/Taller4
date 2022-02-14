@@ -3,7 +3,7 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <div class="content-button">
-    <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar&sn=<?php $this->datosSesion; ?>">Agregar</a>
+    <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
     </div>
     <?php if(isset($this->productos)): ?>
     <table>
@@ -22,14 +22,14 @@
       <tbody>
       <?php foreach($this->productos as $producto): ?>
         <tr>
-          <td><img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-product" style="width:40%"></td>
+          <td><img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-product" width="20%"></td>
           <td><?php echo $producto->__get('nombre'); ?></td>
           <td><?php echo $producto->__get('precio'); ?></td>
           <td><?php echo $producto->__get('cantidad'); ?></td>
           <td><?php echo $producto->__get('descripcion'); ?></td>
           <td><?php echo $producto->__get('categoria'); ?></td>
           <div class="button-admin">
-          <td><a class="button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>&sn=<?php echo $this->datosSesion; ?>">editar</a></td>
+          <td><a class="button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
             <td><a id="openModal" class="button-danger" onclick="return open();">eliminar</a></td>
           </div>
           <div id="miModal" class="modal">

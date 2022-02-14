@@ -2,8 +2,8 @@
 require_once 'Modelo/clsSesion.php';
 require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsUsuario.php'; 
-require_once 'Controlador/controlador.Producto';
-require_once 'Controlador/controlador.Carrito';
+require_once 'Controlador/controladorProducto.php';
+require_once 'Controlador/controladorCarrito.php';
 
 class controladorSesion {
     //atributos
@@ -24,6 +24,7 @@ class controladorSesion {
     }
     
     public function iniciarSesion(){
+        /* $this->cerrarSesion(); */
         require_once 'vista/iniciarsesion.php'; 
     }
     
@@ -64,7 +65,7 @@ class controladorSesion {
     
     public function cerrarSesion(){
         $this->sesion->cerrarSesion();
-        $this->index();
+        header("Location: index.php");
     }
     public function RegistrarUsuario(){
         require 'vista/registrarusuario.php';

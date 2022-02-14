@@ -6,7 +6,7 @@
     <form class="form-save" action="?c=Producto&a=Crear" method="post" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?php echo (isset($producto)) ? $producto->__get('id') : " " ; ?>">
       <label for="imagen">Imagen</label>  
-      <input type="file" id="imagen" name="imagen" multiple value="<?php echo (isset($producto)) ? "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"': ""; ?>">
+      <input type="file" id="imagen" name="imagen" required>
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" value="<?php echo (isset($producto)) ? $producto->__get('nombre') : " "; ?>">
       <label for="descripcion">Descripcion</label>
