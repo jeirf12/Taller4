@@ -1,8 +1,9 @@
 <?php
-
-$controlador = 'Sesion';
+require_once "Controlador/controladorSesion.php";
+$sesion = new controladorSesion();
+$controlador = 'Producto';
 require_once "Controlador/controlador.$controlador";
-$controlador = "controlador" . $controlador;
+$controlador = "controlador".  $controlador;
 $accion = 'index';
 
 if (isset($_REQUEST['c'])) {
