@@ -46,13 +46,13 @@ class controladorProducto {
          $auxProducto = new clsProducto();
          $auxProducto->__SET('nombre',$_REQUEST['nombre']);
          $auxProducto->__SET('precio',$_REQUEST['precio']);
-         $auxProducto->__SET('imagen',$this->validaImagen($_REQUEST['imagen']));
-         /* $auxProducto->__SET('imagen',$_REQUEST['imagen']); */
+         $imagen = $this->validaImagen();
+         $auxProducto->__SET('imagen',$imagen);
          $auxProducto->__SET('descripcion',$_REQUEST['descripcion']);
          $auxProducto->__SET('cantidad',$_REQUEST['cantidad']);
          $auxProducto->__SET('categoria',$_REQUEST['categoria']);
        
-         if($_REQUEST['id']!=NULL){
+         if(!isset($_REQUEST['id'])){
              $auxProducto ->__SET('id',$_REQUEST['id']);
              $resultado = $this->crud->editar($auxProducto);
              
@@ -66,8 +66,10 @@ class controladorProducto {
          }else{
              $mensaje = 'ERROR: No se ha podido crear el producto.';
          }
-         /* echo $_REQUEST['imagen']; */
+       
+         
          header('Location: index.php');
+         
     }
     
     public function Eliminar(){
@@ -83,17 +85,22 @@ class controladorProducto {
         }
     }
 
-    public function validaImagen($img){
-        $data = "";
-        $size = $_FILES[$img]['size'];
+    public function validaImagen(){
+        $size = $_FILES['imagen']['size'];
+        $name =$_FILES['imagen']['name'];
+        $tmpname = $_FILES['imagen']['tmp_name'];
+
+        $carpeta_productos = $_SERVER['DOCUMENT_ROOT'].'/rsc/';
+        $data_img='';
         /* $allows = array("image/jpg", "image/jpeg", "imagen/png"); */
         if ($size > 0){
-            $img_tmp = $_FILES[$img]['tmp_name'];
-            $data = fopen($img_tmp, "r");
+            move_uploaded_file($_FILES[$img]['tmp_name'], $carpeta_productos.$name);
+            $data =  fopen($_FILES['imagen']['tmp_name'],'r');
             $data_img = fread($data, $size);
             fclose($data);
-            $data = addslashes($data_img);
+            $data_img = addslashes($data_img);
+            $data_img = addslashes(file_get_contents($tmpname));
         } 
-        return $data;
+        return $data_img;
     }
 }

@@ -2,7 +2,7 @@
 
 $controlador = 'Sesion';
 require_once "Controlador/controlador.$controlador";
-$controlador = "controlador" . $controlador;
+$controlador = "controlador".  $controlador;
 $accion = 'index';
 
 if (isset($_REQUEST['c'])) {

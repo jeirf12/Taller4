@@ -1,5 +1,6 @@
 <?php
 
+
 class clsConexion {
     //atributos
     private $conexionHost;
@@ -25,7 +26,7 @@ class clsConexion {
             $this->estado = TRUE;
         }
         catch(PDOException $ex){
-            $this->ExceptionLog(ex);
+          //  $this->ExceptionLog(ex);
         }
     }
     

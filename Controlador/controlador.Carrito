@@ -29,7 +29,7 @@ class controladorCarrito {
          var_dump($_SESSION['existeSesion']);
          if($this->existeSesion) {
              $resultado = false;
-             $auxOp;
+             $auxOp='';
              $auxCarrito = $this->ObtenerCarritoVista();
              if(isset($auxCarrito->carid)){
                  $auxOp='editado';
