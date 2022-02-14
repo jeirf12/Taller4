@@ -90,16 +90,13 @@ class controladorProducto {
         $name =$_FILES['imagen']['name'];
         $tmpname = $_FILES['imagen']['tmp_name'];
 
-        $carpeta_productos = $_SERVER['DOCUMENT_ROOT'].'/rsc/';
         $data_img='';
-        /* $allows = array("image/jpg", "image/jpeg", "imagen/png"); */
         if ($size > 0){
-            move_uploaded_file($_FILES[$img]['tmp_name'], $carpeta_productos.$name);
             $data =  fopen($_FILES['imagen']['tmp_name'],'r');
             $data_img = fread($data, $size);
             fclose($data);
-            $data_img = addslashes($data_img);
-            $data_img = addslashes(file_get_contents($tmpname));
+           // $data_img = addslashes($data_img);
+           // $data_img = addslashes(file_get_contents($tmpname));
         } 
         return $data_img;
     }
