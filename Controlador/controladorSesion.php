@@ -26,8 +26,7 @@ class controladorSesion {
     }
 
     public function Listar(){
-        echo "error no existe la pagina solicitada";
-        /* require "Vista/error.php"; */
+        require "Vista/error.php";
     }
 
     public function volver(){
@@ -52,17 +51,21 @@ class controladorSesion {
     }
     
     public function existeUsuario(){
-        if(!$this->existeUsuario){
-            $correo = $_REQUEST['correo'];
-            $clave = $_REQUEST['contrasenia'];
-            $this->usuario = $this->sesion->existeUsuario($correo, $clave);
-            if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
-                $this->existeSesion = $this->isSesion();
-                $this->index();
-            }
-            else{
-                $error = 'ERROR: Usuario no registrado';
+        if(!$this->isSesion()){
+            $correo = isset($_REQUEST['correo']) ? $_REQUEST['correo'] : " ";
+            $clave = isset($_REQUEST['contrasenia']) ? $_REQUEST['contrasenia'] : " ";
+            if (empty($correo) && empty($clave)){
                 $this->iniciarSesion();
+            }else {
+                $this->usuario = $this->sesion->existeUsuario($correo, $clave);
+                if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
+                    $this->existeSesion = $this->isSesion();
+                    $this->index();
+                }
+                else{
+                    $error = 'ERROR: Usuario no registrado';
+                    $this->iniciarSesion();
+                }
             }
         }else {
             $this->validaUsuario();
