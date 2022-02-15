@@ -10,6 +10,7 @@ $controlador = "controlador".$controlador;
 $controlador = $controlador::getInstance();
 
 if (!method_exists($controlador, $accion)) {
-	$accion = 'Listar';
+	require_once "Vista/error.php";
+}else{
+	call_user_func(array($controlador, $accion));
 }
-call_user_func(array($controlador, $accion));
