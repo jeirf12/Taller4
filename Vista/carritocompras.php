@@ -7,7 +7,7 @@
     <?php if(isset($compras) && !empty($compras)): ?>
       <?php foreach($compras as $compra): ?>
       <div class="card">
-        <img src="<?php echo "data:image/jpeg; base64,".base64_encode($compra->__get('imagen')).'"'; ?>" alt="" style="width:100%">
+        <img src="<?php echo "data:image/jpeg; base64,".base64_encode($compra->__get('imagen')).'"'; ?>" alt="">
         <div class="card-content">
           <h4><?php echo $compra->__get('nombre'); ?></h4>
           <p>cantidad: <span contenteditable="true"><?php echo $compra->__get('cantidad'); ?></span></p>

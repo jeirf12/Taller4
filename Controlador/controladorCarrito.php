@@ -43,7 +43,7 @@ class controladorCarrito {
             $resultado = false;
             $auxOp='';
             $auxCarrito = $this->ObtenerCarritoVista();
-            if(isset($auxCarrito->carid)){
+            if($auxCarrito->__get('carid') > 0){
                 $auxOp='editado';
                 $resultado = $this->crud->Editar($auxCarrito);
             }else{
@@ -59,7 +59,7 @@ class controladorCarrito {
         }else if(!$this->existeSesion && isset($_REQUEST['proid']) && isset($_REQUEST["usuid"]) && !empty($_REQUEST["usuid"])){
             header("Location: index.php");
         } else { 
-            require_once 'Vista/iniciarsesion.php';
+            header("Location: ?c=Sesion&a=iniciarSesion");
         }
     }
     
@@ -72,13 +72,9 @@ class controladorCarrito {
     
     public function ObtenerCarritoVista(){
         $auxCarrito = new clsCarrito();
-        if(isset($_REQUEST['carid'])){
-            $auxCarrito->__SET('carid', $_REQUEST['carid']);
-        }
-        $auxCarrito->__SET('proid',$_REQUEST['proid']);
-        if(isset($_REQUEST['usuid'])){
-            $auxCarrito->__SET('usuid',$_REQUEST['usuid']);
-        }
+        $auxCarrito->__SET('carid', isset($_REQUEST['carid']) ? $_REQUEST['carid'] : 0);
+        $auxCarrito->__SET('proid', $_REQUEST['proid']);
+        $auxCarrito->__SET('usuid', isset($_REQUEST['usuid']) ? $_REQUEST['usuid'] : 0);
         $auxCarrito->__SET('cantidad', 1);
         return $auxCarrito;
     }
