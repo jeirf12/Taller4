@@ -12,7 +12,7 @@ class clsSesion {
         if (!$this->existeSesion()){ session_start(); }
     }
 
-  
+    
     public function fijarSesion($usuario) {
         $_SESSION['id'] = $usuario->USU_ID;
         $_SESSION['nombre'] = $usuario->USU_NOMBRE;
