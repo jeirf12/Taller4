@@ -54,7 +54,7 @@ class clsCarritoCRUD {
     public function ObtenerProductos($id){
         $resultado = array();
         try{
-            $consulta = $this->auxPDO->prepare("SELECT P.PRO_ID, P.PRO_NOMBRE,P.PRO_PRECIO,P.PRO_IMAGEN,P.PRO_DESCRIPCION,CC.CARR_CANT,P.PRO_CATEGORIA FROM CARRITOCOMPRAS CC INNER JOIN PRODUCTO P ON CC.PRO_ID = P.PRO_ID WHERE USU_ID = ?");
+            $consulta = $this->auxPDO->prepare("SELECT P.PRO_ID, CC.CARR_ID, P.PRO_NOMBRE,P.PRO_PRECIO,P.PRO_IMAGEN,P.PRO_DESCRIPCION,CC.CARR_CANT,P.PRO_CATEGORIA FROM CARRITOCOMPRAS CC INNER JOIN PRODUCTO P ON CC.PRO_ID = P.PRO_ID WHERE USU_ID = ?");
             $consulta->execute(array($id));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
@@ -65,6 +65,7 @@ class clsCarritoCRUD {
                 $auxProducto->__SET('descripcion',$obj->PRO_DESCRIPCION);
                 $auxProducto->__SET('cantidad',$obj->CARR_CANT);
                 $auxProducto->__SET('categoria',$obj->PRO_CATEGORIA);
+                $auxProducto->__SET('carid', $obj->CARR_ID);
                 $resultado [] = $auxProducto;
             }
         }

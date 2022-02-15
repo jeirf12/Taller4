@@ -29,12 +29,12 @@
           <td><?php echo $producto->__get('descripcion'); ?></td>
           <td><?php echo $producto->__get('categoria'); ?></td>
           <div class="button-admin">
-          <td><a class="button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
-            <td><a id="openModal" class="button-danger" onclick="return open();">eliminar</a></td>
+            <td><a class="button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
+            <td><a id="#miModal" class="button-danger">eliminar</a></td>
           </div>
           <div id="miModal" class="modal">
             <div class="modal-content">
-              <a id="close" class="close">X</a>
+              <a href="#" id="close" class="close">X</a>
               <p>Desea eliminar el producto?</p>
               <a href="?c=Sesion&a=VolverPrincipal" type="submit">no</a>
               <a action="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>" type="submit">si</a>
@@ -50,6 +50,6 @@
       </div>
     <?php endif; ?>
   </div>
-  <script src="Vista/js/modal.js"></script>
+  <script src="js/modal.js"></script>
 </body>
 </html>

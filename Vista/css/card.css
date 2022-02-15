@@ -16,10 +16,20 @@
 }
 
 .card-content {
-  padding: 2px 16px;
+  padding: 5% 10%;
+  width: 80%;
+}
+
+.card-content p{
+  display: block;
 }
 
 .card-content div {
-  margin: 16px 0 16px 0;
+  margin-top: 4%;
   cursor: pointer;
+}
+
+.card-content a {
+  display: block;
+  text-align: center;
 }

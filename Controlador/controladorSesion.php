@@ -2,43 +2,48 @@
 require_once 'Modelo/clsSesion.php';
 require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsUsuario.php'; 
-require_once 'Controlador/controladorProducto.php';
-require_once 'Controlador/controladorCarrito.php';
 
 class controladorSesion {
     //atributos
     private $sesion;
     private $conexion;
     private $usuario;
-    private $productos;
-    private $controllerProducto;
-    private $controllerCarrito;
     private $existeSesion;
+    private static $instance = [];
+
     //metodos
-    public function __construct(){
+    protected function __construct(){
         $this->conexion =  new clsConexion('localhost','taller4','root','');
         $this->sesion = new clsSesion($this->conexion);
-        $this->controllerProducto = new controladorProducto();
-        $this->controllerCarrito = new controladorCarrito();
         $this->existeSesion = false;
     }
-    
-    public function iniciarSesion(){
-        /* $this->cerrarSesion(); */
-        require_once 'vista/iniciarsesion.php'; 
+
+    public static function getInstance(){
+        $cls = static::class;
+        if (!isset(self::$instance[$cls])) {
+            self::$instance[$cls] = new static();
+        }
+        return self::$instance[$cls];
     }
-    
-     
+
     public function volver(){
         $this->index();
     }
 
-    public function volverPrincipal(){
+    public function volverprincipal(){
         $this->index();
     }
-    
+
     public function index(){
-        $this->controllerProducto->Listar();
+        header("Location: index.php");
+    }
+    
+    public function iniciarSesion(){
+        if(!$this->isSesion()){
+            require_once 'vista/iniciarsesion.php';         
+        }else{
+            $this->index();
+        }
     }
     
     public function existeUsuario(){
@@ -46,12 +51,12 @@ class controladorSesion {
         $clave = $_REQUEST['contrasenia'];
         $this->usuario = $this->sesion->existeUsuario($correo, $clave);
         if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
-            $this->existeSesion = true;
+            $this->existeSesion = $this->isSesion();
             $this->index();
         }
         else{
             $error = 'ERROR: Usuario no registrado';
-            require 'vista/iniciarsesion.php';
+            $this->iniciarSesion();
         }
     }
     
@@ -59,21 +64,23 @@ class controladorSesion {
         return $this->sesion->existeSesion();
     }
 
-    public function getSesion(){
-        return $this->sesion->datosSesion();
-    }
-    
     public function cerrarSesion(){
         $this->sesion->cerrarSesion();
-        header("Location: index.php");
+        $this->index();
     }
+
     public function RegistrarUsuario(){
-        require 'vista/registrarusuario.php';
+        if(!$this->existeSesion){
+            require 'vista/registrarusuario.php';        
+        }else {
+            $this->index();
+        }
+    }
+
+    public function RegistroUsuario(){
         $nombre = $_REQUEST['nombre'];
         $correo = $_REQUEST['correo'];
         $clave = $_REQUEST['contrasenia'];
-        $resultado;
-        var_dump($nombre,$correo,$clave);
         $usuario = new clsUsuario();
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);
@@ -81,9 +88,10 @@ class controladorSesion {
         $resultado = $this->sesion->registrarUsuario($usuario);
         if($resultado){
             $mensaje = 'Usuario registrado correctamente. Inicie sesion.';
+            $this->iniciarSesion();
         }else{
             $mensaje = 'ERROR: Usuario no registrado';
+            $this->RegistrarUsuario();
         }
-        require 'vista/iniciarsesion.php';
     }
 }

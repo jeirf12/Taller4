@@ -10,10 +10,10 @@
 <body>
   <header class="header">
     <div class="header-content">
-      <img src="Vista/css/logo.svg" alt="header">
+      <img src="Vista/css/logo.png" alt="header">
     </div>
     <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
-<div class="header-content">
+    <div class="header-content">
       <p><?php echo $this->usuario->__get('nombre'); ?></p>
     </div>
     <div class="header-content">

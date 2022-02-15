@@ -3,7 +3,9 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <div class="content-button">
-    <a class="button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+    <?php if (isset($this->existeSesion) && $this->existeSesion): ?>
+      <a class="button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+    <?php endif; ?>
     <?php if(isset($this->existeSesion) && !$this->existeSesion): ?>
       <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
     <?php endif; ?>

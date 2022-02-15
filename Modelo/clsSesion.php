@@ -16,8 +16,6 @@ class clsSesion {
     public function fijarSesion($usuario) {
         $_SESSION['id'] = $usuario->USU_ID;
         $_SESSION['nombre'] = $usuario->USU_NOMBRE;
-        $_SESSION['email'] = $usuario->USU_EMAIL;
-        $_SESSION['clave'] = $usuario->USU_PASSWORD;
         $_SESSION['rol'] = $usuario->USU_ROL;
     }
     public function obtenerUsuario($id){

@@ -20,9 +20,12 @@ class controladorCarrito {
         $compras = $this->crud->ObtenerProductos($_REQUEST['codUsu']);
         $this->existeSesion = $this->isSesion();
         $this->validaSesion();
-        require_once "Vista/carritocompras.php";
+        if($this->existeSesion){
+            require_once "Vista/carritocompras.php";    
+        }else {
+            header("Location: index.php");
+        }
     }
-    
        
     public function CrearEditar(){
          $this->existeSesion = $this->isSesion();
@@ -31,6 +34,7 @@ class controladorCarrito {
              $resultado = false;
              $auxOp='';
              $auxCarrito = $this->ObtenerCarritoVista();
+             var_dump($auxCarrito);
              if(isset($auxCarrito->carid)){
                  $auxOp='editado';
                  $resultado = $this->crud->Editar($auxCarrito);
@@ -44,9 +48,10 @@ class controladorCarrito {
              }else{
                 $mensaje = 'ERROR: No se ha '.$auxOp.' el producto.';
              }
-             /* $this->Listar(); */
-             require_once 'Vista/carritocompras.php';
-         } else {
+             /* header("Location: ?c=Carrito&a=Listar&codUsu=".$this->usuario->__get('id')); */
+         }else if(!$this->existeSesion && isset($_REQUEST['proid']) && isset($_REQUEST["usuid"]) && !empty($_REQUEST["usuid"])){
+            header("Location: index.php");
+         } else { 
             require_once 'Vista/iniciarsesion.php';
          }
     }
@@ -60,7 +65,7 @@ class controladorCarrito {
     public function ObtenerCarritoVista(){
          $auxCarrito = new clsCarrito();
          if(isset($_REQUEST['carid'])){
-            $auxCarrito->__SET('carid',$_REQUEST['carid']);
+            $auxCarrito->__SET('carid', $_REQUEST['carid']);
          }
          $auxCarrito->__SET('proid',$_REQUEST['proid']);
          $auxCarrito->__SET('usuid',$_REQUEST['usuid']);

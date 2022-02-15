@@ -33,25 +33,29 @@ class controladorProducto {
         $isForm = false;
         $this->existeSesion = isset($_SESSION['nombre']);
         $this->validaSesion();
-        if(isset($_REQUEST['proid'])){
-            $producto = $this->crud->Obtener($_REQUEST['proid']);
+        if($this->existeSesion){
+            if(isset($_REQUEST['proid'])){
+                $producto = $this->crud->Obtener($_REQUEST['proid']);
+            }
+            require 'vista/guardarproducto.php';
+        }else {
+            header("Location: index.php");
         }
-        require 'vista/guardarproducto.php';
     }
     
     public function Crear(){
          $resultado = false;
          $auxProducto = new clsProducto();
-         $auxProducto->__SET('nombre',$_REQUEST['nombre']);
-         $auxProducto->__SET('precio',$_REQUEST['precio']);
+         $auxProducto->__set('nombre',$_REQUEST['nombre']);
+         $auxProducto->__set('precio',$_REQUEST['precio']);
          $imagen = $this->validaImagen();
-         $auxProducto->__SET('imagen',$imagen);
-         $auxProducto->__SET('descripcion',$_REQUEST['descripcion']);
-         $auxProducto->__SET('cantidad',$_REQUEST['cantidad']);
-         $auxProducto->__SET('categoria',$_REQUEST['categoria']);
+         $auxProducto->__set('imagen',$imagen);
+         $auxProducto->__set('descripcion',$_REQUEST['descripcion']);
+         $auxProducto->__set('cantidad',$_REQUEST['cantidad']);
+         $auxProducto->__set('categoria',$_REQUEST['categoria']);
        
-         if(isset($_REQUEST['id'])){
-             $auxProducto ->__SET('id',$_REQUEST['id']);
+         if($_REQUEST['id'] != " "){
+             $auxProducto ->__set('id',$_REQUEST['id']);
              $resultado = $this->crud->editar($auxProducto);
          }else{
              $resultado = $this->crud->crear($auxProducto);
