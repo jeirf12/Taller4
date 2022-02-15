@@ -2,28 +2,10 @@
 require_once "Controlador/controladorSesion.php";
 $sesion = controladorSesion::getInstance();
 
-$existeSesion = $sesion->isSesion();
-if($existeSesion) {
-    $usuario = new clsUsuario();
-    $usuario->__set('id', $_SESSION['id']);
-    $usuario->__set('nombre', $_SESSION['nombre']);
-}
-
-$controlador = 'Producto';
+$controlador = isset($_REQUEST['c']) ? $_REQUEST['c'] : 'Producto';
+$accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Listar';
 require_once "Controlador/controlador".$controlador.".php";
 $controlador = "controlador".$controlador;
-$accion = 'Listar';
 
-if (isset($_REQUEST['c'])) {
-    $controlador = $_REQUEST['c'];
-    $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'index';
-    require_once "Controlador/controlador".$controlador.".php";
-    $controlador = "controlador".$controlador;
-}
-
-if($controlador == "controladorSesion"){
-    $controlador = controladorSesion::getInstance();
-}else {
-    $controlador = new $controlador;
-}
+$controlador = $controlador::getInstance();
 call_user_func(array($controlador, $accion));

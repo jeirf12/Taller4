@@ -1,6 +1,6 @@
 <?php
-
-require 'Modelo/clsCarrito.php';
+require_once 'Modelo/clsCarrito.php';
+require_once 'Modelo/clsProducto.php';
 
 class clsCarritoCRUD {
     //atributos
@@ -26,6 +26,7 @@ class clsCarritoCRUD {
         }
         return $resultado;
     }
+
     public function Editar($obj){
         $resultado = false;
          try{
@@ -38,6 +39,7 @@ class clsCarritoCRUD {
         }
         return $resultado;
     }
+
     public function Eliminar($obj){
         $resultado = false;
         try{
@@ -74,6 +76,4 @@ class clsCarritoCRUD {
         }
         return $resultado;
     }
-
-
 }

@@ -8,14 +8,13 @@ class controladorSesion {
     private $sesion;
     private $conexion;
     private $usuario;
-    private $existeSesion;
+    private static $existeSesion = false;
     private static $instance = [];
 
     //metodos
-    protected function __construct(){
+    private function __construct(){
         $this->conexion =  new clsConexion('localhost','taller4','root','');
         $this->sesion = new clsSesion($this->conexion);
-        $this->existeSesion = false;
     }
 
     public static function getInstance(){
@@ -27,7 +26,7 @@ class controladorSesion {
     }
 
     public function volver(){
-        $this->index();
+        $this->iniciarSesion();
     }
 
     public function volverprincipal(){
@@ -40,6 +39,7 @@ class controladorSesion {
     
     public function iniciarSesion(){
         if(!$this->isSesion()){
+            $isForm = false;
             require_once 'vista/iniciarsesion.php';         
         }else{
             $this->index();
@@ -47,16 +47,21 @@ class controladorSesion {
     }
     
     public function existeUsuario(){
-        $correo = $_REQUEST['correo'];
-        $clave = $_REQUEST['contrasenia'];
-        $this->usuario = $this->sesion->existeUsuario($correo, $clave);
-        if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
-            $this->existeSesion = $this->isSesion();
+        if(!$this->existeUsuario){
+            $correo = $_REQUEST['correo'];
+            $clave = $_REQUEST['contrasenia'];
+            $this->usuario = $this->sesion->existeUsuario($correo, $clave);
+            if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
+                $this->existeSesion = $this->isSesion();
+                $this->index();
+            }
+            else{
+                $error = 'ERROR: Usuario no registrado';
+                $this->iniciarSesion();
+            }
+        }else {
+            $this->validaUsuario();
             $this->index();
-        }
-        else{
-            $error = 'ERROR: Usuario no registrado';
-            $this->iniciarSesion();
         }
     }
     
@@ -70,7 +75,7 @@ class controladorSesion {
     }
 
     public function RegistrarUsuario(){
-        if(!$this->existeSesion){
+        if(!$this->isSesion()){
             require 'vista/registrarusuario.php';        
         }else {
             $this->index();
@@ -92,6 +97,15 @@ class controladorSesion {
         }else{
             $mensaje = 'ERROR: Usuario no registrado';
             $this->RegistrarUsuario();
+        }
+    }
+
+    public function validaUsuario(){
+        $this->existeSesion = $this->isSesion();
+        if($this->existeSesion){
+            $this->usuario = new clsUsuario();
+            $this->usuario->__set('id', $_SESSION['id']);
+            $this->usuario->__set('nombre', $_SESSION['nombre']);
         }
     }
 }
