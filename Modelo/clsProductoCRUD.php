@@ -13,8 +13,8 @@ class clsProductoCRUD {
         $this->conexion->conectar();
         $this->auxPDO = $this->conexion->conexionPDO;
     }
+
     public function Listar(){
-       
         try{
             $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO");
             $consulta->execute();
@@ -38,6 +38,7 @@ class clsProductoCRUD {
         
         return $resultado;
     }
+
     public function Crear($obj){
         $resultado = false;
         try{
@@ -50,6 +51,7 @@ class clsProductoCRUD {
         }
         return $resultado;
     }
+
     public function Editar($obj){
         $resultado = false;
          try{
@@ -62,6 +64,7 @@ class clsProductoCRUD {
         }
          return $resultado;
     }
+
     public function Eliminar($codigo){
          try{
             $consulta = "DELETE FROM producto WHERE PRO_ID=?";
@@ -76,7 +79,6 @@ class clsProductoCRUD {
          try{
             $consulta = $this->auxPDO->prepare("SELECT * FROM producto WHERE PRO_ID = ?");
             $consulta->execute(array($codigo));
-            
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
                 $auxProducto->__set('id',$obj->PRO_ID);

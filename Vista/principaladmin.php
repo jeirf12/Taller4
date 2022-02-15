@@ -30,15 +30,7 @@
           <td><?php echo $producto->__get('categoria'); ?></td>
           <div class="button-admin">
             <td><a class="button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
-            <td><a id="#miModal" class="button-danger">eliminar</a></td>
-          </div>
-          <div id="miModal" class="modal">
-            <div class="modal-content">
-              <a href="#" id="close" class="close">X</a>
-              <p>Desea eliminar el producto?</p>
-              <a href="?c=Sesion&a=VolverPrincipal" type="submit">no</a>
-              <a action="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>" type="submit">si</a>
-            </div>  
+            <td><a href="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>" class="button-danger">eliminar</a></td>
           </div>
         </tr>
       <?php endforeach; ?>

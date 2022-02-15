@@ -11,11 +11,21 @@ class controladorProducto {
     private $usuario;
     private $existeSesion;
     private $datosSesion;
+    private static $instance = [];
+
     //metodos
-    public function __construct(){
+    private function __construct(){
         $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsProductoCRUD($this->conexion);
         $this->existeSesion = false;
+    }
+
+    public static function getInstance(){
+        $cls = static::class;
+        if(!isset(self::$instance[$cls])){
+            self::$instance[$cls] = new static();
+        }
+        return self::$instance[$cls];
     }
     
     public function Listar(){
@@ -44,30 +54,29 @@ class controladorProducto {
     }
     
     public function Crear(){
-         $resultado = false;
-         $auxProducto = new clsProducto();
-         $auxProducto->__set('nombre',$_REQUEST['nombre']);
-         $auxProducto->__set('precio',$_REQUEST['precio']);
-         $imagen = $this->validaImagen();
-         $auxProducto->__set('imagen',$imagen);
-         $auxProducto->__set('descripcion',$_REQUEST['descripcion']);
-         $auxProducto->__set('cantidad',$_REQUEST['cantidad']);
-         $auxProducto->__set('categoria',$_REQUEST['categoria']);
+        $resultado = false;
+        $auxProducto = new clsProducto();
+        $auxProducto->__set('nombre',$_REQUEST['nombre']);
+        $auxProducto->__set('precio',$_REQUEST['precio']);
+        $imagen = $this->validaImagen();
+        $auxProducto->__set('imagen',$imagen);
+        $auxProducto->__set('descripcion',$_REQUEST['descripcion']);
+        $auxProducto->__set('cantidad',$_REQUEST['cantidad']);
+        $auxProducto->__set('categoria',$_REQUEST['categoria']);
        
-         if($_REQUEST['id'] != " "){
-             $auxProducto ->__set('id',$_REQUEST['id']);
-             $resultado = $this->crud->editar($auxProducto);
-         }else{
-             $resultado = $this->crud->crear($auxProducto);
-         }
+        if($_REQUEST['id'] != " "){
+            $auxProducto ->__set('id',$_REQUEST['id']);
+            $resultado = $this->crud->editar($auxProducto);
+        }else{
+            $resultado = $this->crud->crear($auxProducto);
+        }
 
-         if($resultado){
-             $mensaje = 'El producto se ha creado correctamente.';
-             
-         }else{
-             $mensaje = 'ERROR: No se ha podido crear el producto.';
-         }
-         header('Location: index.php');
+        if($resultado){
+            $mensaje = 'El producto se ha creado correctamente.';
+        }else{
+            $mensaje = 'ERROR: No se ha podido crear el producto.';
+        }
+        header('Location: index.php');
     }
     
     public function Eliminar(){
@@ -85,10 +94,7 @@ class controladorProducto {
 
     public function validaImagen(){
         $size = $_FILES['imagen']['size'];
-        $name =$_FILES['imagen']['name'];
-        $tmpname = $_FILES['imagen']['tmp_name'];
-
-        $data_img='';
+        $data_img = '';
         if ($size > 0){
             $data =  fopen($_FILES['imagen']['tmp_name'],'r');
             $data_img = fread($data, $size);

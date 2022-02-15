@@ -1,6 +1,4 @@
 <?php
-
-
 class clsConexion {
     //atributos
     private $conexionHost;
@@ -8,7 +6,7 @@ class clsConexion {
     private $BDusuario;
     private $BDclave;
     private $conexionPDO;
-    private $estado=FALSE;
+    private $estado = FALSE;
              
     //metodos
     public function __construct($conexionHost, $BDnombre, $BDusuario, $BDclave) {
@@ -26,7 +24,6 @@ class clsConexion {
             $this->estado = TRUE;
         }
         catch(PDOException $ex){
-          //  $this->ExceptionLog(ex);
         }
     }
     
@@ -34,5 +31,6 @@ class clsConexion {
         $this->estado = FALSE;
         $this->conexionPDO = null;
     }
+
     public function __GET($atr){return $this->$atr;}
 }

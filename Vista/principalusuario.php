@@ -13,7 +13,7 @@
     <?php if(isset($this->productos)): ?>
     <?php foreach($this->productos as $producto): ?>
     <div class="card">
-      <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product" style="width:100%">
+      <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product">
       <div class="card-content">
         <h4><?php echo $producto->__get('nombre'); ?></h4>
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>

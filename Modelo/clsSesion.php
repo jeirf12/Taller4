@@ -1,7 +1,6 @@
 <?php
 
 class clsSesion {
-
     private $conexion;
     private $auxPDO;
 
@@ -9,17 +8,16 @@ class clsSesion {
         $this->conexion = $pconexion;
         $this->conexion->conectar();
         $this->auxPDO = $this->conexion->conexionPDO;
-        if (!$this->existeSesion()){ session_start(); }
+        session_start();
     }
 
-    
     public function fijarSesion($usuario) {
         $_SESSION['id'] = $usuario->USU_ID;
         $_SESSION['nombre'] = $usuario->USU_NOMBRE;
         $_SESSION['rol'] = $usuario->USU_ROL;
     }
+
     public function obtenerUsuario($id){
-        
         try{ 
             $consulta = "SELECT * FROM USUARIO WHERE USU_ID=?";
             $consulta=$this->auxPDO->prepare($consulta);
@@ -39,8 +37,9 @@ class clsSesion {
         catch (Exception $ex){
             die($ex->getMessage());
         }
-         return $auxUsuario;
+        return $auxUsuario;
     }
+
     public function datoUsuario() {
         return $_SESSION['nombre'];
     }
@@ -71,11 +70,10 @@ class clsSesion {
         return $resultado;
     }
     
-     public function existeUsuario($usuario, $clave) {
+    public function existeUsuario($usuario, $clave) {
         $auxUsuario = new clsUsuario();
         try {
-            
-             $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
+            $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($usuario,$clave));
         
@@ -91,12 +89,9 @@ class clsSesion {
                     $auxUsuario->__set('rol',$obj->USU_ROL);
                 }
             }
-            
- 
         } catch (Exception $ex) {
             echo "Ocurrio un error " . $ex;
         }
         return $auxUsuario;
     }
-
 }
