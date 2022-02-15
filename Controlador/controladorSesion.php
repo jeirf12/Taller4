@@ -25,6 +25,11 @@ class controladorSesion {
         return self::$instance[$cls];
     }
 
+    public function Listar(){
+        echo "error no existe la pagina solicitada";
+        /* require "Vista/error.php"; */
+    }
+
     public function volver(){
         $this->iniciarSesion();
     }
