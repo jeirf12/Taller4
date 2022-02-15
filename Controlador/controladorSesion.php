@@ -8,13 +8,15 @@ class controladorSesion {
     private $sesion;
     private $conexion;
     private $usuario;
-    private static $existeSesion = false;
+    private $nombrePagina;
+    private $existeSesion;
     private static $instance = [];
 
     //metodos
     private function __construct(){
         $this->conexion =  new clsConexion('localhost','taller4','root','');
         $this->sesion = new clsSesion($this->conexion);
+        $this->existeSesion = false;
     }
 
     public static function getInstance(){
@@ -43,6 +45,7 @@ class controladorSesion {
     
     public function iniciarSesion(){
         if(!$this->isSesion()){
+            $this->nombrePagina = "Iniciar Sesión";
             $isForm = false;
             require_once 'vista/iniciarsesion.php';         
         }else{
@@ -84,6 +87,7 @@ class controladorSesion {
 
     public function RegistrarUsuario(){
         if(!$this->isSesion()){
+            $this->nombrePagina = "Registrar Usuario";
             require 'vista/registrarusuario.php';        
         }else {
             $this->index();

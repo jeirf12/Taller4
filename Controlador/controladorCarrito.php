@@ -10,6 +10,7 @@ class controladorCarrito {
     private $existeSesion;
     private $sesion;
     private $usuario;
+    private $nombrePagina;
     private static $instance = [];
 
     //metodos
@@ -31,6 +32,7 @@ class controladorCarrito {
         $compras = $this->crud->ObtenerProductos($_REQUEST['codUsu']);
         $this->validaSesion();
         if($this->existeSesion){
+            $this->nombrePagina = "Lista de Compras";
             require_once "Vista/carritocompras.php";    
         }else {
             header("Location: index.php");
