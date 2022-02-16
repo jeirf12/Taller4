@@ -72,7 +72,6 @@ INSERT INTO `producto` (`PRO_ID`, `PRO_NOMBRE`, `PRO_PRECIO`, `PRO_IMAGEN`, `PRO
 
 CREATE TABLE `usuario` (
   `USU_ID` int(11) NOT NULL,
-  `CARR_ID` int(11) DEFAULT NULL,
   `USU_NOMBRE` varchar(50) NOT NULL,
   `USU_PASSWORD` varchar(50) NOT NULL,
   `USU_EMAIL` varchar(50) NOT NULL,
@@ -150,8 +149,6 @@ ALTER TABLE `carritocompras`
 --
 -- Filtros para la tabla `usuario`
 --
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `FK_POSEE` FOREIGN KEY (`CARR_ID`) REFERENCES `carritocompras` (`CARR_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
