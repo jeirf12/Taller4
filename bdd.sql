@@ -111,7 +111,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`USU_ID`),
-  ADD KEY `FK_POSEE` (`CARR_ID`);
+ -- ADD KEY `FK_POSEE` (`CARR_ID`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
