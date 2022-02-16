@@ -82,11 +82,11 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`USU_ID`, `CARR_ID`, `USU_NOMBRE`, `USU_PASSWORD`, `USU_EMAIL`, `USU_ROL`) VALUES
-(1, NULL, 'adrian', 'adrian', 'adrian@gmail.com', 'admin'),
-(2, NULL, 'jhonfer', 'jhonfer', 'jhonfer@gmail.com', 'admin'),
-(3, NULL, 'juana', 'juana', 'juana@gmail.com', 'noadmin'),
-(4, NULL, 'oscar', 'oscar', 'oscar@gmail.com', 'noadmin');
+INSERT INTO `usuario` (`USU_ID`, `USU_NOMBRE`, `USU_PASSWORD`, `USU_EMAIL`, `USU_ROL`) VALUES
+(1,  'adrian', 'adrian', 'adrian@gmail.com', 'admin'),
+(2,  'jhonfer', 'jhonfer', 'jhonfer@gmail.com', 'admin'),
+(3,  'juana', 'juana', 'juana@gmail.com', 'noadmin'),
+(4,  'oscar', 'oscar', 'oscar@gmail.com', 'noadmin');
 
 --
 -- Índices para tablas volcadas
