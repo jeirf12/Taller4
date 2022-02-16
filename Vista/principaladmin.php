@@ -3,10 +3,10 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <div class="content-button">
-    <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
+      <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
     </div>
     <?php if(isset($this->productos)): ?>
-    <table>
+    <table class="table-admin">
       <thead>
         <tr>
           <th>Imagen</th>
