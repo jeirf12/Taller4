@@ -14,8 +14,6 @@
     <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
     <div class="header-content">
       <p><?php echo $this->usuario->__get('nombre'); ?></p>
-    </div>
-    <div class="header-content">
       <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
     </div>
   <?php endif; ?>

@@ -32,8 +32,8 @@ class controladorCarrito {
         $compras = $this->crud->ObtenerProductos($_REQUEST['codUsu']);
         $this->validaSesion();
         if($this->existeSesion){
-            $this->nombrePagina = "Lista de Compras";
-            require_once "Vista/carritocompras.php";    
+           $this->nombrePagina = "Lista de Compras";
+           require_once "Vista/carritocompras.php";    
         }else {
             header("Location: index.php");
         }

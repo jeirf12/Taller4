@@ -1,183 +1,190 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-
-*{
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: red;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: red;
+    align-items: center;
 }
 
 .header-content {
-  margin: 1% 7.5% 0 6%;
+    margin: 1% 7.5% 0 6%;
 }
 
 .header-content {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .header-content a {
-  padding: 6px;
+    padding: 6px;
 }
 
 .container {
-  width: 90%;
-  margin: 2% auto;
-  border-radius: 35px;
+    width: 90%;
+    margin: 2% auto;
+    border-radius: 35px;
 }
 
 .content-button a {
-  border: none;
-  padding: 10px;
-  border-radius: 15px;
-  color: #FFF;
-  margin-left: 2%;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    color: #FFF;
+    margin-left: 2%;
 }
 
 .close-sesion {
-  border: 2px solid yellow;
-  border-radius: 15px;
+    border-radius: 15px;
 }
 
-.button-main{
-  margin: 0 0 0 2%;
+.button-main {
+    margin: 0 0 0 2%;
 }
 
 .button-back {
-  margin: 3% 0 0 2%;
+    margin: 3% 0 0 2%;
 }
 
-.button-admin td, a {
-  border: none;
-  padding: 10px;
-  border-radius: 15px;
-  color: #FFF;
-  cursor: pointer;
+.button-admin td,
+a {
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    color: #FFF;
+    cursor: pointer;
 }
 
 .table-admin {
-  border-collapse: collapse;
-  border-radius: 35px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  margin-top: 2%;
+    border-collapse: collapse;
+    border-radius: 35px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top: 2%;
 }
 
 .table-admin tr {
-  text-align: center;
+    text-align: center;
 }
 
-.table-admin tr, th {
-  color: #FFF;
-  background-color: #212529;
+.table-admin tr,
+th {
+    color: #FFF;
+    background-color: #212529;
 }
 
-
-.table-admin th, td {
-  padding: 12px 15px;
+.table-admin th,
+td {
+    padding: 12px 15px;
 }
 
-.table-admin tr, td{
-  color: #000;
-  background-color: #E9ECEF;
-  border-top: 2px solid #F7F7F9;
+.table-admin tr,
+td {
+    color: #000;
+    background-color: #E9ECEF;
+    border-top: 2px solid #F7F7F9;
 }
 
 .content-messages {
-  margin: 6% auto;
-  text-align: center;
-  line-height: 120px;
+    margin: 6% auto;
+    text-align: center;
+    line-height: 120px;
 }
 
 .messages {
-  text-align: center;
-  line-height: 120px;
-  font-weight: bold;
-  font-size: 4rem;
-  white-space: pre-line;
+    text-align: center;
+    line-height: 120px;
+    font-weight: bold;
+    font-size: 4rem;
+    white-space: pre-line;
 }
 
-h1 { 
-  text-align: center;
+h1 {
+    text-align: center;
 }
 
-.form-register, .form-login, .form-save {
-  min-width: 300px;
-  max-width: 400px;
-  border: 1px solid #E1E1E1;
-  border-radius: 15px;
-  padding: 2%;
-  margin: 2% auto;
+.form-register,
+.form-login,
+.form-save {
+    min-width: 300px;
+    max-width: 400px;
+    border: 1px solid #E1E1E1;
+    border-radius: 15px;
+    padding: 2%;
+    margin: 2% auto;
 }
 
-label, input {
-  display: block;
-  width: 90%;
+label,
+input {
+    display: block;
+    width: 90%;
 }
 
-label, input, button{
-  padding: 10px;
+label,
+input,
+button {
+    padding: 10px;
 }
 
 .form-register button {
-  cursor: pointer;
-  border: none;
-  border-radius: 15px;
-  color: #FFF;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    color: #FFF;
 }
 
 .form-login {
-  display: flex;
-  flex-direction: column;
-  padding: 1% 2%;
-  margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1% 2%;
+    margin-top: 0;
 }
 
-.form-login span{
-  padding-top: 10px;
-  text-align: center;
+.form-login span {
+    padding-top: 10px;
+    text-align: center;
 }
 
 .form-login button {
-  width: 97%;
+    width: 97%;
 }
 
 .container button {
-  margin-top: 10px;
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 15px;
-  font-size: 16px;
-  color: #FFF;
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #FFF;
 }
 
 .form-save {
-  margin-top: 0;
-  padding: 8px 2%;
+    margin-top: 0;
+    padding: 8px 2%;
 }
 
-.form-save label, input{
-  padding: 6px;
+.form-save label,
+input {
+    padding: 6px;
 }
 
 .button-success {
-  background: rgb(100, 200, 255);
+    background: rgb(100, 200, 255);
 }
 
 .button-danger {
-  background: rgb(255, 51, 57);
+    background: rgb(255, 51, 57);
 }
 
 .button-google {
-  background: rgb(10, 73, 255);
+    background: rgb(10, 73, 255);
 }
