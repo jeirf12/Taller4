@@ -17,8 +17,13 @@ class clsCarritoCRUD {
     public function Crear($obj){
         $resultado = false;
         try{
-            $consulta = "INSERT INTO CARRITOCOMPRAS (PRO_ID,USU_ID,CARR_CANT) VALUES (?,?,?)";
-            $this->auxPDO->prepare($consulta)->execute(array($obj->proid,$obj->usuid,$obj->cantidad));
+            if($obj->carid > 0) {
+                $consulta = "INSERT INTO CARRITOCOMPRAS (CARR_ID,PRO_ID,USU_ID,CARR_CANT) VALUES (?,?,?,?)";
+                $this->auxPDO->prepare($consulta)->execute(array($obj->carid,$obj->proid,$obj->usuid,$obj->cantidad));
+            }else{
+                $consulta = "INSERT INTO CARRITOCOMPRAS (PRO_ID,USU_ID,CARR_CANT) VALUES (?,?,?)";
+                $this->auxPDO->prepare($consulta)->execute(array($obj->proid,$obj->usuid,$obj->cantidad));
+            }
             $resultado = true;
         }
         catch (Exception $ex){
@@ -75,5 +80,19 @@ class clsCarritoCRUD {
             die($ex->getMessage());
         }
         return $resultado;
+    }
+
+    public function obtenerCantidad($carid, $usuid, $proid){
+        $cantidad = 0;
+        try{
+            $consulta = $this->auxPDO->prepare("SELECT sum(CARR_CANT) as suma FROM CARRITOCOMPRAS WHERE CARR_ID = ? AND PRO_ID = ? AND USU_ID = ?");
+            $consulta->execute(array($carid, $proid, $usuid));
+            if(($cantidad = $consulta->fetchALL()) != NULL){
+                $cantidad = intval($cantidad[0]['suma']);
+            }
+        }catch(Exception $ex){
+            die($ex->getMessage());
+        }
+        return $cantidad;
     }
 }

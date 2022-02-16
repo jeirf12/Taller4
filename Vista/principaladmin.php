@@ -42,6 +42,5 @@
       </div>
     <?php endif; ?>
   </div>
-  <script src="js/modal.js"></script>
 </body>
 </html>

@@ -97,9 +97,9 @@ INSERT INTO `usuario` (`USU_ID`, `CARR_ID`, `USU_NOMBRE`, `USU_PASSWORD`, `USU_E
 -- Indices de la tabla `carritocompras`
 --
 ALTER TABLE `carritocompras`
-  ADD PRIMARY KEY (`CARR_ID`),
-  ADD KEY `FK_ALMACENA` (`PRO_ID`),
-  ADD KEY `FK_POSEE2` (`USU_ID`);
+  ADD PRIMARY KEY (`CARR_ID`, `PRO_ID`, `USU_ID`);
+  /* ADD KEY `FK_ALMACENA` (`PRO_ID`), */
+  /* ADD KEY `FK_POSEE2` (`USU_ID`); */
 
 --
 -- Indices de la tabla `producto`
