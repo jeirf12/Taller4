@@ -10,6 +10,7 @@ class controladorCarrito {
     private $existeSesion;
     private $sesion;
     private $usuario;
+    private $nombrePagina;
     private static $instance = [];
 
     //metodos
@@ -31,6 +32,7 @@ class controladorCarrito {
         $compras = $this->crud->ObtenerProductos($_REQUEST['codUsu']);
         $this->validaSesion();
         if($this->existeSesion){
+            $this->nombrePagina = "Lista de Compras";
             require_once "Vista/carritocompras.php";    
         }else {
             header("Location: index.php");
@@ -41,9 +43,17 @@ class controladorCarrito {
         if($this->isSesion()) {
             $this->validaSesion();
             $resultado = false;
-            $auxOp='';
+            $auxOp = '';
+            $cant = 0;
             $auxCarrito = $this->ObtenerCarritoVista();
-            if($auxCarrito->__get('carid') > 0){
+            $compras = $this->crud->ObtenerProductos($_REQUEST['usuid']);
+            if(!empty($compras)) {
+                $cant = $this->crud->obtenerCantidad($compras[0]->__get('carid'), $this->usuario->__get('id'), $auxCarrito->__get('proid'));
+                $auxCarrito->__set('cantidad', $auxCarrito->__get('cantidad') + $cant);
+                $auxCarrito->__set('carid', $compras[0]->__get('carid'));
+
+            }
+            if($auxCarrito->__get('carid') > 0 && $cant > 0){
                 $auxOp='editado';
                 $resultado = $this->crud->Editar($auxCarrito);
             }else{

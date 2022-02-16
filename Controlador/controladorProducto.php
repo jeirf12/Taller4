@@ -11,6 +11,7 @@ class controladorProducto {
     private $usuario;
     private $existeSesion;
     private $datosSesion;
+    private $nombrePagina;
     private static $instance = [];
 
     //metodos
@@ -29,6 +30,7 @@ class controladorProducto {
     }
     
     public function Listar(){
+        $this->nombrePagina = 'Página Principal';
         $this->productos = $this->crud->Listar();
         $this->existeSesion = isset($_SESSION['nombre']);
         $this->validaSesion();
@@ -40,11 +42,13 @@ class controladorProducto {
     }
     
     public function CrearEditar(){
+        $this->nombrePagina = "Crear Producto";
         $isForm = false;
         $this->existeSesion = isset($_SESSION['nombre']);
         $this->validaSesion();
         if($this->existeSesion){
             if(isset($_REQUEST['proid'])){
+                $this->nombrePagina = "Editar Producto";
                 $producto = $this->crud->Obtener($_REQUEST['proid']);
             }
             require 'vista/guardarproducto.php';
