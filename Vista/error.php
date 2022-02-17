@@ -45,7 +45,7 @@
 	<div class="container-404">
 		<h1>Error 404</h1>
 		<p>Esta página no se encuentra disponible en estos momentos. Disculpa las molestias.</p>
-		<a href="index.php" class="boton">
+		<a href="../index.php" class="boton">
 			Página Principal
 		</a>
 	</div>

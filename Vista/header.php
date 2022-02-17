@@ -15,11 +15,14 @@
     <?php require_once "Vista/botonVolver.php"; ?>
     </div>
   
-    <?php if(isset($this->existeSesion)&&isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
+    <?php if(isset($this->existeSesion)&& $this->existeSesion&&isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
 
         <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
- 
-        <?php endif;?>
+ <?php elseif($this->existeSesion) :?>
+
+  <a class="button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+
+     <?php endif;?>
         <div class="header-content">
       <img src="Vista/css/logo.png" alt="header">
     </div>
@@ -50,7 +53,8 @@
           <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
      
           </li>
-     
+          <?php else:?>
+          <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
         <?php endif; ?>
       
       </ul>

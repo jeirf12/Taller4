@@ -10,7 +10,7 @@
           <th>Nombre</th>
           <th>Precio</th>
           <th>Cantidad</th>
-          <th>descripcion</th>
+          <th>Descripcion</th>
           <th>Categoria</th>
           <th></th>
           <th></th>

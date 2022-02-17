@@ -1,38 +1,39 @@
 .card {
-  display: inline-block;
-  width: 20%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  margin: 2.3%;
+    display: inline-block;
+    width: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: 2.3%;
+    background-color: rgba(255, 255, 255, 0.815);
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.7);
 }
 
 .card img {
-  border-radius: 5px;
-  object-fit: cover;
-  width: 100%;
-  height: 12rem;
+    border-radius: 5px;
+    object-fit: cover;
+    width: 100%;
+    height: 12rem;
 }
 
 .card-content {
-  padding: 5% 10%;
-  width: 80%;
+    padding: 5% 10%;
+    width: 80%;
 }
 
-.card-content p{
-  display: block;
+.card-content p {
+    display: block;
 }
 
 .card-content div {
-  margin-top: 4%;
-  cursor: pointer;
+    margin-top: 4%;
+    cursor: pointer;
 }
 
 .card-content a {
-  display: block;
-  text-align: center;
+    display: block;
+    text-align: center;
 }
