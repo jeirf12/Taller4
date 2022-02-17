@@ -7,15 +7,56 @@
   <title><?php echo isset($this->nombrePagina) ? $this->nombrePagina : " "; ?></title>
 </head>
 <body>
+
   <header class="header">
-    <div class="header-content">
+ 
+
+    <div class="">
+    <?php require_once "Vista/botonVolver.php"; ?>
+    </div>
+  
+    <?php if(isset($this->existeSesion)&&isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
+
+        <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
+ 
+        <?php endif;?>
+        <div class="header-content">
       <img src="Vista/css/logo.png" alt="header">
     </div>
-    <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
-    <div class="header-content">
-      <p><?php echo $this->usuario->__get('nombre'); ?></p>
-      <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
-    </div>
-  <?php endif; ?>
+   
+      <ul>
+      <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
+        <?php if(isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
+          <a>
+            Admin: 
+          </a>
+          <?php else: ?>
+            <a>
+              Usuario: 
+            </a>
+<?php endif;?>
+        <li>
+          
+        </li>
+        <li >
+          <span class="lbl-usuario">
+          <?php echo $this->usuario->__get('nombre'); ?>
+          </span>
+
+        </li>
+        <li>
+     
+   
+          <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
+     
+          </li>
+     
+        <?php endif; ?>
+      
+      </ul>
+ 
+
+   
+ 
 </header>
 

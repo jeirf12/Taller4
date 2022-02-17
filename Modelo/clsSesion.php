@@ -31,7 +31,6 @@ class clsSesion {
                 $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
                 $auxUsuario->__SET('correo',$obj->USU_EMAIL);
                 $auxUsuario->__SET('rol',$obj->USU_ROL);
- 
             }          
         }
         catch (Exception $ex){

@@ -2,10 +2,7 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <div class="content-button">
-      <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
-    </div>
-    <?php if(isset($this->productos)): ?>
+       <?php if(isset($this->productos)): ?>
     <table class="table-admin">
       <thead>
         <tr>
