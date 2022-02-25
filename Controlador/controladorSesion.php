@@ -10,6 +10,8 @@ class controladorSesion {
     private $usuario;
     private $nombrePagina;
     private $existeSesion;
+    private $message;
+    private $action; 
     private static $instance = [];
 
     //metodos
@@ -40,13 +42,21 @@ class controladorSesion {
     }
 
     public function index(){
-        header("Location: index.php");
+        if(!empty($this->message)){
+            header("Location: ?c=Producto&a=Listar&msg=".$this->message."&act=".$this->action);
+        }else{
+            header("Location: index.php");
+        }
     }
     
     public function iniciarSesion(){
         if(!$this->isSesion()){
             $this->nombrePagina = "Iniciar Sesión";
             $isForm = false;
+            $this->message = isset($_REQUEST['msg']) ? $_REQUEST['msg'] : $this->message;
+            $this->message = base64_decode($this->message);
+            $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
+            $this->action = base64_decode($this->action);
             require_once 'vista/iniciarsesion.php';         
         }else{
             $this->index();
@@ -63,10 +73,17 @@ class controladorSesion {
                 $this->usuario = $this->sesion->existeUsuario($correo, $clave);
                 if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
                     $this->existeSesion = $this->isSesion();
+                    $this->message = "Inicio sesión correctamente!";
+                    $this->message = base64_encode($this->message);
+                    $this->action = 'success';
+                    $this->action = base64_encode($this->action);
                     $this->index();
                 }
                 else{
-                    $error = 'ERROR: Usuario no registrado';
+                    $this->message = 'Usuario no encontrado verifique sus datos e intente nuevamente';
+                    $this->message = base64_encode($this->message);
+                    $this->action = 'error';
+                    $this->action = base64_encode($this->action);
                     $this->iniciarSesion();
                 }
             }
@@ -82,6 +99,10 @@ class controladorSesion {
 
     public function cerrarSesion(){
         $this->sesion->cerrarSesion();
+        $this->message = "Cerró sesión correctamente!";
+        $this->message = base64_encode($this->message);
+        $this->action = 'success';
+        $this->action = base64_encode($this->action);
         $this->index();
     }
 
@@ -104,10 +125,14 @@ class controladorSesion {
         $usuario->__SET('correo',$correo);
         $resultado = $this->sesion->registrarUsuario($usuario);
         if($resultado){
-            $mensaje = 'Usuario registrado correctamente. Inicie sesion.';
+            $this->message = 'Usuario registrado correctamente. Inicie sesion.';
+            $this->message = base64_encode($this->message);
+            $this->action = 'success';
+            $this->action = base64_encode($this->action);
             $this->iniciarSesion();
         }else{
-            $mensaje = 'ERROR: Usuario no registrado';
+            $this->message = 'ERROR: Usuario no registrado por duplicación de correo';
+            $this->action = 'error';
             $this->RegistrarUsuario();
         }
     }

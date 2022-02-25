@@ -2,7 +2,7 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
-       <?php if(isset($this->productos)): ?>
+    <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <table class="table-admin">
       <thead>
         <tr>

@@ -69,6 +69,7 @@ a {
 }
 
 .table-admin {
+    width: 100%;
     border-collapse: collapse;
     border-radius: 35px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

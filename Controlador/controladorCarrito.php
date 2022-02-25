@@ -11,6 +11,8 @@ class controladorCarrito {
     private $sesion;
     private $usuario;
     private $nombrePagina;
+    private $message;
+    private $action;
     private static $instance = [];
 
     //metodos
@@ -29,10 +31,12 @@ class controladorCarrito {
     }
 
     public function Listar(){
-        $compras = $this->crud->ObtenerProductos($_REQUEST['codUsu']);
         $this->validaSesion();
         if($this->existeSesion){
+           $compras = $this->crud->ObtenerProductos($this->usuario->__get('id'));
            $this->nombrePagina = "Lista de Compras";
+           $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
+           $this->action = (isset($_REQUEST['act'])) ? $_REQUEST['act'] : $this->action;
            require_once "Vista/carritocompras.php";    
         }else {
             header("Location: index.php");
@@ -53,31 +57,63 @@ class controladorCarrito {
                 $auxCarrito->__set('carid', $compras[0]->__get('carid'));
 
             }
-            if($auxCarrito->__get('carid') > 0 && $cant > 0){
-                $auxOp='editado';
-                $resultado = $this->crud->Editar($auxCarrito);
-            }else{
-                $auxOp='creado';
-                $resultado = $this->crud->Crear($auxCarrito);
-            }
-            if($resultado){
-                $mensaje = 'El producto se ha '.$auxOp.' al carrito correctamente.';     
-            }else{
-                $mensaje = 'ERROR: No se ha '.$auxOp.' el producto.';
-            }
-            header("Location: ?c=Carrito&a=Listar&codUsu=".$this->usuario->__get('id'));
+            if ($auxCarrito->__get('usuid') == $this->usuario->__get('id') && $this->usuario->__get('rol') == 'noadmin'){
+                if($auxCarrito->__get('carid') > 0 && $cant > 0){
+                    $auxOp = 'agregado';
+                    $resultado = $this->crud->Editar($auxCarrito);
+                }else{
+                    $auxOp = 'agregado';
+                    $resultado = $this->crud->Crear($auxCarrito);
+                }
+                if($resultado){
+                    $this->message = 'El producto se ha '.$auxOp.' al carrito correctamente.';     
+                    $this->action = "success";
+                }else{
+                    $this->action = "error";
+                    $this->message = 'ERROR: No se ha '.$auxOp.' el producto.';
+                }
+                $this->Listar();
+            }else {
+                $this->message = "La acción no corresponde al usuario actual";
+                $this->message = base64_encode($this->message);
+                $this->action = "warning";
+                $this->action = base64_encode($this->action);
+                header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+            }   
         }else if(!$this->existeSesion && isset($_REQUEST['proid']) && isset($_REQUEST["usuid"]) && !empty($_REQUEST["usuid"])){
             header("Location: index.php");
         } else { 
-            header("Location: ?c=Sesion&a=iniciarSesion");
+            $this->message = "Debe iniciar sesión para agregar al carrito";
+            $this->message = base64_encode($this->message);
+            $this->action = "warning";
+            $this->action = base64_encode($this->action);
+            header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->message.'&act='.$this->action);
         }
     }
     
     public function Eliminar(){
         $auxCarrito = $this->ObtenerCarritoVista();
         $this->validaSesion();
-        $this->crud->Eliminar($auxCarrito);
-        header("Location: ?c=Carrito&a=Listar&codUsu=".$this->usuario->__get('id'));
+        if($this->existeSesion){
+            if ($auxCarrito->__get('usuid') == $this->usuario->__get('id') && $this->usuario->__get('rol') == 'noadmin') {
+                $this->crud->Eliminar($auxCarrito);
+                $this->message = "Producto eliminado del carrito de compras correctamente";
+                $this->action = 'success';
+                $this->Listar();
+            }else{
+                $this->message = "La acción no corresponde al usuario actual";
+                $this->message = base64_encode($this->message);
+                $this->action = "warning";
+                $this->action = base64_encode($this->action);
+                header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+            }
+        }else {
+            $this->message = "Debe iniciar sesión para eliminar del carrito";
+            $this->message = base64_encode($this->message);
+            $this->action = "warning";
+            $this->action = base64_encode($this->action);
+            header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->messagea."&act=".$this->action);
+        }
     }
     
     public function ObtenerCarritoVista(){
@@ -99,6 +135,7 @@ class controladorCarrito {
             $this->usuario = new clsUsuario();
             $this->usuario->__set('id', $_SESSION['id']);
             $this->usuario->__set('nombre', $_SESSION['nombre']);
+            $this->usuario->__set('rol', $_SESSION['rol']);
         }
     }
 }

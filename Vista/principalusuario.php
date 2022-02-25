@@ -2,7 +2,7 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <?php if(isset($this->productos)): ?>
+    <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <?php foreach($this->productos as $producto): ?>
     <div class="card">
       <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product">
