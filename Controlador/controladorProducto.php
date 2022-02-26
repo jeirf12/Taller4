@@ -42,7 +42,6 @@ class controladorProducto {
     public function Listar(){
         $this->nombrePagina = 'Página Principal';
         $this->productos = $this->crud->Listar();
-        $this->existeSesion = isset($_SESSION['nombre']);
         $this->validaSesion();
         $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
         $this->message = base64_decode($this->message);
@@ -58,7 +57,6 @@ class controladorProducto {
     public function CrearEditar(){
         $this->nombrePagina = "Crear Producto";
         $isForm = false;
-        $this->existeSesion = isset($_SESSION['nombre']);
         $this->validaSesion();
         if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
             if(isset($_REQUEST['proid'])){
@@ -149,6 +147,7 @@ class controladorProducto {
     }
 
     public function validaSesion(){
+        $this->existeSesion = isset($_SESSION['nombre']);
         if($this->existeSesion){
             $this->usuario = new clsUsuario();
             $this->usuario->__set('id', $_SESSION['id']);

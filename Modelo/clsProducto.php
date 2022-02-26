@@ -10,6 +10,7 @@ class clsProducto {
     private $cantidad;
     private $categoria;
     private $carid;
+    private $usuid;
     
     //metodos
     public function __construct() {}

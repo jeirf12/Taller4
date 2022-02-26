@@ -13,11 +13,11 @@
           <p>Precio total: <?php echo $compra->__get('precio') * $compra->__get('cantidad'); ?></p>
           <div>
             <?php if(isset($editarCarrito) && $editarCarrito): ?>
-              <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>">Editar Compra</a>
+            <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Editar Compra</a>
             <?php endif; ?>
           </div>
           <div>
-            <a class="button-danger" type="submit" href="?c=Carrito&a=Eliminar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>">Quitar Compra</a>
+            <a class="button-danger" type="submit" href="?c=Carrito&a=Eliminar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Quitar Compra</a>
           </div>
         </div>
       </div>
