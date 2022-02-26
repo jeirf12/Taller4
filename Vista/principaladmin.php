@@ -19,7 +19,7 @@
       <tbody>
       <?php foreach($this->productos as $producto): ?>
         <tr>
-          <td><img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-product" width="20%"></td>
+          <td><img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-product" class="rounded-img"></td>
           <td><?php echo $producto->__get('nombre'); ?></td>
           <td><?php echo $producto->__get('precio'); ?></td>
           <td><?php echo $producto->__get('cantidad'); ?></td>
