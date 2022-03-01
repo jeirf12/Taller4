@@ -9,7 +9,7 @@
         <img src="<?php echo "data:image/jpeg; base64,".base64_encode($compra->__get('imagen')).'"'; ?>" alt="">
         <div class="card-content">
           <h4><?php echo $compra->__get('nombre'); ?></h4>
-          <p>cantidad: <span contenteditable="true"><?php echo $compra->__get('cantidad'); ?></span></p>
+          <p>cantidad: <span><?php echo $compra->__get('cantidad'); ?></span></p>
           <p>Precio total: <?php echo $compra->__get('precio') * $compra->__get('cantidad'); ?></p>
           <div>
             <?php if(isset($editarCarrito) && $editarCarrito): ?>

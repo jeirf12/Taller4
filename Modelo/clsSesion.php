@@ -18,15 +18,35 @@ class clsSesion {
     }
 
     public function obtenerUsuario($id){
+        $auxUsuario = new clsUsuario();
         try{ 
             $consulta = "SELECT * FROM USUARIO WHERE USU_ID=?";
             $consulta=$this->auxPDO->prepare($consulta);
             
             $consulta->execute(array($id));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
-                $auxUsuario = new clsUsuario();
                 $auxUsuario->__SET('id',$obj->USU_ID);
-                $auxUsuario->__SET('carid',$obj->CARR_ID);
+                $auxUsuario->__SET('nombre',$obj->USU_NOMBRE);
+                $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
+                $auxUsuario->__SET('correo',$obj->USU_EMAIL);
+                $auxUsuario->__SET('rol',$obj->USU_ROL);
+            }          
+        }
+        catch (Exception $ex){
+            die($ex->getMessage());
+        }
+        return $auxUsuario;
+    }
+
+    public function getUserbyEmail($email){
+        $auxUsuario = new clsUsuario();
+        try{ 
+            $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL=?";
+            $consulta=$this->auxPDO->prepare($consulta);
+            $consulta->execute(array($email));
+
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+                $auxUsuario->__SET('id',$obj->USU_ID);
                 $auxUsuario->__SET('nombre',$obj->USU_NOMBRE);
                 $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
                 $auxUsuario->__SET('correo',$obj->USU_EMAIL);
@@ -77,11 +97,10 @@ class clsSesion {
             $consulta->execute(array($usuario,$clave));
         
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
-                 $auxpass=password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
+                $auxpass=password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
                 if (password_verify($clave, $auxpass)) {
                     $this->fijarSesion($obj);
                     $auxUsuario->__set('id',$obj->USU_ID);
-                    $auxUsuario->__set('carid',$obj->CARR_ID);
                     $auxUsuario->__set('nombre',$obj->USU_NOMBRE);
                     $auxUsuario->__set('clave',$obj->USU_PASSWORD);
                     $auxUsuario->__set('correo',$obj->USU_EMAIL);

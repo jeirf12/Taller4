@@ -6,12 +6,11 @@
   z-index: 1;
   position: fixed;
   left: 33%;
-  /* background-color: rgba(22, 148, 70, 1); */
   margin: 32% auto;
   padding: 10px;
   border: 1px solid #888;
-  width: 30%;
-  border-radius: 30px;
+  width: 32.3%;
+  border-radius: 15px;
   text-align: center;
   overflow: auto;
 }

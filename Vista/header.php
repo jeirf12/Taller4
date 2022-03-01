@@ -14,13 +14,18 @@
       <?php require_once "Vista/botonVolver.php"; ?>
     </div>
     <?php if(isset($this->existeSesion)&& $this->existeSesion&&isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
+    <div class="">
       <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
+    </div>
     <?php elseif($this->existeSesion) :?>
+    <div class="">
       <a class="button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+    </div>
     <?php endif;?>
     <div class="header-content">
       <img src="Vista/css/logo.png" alt="header">
     </div>
+    <div class="navigation">
     <ul>
     <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
       <?php if(isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
@@ -44,5 +49,6 @@
       <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
     <?php endif; ?>
     </ul>
+    </div>
 </header>
 <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>

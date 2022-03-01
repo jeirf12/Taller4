@@ -98,6 +98,10 @@ class controladorSesion {
     }
 
     public function cerrarSesion(){
+        include('Utilities/config.php');
+        if(isset($google_client)){
+            $google_client->revokeToken();
+        }
         $this->sesion->cerrarSesion();
         $this->message = "Cerró sesión correctamente!";
         $this->message = base64_encode($this->message);
@@ -137,12 +141,64 @@ class controladorSesion {
         }
     }
 
+    public function Google(){
+        include 'Utilities/config.php';
+        header('Location: '.$google_client->createAuthUrl());
+    }
+
+    public function ApiGoogle(){
+        if(isset($_GET['code'])){
+            include 'Utilities/config.php';
+            $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
+            if(!isset($token['error'])){
+                $google_client->setAccessToken($token['access_token']);
+                $google_service = new Google_Service_Oauth2($google_client);
+                $data = $google_service->userinfo->get();
+                var_dump($data);
+                if(!empty($data)){
+                    $user = new clsUsuario();
+                    $user->__set('nombre', $data['given_name']);
+                    $user->__set('correo', $data['email']);
+                    $this->usuario = $this->sesion->getUserbyEmail($user->__get('correo'));
+                    $user->__set('clave', $this->usuario->__get('clave'));
+                    if($this->usuario->__get('rol') == NULL){
+                        $user->__set('clave', $data['given_name'].rand(1, 9999));
+                        $result = $this->sesion->registrarUsuario($user);
+                    }
+                    $this->usuario = $this->sesion->existeUsuario($user->__get('correo'), $user->__get('clave'));
+                    if($this->usuario->__get('rol') == 'admin' || $this->usuario->__get('rol') == 'noadmin'){
+                        $this->message = "Inicio sesión correctamente!";
+                        $this->message = base64_encode($this->message);
+                        $this->action = 'success';
+                        $this->action = base64_encode($this->action);
+                        $this->index();
+                    }else{
+                        $this->message = 'Usuario no encontrado verifique sus datos e intente nuevamente';
+                        $this->message = base64_encode($this->message);
+                        $this->action = 'error';
+                        $this->action = base64_encode($this->action);
+                        $this->iniciarSesion();
+                    }
+                }
+            } else{
+                $this->message = 'Intente iniciar sesión nuevamente más tarde';
+                $this->message = base64_encode($this->message);
+                $this->action = 'warning';
+                $this->action = base64_encode($this->action);
+                $this->iniciarSesion();
+            }
+        }else{
+            $this->iniciarSesion();
+        }
+    }
+
     public function validaUsuario(){
         $this->existeSesion = $this->isSesion();
         if($this->existeSesion){
             $this->usuario = new clsUsuario();
             $this->usuario->__set('id', $_SESSION['id']);
             $this->usuario->__set('nombre', $_SESSION['nombre']);
+            $this->usuario->__set('rol', $_SESSION['rol']);
         }
     }
 }

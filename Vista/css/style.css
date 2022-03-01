@@ -209,4 +209,8 @@ input {
     color: #000;
     font-size: small;
     text-align: right;
+    outline: none;
+}
+
+@media only screen and (max-width: 820) {
 }
