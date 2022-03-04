@@ -1,34 +1,19 @@
 <?php
-require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsProductoCRUD.php';
 require_once 'Modelo/clsProducto.php'; 
+require_once 'Utilities/controlador.php';
 
-class controladorProducto {
+class controladorProducto extends controlador {
     //atributos
     private $crud;
-    private $conexion;
     private $productos;
-    private $usuario;
-    private $existeSesion;
     private $datosSesion;
-    private $nombrePagina;
-    private $message;
-    private $action; 
-    private static $instance = [];
 
     //metodos
-    private function __construct(){
+    public function __construct(){
         $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsProductoCRUD($this->conexion);
         $this->existeSesion = false;
-    }
-
-    public static function getInstance(){
-        $cls = static::class;
-        if(!isset(self::$instance[$cls])){
-            self::$instance[$cls] = new static();
-        }
-        return self::$instance[$cls];
     }
 
     public function index(){
@@ -143,16 +128,6 @@ class controladorProducto {
             $this->action = "warning";
             $this->action = base64_encode($this->action);
             header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->message."&act=".$this->action);
-        }
-    }
-
-    public function validaSesion(){
-        $this->existeSesion = isset($_SESSION['nombre']);
-        if($this->existeSesion){
-            $this->usuario = new clsUsuario();
-            $this->usuario->__set('id', $_SESSION['id']);
-            $this->usuario->__set('nombre', $_SESSION['nombre']);
-            $this->usuario->__set('rol', $_SESSION['rol']);
         }
     }
 

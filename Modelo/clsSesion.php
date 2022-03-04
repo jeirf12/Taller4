@@ -8,7 +8,6 @@ class clsSesion {
         $this->conexion = $pconexion;
         $this->conexion->conectar();
         $this->auxPDO = $this->conexion->conexionPDO;
-        session_start();
     }
 
     public function fijarSesion($usuario) {

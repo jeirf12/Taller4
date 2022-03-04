@@ -1,33 +1,17 @@
 <?php
-require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsCarritoCRUD.php';
 require_once 'Modelo/clsCarrito.php';
+require_once 'Utilities/controlador.php';
 
-class controladorCarrito {
+class controladorCarrito extends controlador {
     //atributos
     private $crud;
-    private $conexion; 
-    private $existeSesion;
-    private $sesion;
-    private $usuario;
-    private $nombrePagina;
-    private $message;
-    private $action;
-    private static $instance = [];
 
     //metodos
-    private function __construct(){
+    public function __construct(){
         $this->conexion = new clsConexion('localhost','taller4','root','');
         $this->crud = new clsCarritoCRUD($this->conexion);
         $this->existeSesion = false;
-    }
-
-    public static function getInstance(){
-        $cls = static::class;
-        if(!isset(self::$instance[$cls])) {
-            self::$instance[$cls] = new static();
-        }
-        return self::$instance[$cls];
     }
 
     public function Listar(){
@@ -123,19 +107,5 @@ class controladorCarrito {
         $auxCarrito->__SET('usuid', isset($_REQUEST['usuid']) ? $_REQUEST['usuid'] : 0);
         $auxCarrito->__SET('cantidad', 1);
         return $auxCarrito;
-    }
-
-    public function isSesion(){
-        return isset($_SESSION['nombre']);
-    }
-
-    public function validaSesion(){
-        $this->existeSesion = $this->isSesion();
-        if($this->existeSesion){
-            $this->usuario = new clsUsuario();
-            $this->usuario->__set('id', $_SESSION['id']);
-            $this->usuario->__set('nombre', $_SESSION['nombre']);
-            $this->usuario->__set('rol', $_SESSION['rol']);
-        }
     }
 }

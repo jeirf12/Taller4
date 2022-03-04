@@ -1,32 +1,16 @@
 <?php
 require_once 'Modelo/clsSesion.php';
-require_once 'Modelo/clsConexion.php'; 
-require_once 'Modelo/clsUsuario.php'; 
+require_once 'Utilities/controlador.php';
 
-class controladorSesion {
+class controladorSesion extends controlador {
     //atributos
     private $sesion;
-    private $conexion;
-    private $usuario;
-    private $nombrePagina;
-    private $existeSesion;
-    private $message;
-    private $action; 
-    private static $instance = [];
 
     //metodos
-    private function __construct(){
+    public function __construct(){
         $this->conexion =  new clsConexion('localhost','taller4','root','');
         $this->sesion = new clsSesion($this->conexion);
         $this->existeSesion = false;
-    }
-
-    public static function getInstance(){
-        $cls = static::class;
-        if (!isset(self::$instance[$cls])) {
-            self::$instance[$cls] = new static();
-        }
-        return self::$instance[$cls];
     }
 
     public function Listar(){
@@ -88,15 +72,11 @@ class controladorSesion {
                 }
             }
         }else {
-            $this->validaUsuario();
+            $this->validaSesion();
             $this->index();
         }
     }
     
-    public function isSesion(){
-        return $this->sesion->existeSesion();
-    }
-
     public function cerrarSesion(){
         include('Utilities/config.php');
         if(isset($google_client)){
@@ -189,16 +169,6 @@ class controladorSesion {
             }
         }else{
             $this->iniciarSesion();
-        }
-    }
-
-    public function validaUsuario(){
-        $this->existeSesion = $this->isSesion();
-        if($this->existeSesion){
-            $this->usuario = new clsUsuario();
-            $this->usuario->__set('id', $_SESSION['id']);
-            $this->usuario->__set('nombre', $_SESSION['nombre']);
-            $this->usuario->__set('rol', $_SESSION['rol']);
         }
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Modelo/clsProducto.php';
 
 class clsProductoCRUD {
@@ -20,7 +19,6 @@ class clsProductoCRUD {
             $consulta->execute();
             $resultado = array();
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
-             //   var_dump($obj);
                 $auxProducto = new clsProducto();
                 $auxProducto->__SET('id',$obj->PRO_ID);
                 $auxProducto->__SET('nombre',$obj->PRO_NOMBRE);

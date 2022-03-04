@@ -1,7 +1,7 @@
 <?php
 
 class clsUsuario {
-      //atributos
+    //atributos
     private $id;
     private $nombre;
     private $clave;
