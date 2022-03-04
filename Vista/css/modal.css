@@ -13,6 +13,8 @@
   border-radius: 15px;
   text-align: center;
   overflow: auto;
+  animation-duration: 3s;
+  animation-name: slideout;
 }
 
 .modal-success {
@@ -31,4 +33,10 @@
   background: #F7B215;
   border-color: #DC9E11;
   color: #ffffff;
+}
+
+@keyframes slideout {
+  from {
+    transform: translateY(100px);
+  }
 }

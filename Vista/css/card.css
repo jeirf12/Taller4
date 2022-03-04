@@ -39,11 +39,11 @@
 }
 
 .rounded-img{
-    width: 40%;
-    height: 9rem;
-    vertical-align: middle;
-    border: 1px solid;
-    border-radius: 50%;
-    border-width: 3px;
-    border-color: #6c757d;
+    width: 30%;
+    /* height: 9rem; */
+    /* vertical-align: middle; */
+    /* border: 1px solid; */
+    /* border-radius: 50%; */
+    /* border-width: 3px; */
+    /* border-color: #6c757d; */
 }

@@ -8,15 +8,15 @@
       <label for="imagen">Imagen</label>  
       <input type="file" id="imagen" name="imagen" required>
       <label for="nombre">Nombre</label>
-      <input type="text" name="nombre" value="<?php echo (isset($producto)) ? $producto->__get('nombre') : " "; ?>">
+      <input type="text" name="nombre" value="<?php echo (isset($producto)) ? $producto->__get('nombre') : ""; ?>" required>
       <label for="descripcion">Descripcion</label>
-      <input type="text" name="descripcion" value="<?php echo (isset($producto)) ? $producto->__get('descripcion') : " "; ?>">
+      <input type="text" name="descripcion" value="<?php echo (isset($producto)) ? $producto->__get('descripcion') : ""; ?>" required>
       <label for="cantidad">Cantidad</label>
-      <input type="number" name="cantidad" value="<?php echo (isset($producto)) ? $producto->__get('cantidad') : " "; ?>">
+      <input type="number" name="cantidad" min='1' value="<?php echo (isset($producto)) ? $producto->__get('cantidad') : ""; ?>" required>
       <label for="categoria">Categoria</label>
-      <input type="text" name="categoria" value="<?php echo (isset($producto)) ? $producto->__get('categoria') : " "; ?>">
+      <input type="text" name="categoria" value="<?php echo (isset($producto)) ? $producto->__get('categoria') : ""; ?>" required>
       <label for="precio">Precio/Unidad</label>
-      <input type="number" name="precio" value="<?php echo (isset($producto)) ? $producto->__get('precio') : " " ; ?>">
+      <input type="number" name="precio" min='1' value="<?php echo (isset($producto)) ? $producto->__get('precio') : "" ; ?>" required>
       <?php require_once "Vista/botonVolver.php"; ?>
       <button class="button-success" type="submit">Guardar</button>
     </form>

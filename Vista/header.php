@@ -13,7 +13,7 @@
     <div class="">
       <?php require_once "Vista/botonVolver.php"; ?>
     </div>
-    <?php if(isset($this->existeSesion)&& $this->existeSesion&&isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
+    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
     <div class="">
       <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
     </div>

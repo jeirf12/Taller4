@@ -12,7 +12,7 @@ const Modal = {
 
     this.hideTimeout = setTimeout(() => {
       this.element.classList.add("modal-invisible");
-    }, 3000);
+    }, 5000);
   }
 
 };
