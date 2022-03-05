@@ -23,4 +23,13 @@ abstract class controlador{
             $this->usuario->__set('rol', $_SESSION['rol']);
         }
     }
+
+    public function hasConnection(){
+        $request = curl_init("https://www.google.com");
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_exec($request);
+        $result = curl_getinfo($request, CURLINFO_HTTP_CODE);
+        curl_close($request);
+        return ($result >=200 && $result<300);
+    }
 }

@@ -79,8 +79,14 @@ class controladorSesion extends controlador {
     
     public function cerrarSesion(){
         include('Utilities/config.php');
-        if(isset($google_client)){
+        if(isset($_SESSION['access_token'])){
+            if(!$this->hasConnection()){ 
+                $this->message = base64_encode("No se puede cerrar sesión, verifique su conexión a internet");
+                $this->action = base64_encode("warning");
+                $this->index();
+            }
             $google_client->revokeToken();
+            unset($_SESSION['access_token']);
         }
         $this->sesion->cerrarSesion();
         $this->message = "Cerró sesión correctamente!";
@@ -122,8 +128,14 @@ class controladorSesion extends controlador {
     }
 
     public function Google(){
-        include 'Utilities/config.php';
-        header('Location: '.$google_client->createAuthUrl());
+        if(!$this->hasConnection()){
+            $this->message = base64_encode("No se puede iniciar sesión con Google, verifique su conexión a internet");
+            $this->action = base64_encode("warning");
+            $this->iniciarSesion();
+        }else{
+            include 'Utilities/config.php';
+            header('Location: '.$google_client->createAuthUrl());
+        }
     }
 
     public function ApiGoogle(){
@@ -134,8 +146,8 @@ class controladorSesion extends controlador {
                 $google_client->setAccessToken($token['access_token']);
                 $google_service = new Google_Service_Oauth2($google_client);
                 $data = $google_service->userinfo->get();
-                var_dump($data);
                 if(!empty($data)){
+                    $_SESSION['access_token'] = $token['access_token'];
                     $user = new clsUsuario();
                     $user->__set('nombre', $data['given_name']);
                     $user->__set('correo', $data['email']);
