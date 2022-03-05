@@ -35,6 +35,7 @@ class controladorProducto extends controlador {
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
             require 'vista/principaladmin.php';
         }else{
+            $isForm = false;
             require 'vista/principalusuario.php';
         }
     }
