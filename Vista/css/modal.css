@@ -2,11 +2,15 @@
   display: none;
 }
 
+.icon {
+  display: inline-block;
+}
+
 .modal-content {
   z-index: 1;
   position: fixed;
   left: 33%;
-  margin: 32% auto;
+  margin: 31% auto;
   padding: 10px;
   border: 1px solid #888;
   width: 32.3%;

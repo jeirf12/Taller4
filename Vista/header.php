@@ -17,7 +17,7 @@
     <div class="">
       <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
     </div>
-    <?php elseif($this->existeSesion) :?>
+    <?php elseif($this->existeSesion):?>
     <div class="">
       <a class="button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
     </div>
