@@ -5,6 +5,7 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
 body {
@@ -47,20 +48,14 @@ li {
     border-radius: 0px;
 }
 
-.content-button a {
-    border: none;
-    padding: 10px;
-    border-radius: 15px;
-    color: #FFF;
-    margin-left: 2%;
-}
-
 .lbl-usuario {
     color: white;
 }
 
 .close-sesion {
     border-radius: 15px;
+    display: block;
+    text-align:center;
 }
 
 .button-main {
@@ -197,10 +192,17 @@ input {
 
 .button-danger {
     background: rgb(0, 148, 148);
+    display: block;
+    text-align: center;
 }
 
 .button-google {
     background: rgb(25, 0, 255);
+}
+
+.button-car {
+    display: block;
+    text-align: center;
 }
 
 .button-back {
@@ -218,15 +220,4 @@ input {
     font-size: small;
     text-align: right;
     outline: none;
-}
-
-@media only screen and (max-width: 1190px) {
-    .container {
-        margin-top: 10%;
-    }
-}
-@media only screen and (max-width: 930px) {
-    .container {
-        margin-top: 12.8%;
-    }
 }

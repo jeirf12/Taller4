@@ -43,7 +43,7 @@
         </span>
       </li>
       <li>
-      <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
+        <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
       </li>
     <?php else:?>
       <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
