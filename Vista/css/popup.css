@@ -1,4 +1,4 @@
-.modal-invisible {
+.popup-invisible {
   display: none;
 }
 
@@ -6,7 +6,7 @@
   display: inline-block;
 }
 
-.modal-content {
+.popup-content {
   z-index: 1;
   position: fixed;
   left: 33%;
@@ -21,19 +21,19 @@
   animation-name: slideout;
 }
 
-.modal-success {
+.popup-success {
   background: #00c02b;
   border-color: #009d23;
   color: #ffffff;
 }
 
-.modal-error {
+.popup-error {
   background: #d50000;
   border-color: #ba0000;
   color: #ffffff;
 }
 
-.modal-warning {
+.popup-warning {
   background: #F7B215;
   border-color: #DC9E11;
   color: #ffffff;

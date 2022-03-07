@@ -1,5 +1,5 @@
-<div class="modal">
-  <div id="myModal" class="modal-content modal-invisible">
+<div class="popup">
+  <div id="myPopup" class="popup-content popup-invisible">
     <?php if($this->action == "success"): ?>
     <i class="fa-solid fa-circle-check"></i>
     <?php elseif($this->action == "warning"): ?>
@@ -12,6 +12,6 @@
 </div>
 <?php
  echo '<script type="text/javascript">';
- echo 'document.addEventListener("DOMContentLoaded", () => Modal.show("'.$this->action.'"));';
+ echo 'document.addEventListener("DOMContentLoaded", () => Popup.show("'.$this->action.'"));';
  echo '</script>';
 ?>

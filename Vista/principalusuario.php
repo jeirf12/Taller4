@@ -10,7 +10,7 @@
       <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product">
       <div class="card-content">
         <h4><?php echo $producto->__get('nombre'); ?></h4>
-        <details>
+        <details class="description">
           <summary>Descripción:</summary>
           <p><?php echo $producto->__get('descripcion'); ?></p>
         </details>
