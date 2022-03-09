@@ -16,9 +16,13 @@
       <label for="categoria">Categoria</label>
       <select name="categoria" required>
         <option value="">Seleccione</option>
-        <option value="1">Consumo</option>
-        <option value="2">Colmenas</option>
-        <option value="3">Herramientas y protección</option>
+        <?php foreach($this->categorias as $categoria): ?>
+          <?php if(isset($producto) && $producto->__get('categoria') == $categoria['CATPRO_NOMBRE']): ?>
+            <?php echo '<option value="'.$categoria['CATPRO_ID'].'" selected>'.$categoria['CATPRO_NOMBRE'].'</option>'; ?>
+          <?php else: ?>
+            <?php echo '<option value="'.$categoria['CATPRO_ID'].'">'.$categoria['CATPRO_NOMBRE'].'</option>'; ?>
+          <?php endif;?>
+        <?php endforeach;?>
       </select>
       <label for="precio">Precio/Unidad</label>
       <input type="number" name="precio" min='1' value="<?php echo (isset($producto)) ? $producto->__get('precio') : "" ; ?>" required>

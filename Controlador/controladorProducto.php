@@ -8,6 +8,7 @@ class controladorProducto extends controlador {
     private $crud;
     private $productos;
     private $datosSesion;
+    private $categorias;
 
     //metodos
     public function __construct(){
@@ -27,6 +28,7 @@ class controladorProducto extends controlador {
     public function Listar(){
         $this->nombrePagina = 'Página Principal';
         $this->productos = $this->crud->Listar();
+        $this->categorias = $this->crud->getCategorias();
         $this->validaSesion();
         $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
         $this->message = base64_decode($this->message);
@@ -49,6 +51,7 @@ class controladorProducto extends controlador {
                 $this->nombrePagina = "Editar Producto";
                 $producto = $this->crud->Obtener($_REQUEST['proid']);
             }
+            $this->categorias = $this->crud->getCategorias();
             require 'vista/guardarproducto.php';
         }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
             $this->message = "El usuario actual no tiene permitido hacer esta acción";

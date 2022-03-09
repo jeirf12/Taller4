@@ -15,7 +15,6 @@ class clsProductoCRUD {
 
     public function Listar(){
         try{
-            /* $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO"); */
             $consulta = $this->auxPDO->prepare("SELECT * FROM `producto` P INNER JOIN `categoriaproducto` C ON P.CATPRO_ID = C.CATPRO_ID");
             $consulta->execute();
             $resultado = array();
@@ -66,7 +65,7 @@ class clsProductoCRUD {
 
     public function Eliminar($codigo){
          try{ 
-            $consulta = "DELETE FROM carritocompras WHERE PRO_ID=?";
+            $consulta = "DELETE FROM carrito WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));
             $consulta = "DELETE FROM producto WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));
@@ -78,7 +77,7 @@ class clsProductoCRUD {
     
     public function Obtener($codigo){
          try{
-            $consulta = $this->auxPDO->prepare("SELECT * FROM producto WHERE PRO_ID = ?");
+            $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO P INNER JOIN CATEGORIAPRODUCTO CP ON P.CATPRO_ID = CP.CATPRO_ID WHERE PRO_ID = ?");
             $consulta->execute(array($codigo));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
@@ -88,12 +87,28 @@ class clsProductoCRUD {
                 $auxProducto->__set('imagen',$obj->PRO_IMAGEN);
                 $auxProducto->__set('descripcion',$obj->PRO_DESCRIPCION);
                 $auxProducto->__set('cantidad',$obj->PRO_CANTIDAD);
-                $auxProducto->__set('categoria',$obj->PRO_CATEGORIA);
+                $auxProducto->__set('categoria',$obj->CATPRO_NOMBRE);
             }
             return $auxProducto;
         }
         catch (Exception $ex){
             die($ex->getMessage());
         }
+    }
+
+    public function getCategorias(){
+        try{
+            $consulta = $this->auxPDO->prepare("SELECT * FROM CATEGORIAPRODUCTO");
+            $consulta->execute();
+            $resultado = array();
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+                $row = array();
+                $row ["CATPRO_ID"] = $obj->CATPRO_ID;
+                $row ["CATPRO_NOMBRE"] = $obj->CATPRO_NOMBRE;
+                $resultado [] = $row;
+            }
+        }catch(Exception $ex) {
+        }
+        return $resultado;
     }
 }

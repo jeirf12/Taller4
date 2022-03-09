@@ -56,7 +56,9 @@ class controladorCarrito extends controlador {
                     $this->action = "error";
                     $this->message = 'ERROR: No se ha '.$auxOp.' el producto.';
                 }
-                $this->Listar();
+                $this->message = base64_encode($this->message);
+                $this->action = base64_encode($this->action);
+                header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
             }else {
                 $this->message = "La acción no corresponde al usuario actual";
                 $this->message = base64_encode($this->message);
