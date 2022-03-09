@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+* {
+    --color-page: #DC9E11;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: fixed;
+    width: 100%;
+    overflow: auto;
+}
+
+.header, .center-header, .info-user, .header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    position: fixed;
+    justify-content: space-around;
+    width: 100%;
+    background-color: var(--color-page);
+    color: white;
+}
+
+.header .center-header .bar-search {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.header .center-header .bar-search input {
+    border: none;
+}
+
+.header .center-header .bar-search a{
+    background-color: white;
+    text-align: center;
+}
+.bar-search input{
+    padding: 0 6% 0 6%;
+}
+
+.header .logo, .navigation ul li, .info-user p {
+    display: inline-block;
+}
+
+.icon i{
+    font-size: 30px;
+}
+
+.info-user, .icon{
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header .header-left .center-header {
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.header .header-left .center-header .navigation {
+    width: 350px;
+}
+
+.header .header-left {
+    flex-direction: row;
+}
+
+.navigation ul li {
+    padding: 2%;
+}
+
+.info-user, .icon{
+    padding-top: 3.8%;
+}
+
+.inicio-button {
+    padding-top: 4.5%;
+}
+
+.container {
+    padding: 6.5%;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 4.5em;
+}
+
+.footer {
+    width: 100%;
+    background-color: var(--color-page);
+    padding: 1%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+@media only screen and (max-width: 1223px) {
+    .container {
+        padding-top: 10%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .header .header-left .center-header, .inicio-button{
+        display: none;
+    }
+
+    .icon {
+        display: inline;
+    }
+
+    .container {
+        padding-top: 18%;
+    }
+
+    .container div video {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        margin: 20% auto;
+    }
+}
