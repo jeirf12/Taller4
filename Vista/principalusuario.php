@@ -14,6 +14,7 @@
           <summary>Descripción:</summary>
           <p><?php echo $producto->__get('descripcion'); ?></p>
         </details>
+        <p>Categoria: <?php echo $producto->__get('categoria'); ?></p>
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
       </div>

@@ -13,10 +13,6 @@ class controladorSesion extends controlador {
         $this->existeSesion = false;
     }
 
-    public function Listar(){
-        require "Vista/error.php";
-    }
-
     public function volver(){
         $this->iniciarSesion();
     }

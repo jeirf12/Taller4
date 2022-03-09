@@ -15,6 +15,7 @@
               <summary>Descripción:</summary>
               <p><?php echo $compra->__get('descripcion'); ?></p>
             </details>
+            <p>categoria: <span><?php echo $compra->__get('categoria'); ?></span></p>
             <p>cantidad: <span><?php echo $compra->__get('cantidad'); ?></span></p>
             <p>Precio total: <?php echo $compra->__get('precio') * $compra->__get('cantidad'); ?></p>
           </div>

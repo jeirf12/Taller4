@@ -140,7 +140,7 @@ h1 {
 }
 
 label,
-input {
+input, select {
     display: block;
     width: 90%;
 }
@@ -190,7 +190,7 @@ button {
 }
 
 .form-save label,
-input {
+input, select, option {
     padding: 6px;
 }
 
@@ -228,4 +228,35 @@ input {
     font-size: small;
     text-align: right;
     outline: none;
+}
+
+/* Responsive pages */
+@media only screen and (max-width: 1223px) {
+    .container {
+        margin-top: 10%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .header .header-left .center-header, .inicio-button{
+        display: none;
+    }
+
+    .icon {
+        display: inline;
+    }
+
+    .container {
+        margin-top: 18%;
+    }
+
+    .container div video {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        margin: 20% auto;
+    }
 }

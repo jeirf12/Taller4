@@ -15,7 +15,8 @@ class clsProductoCRUD {
 
     public function Listar(){
         try{
-            $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO");
+            /* $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO"); */
+            $consulta = $this->auxPDO->prepare("SELECT * FROM `producto` P INNER JOIN `categoriaproducto` C ON P.CATPRO_ID = C.CATPRO_ID");
             $consulta->execute();
             $resultado = array();
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
@@ -26,7 +27,7 @@ class clsProductoCRUD {
                 $auxProducto->__SET('imagen',$obj->PRO_IMAGEN);
                 $auxProducto->__SET('descripcion',$obj->PRO_DESCRIPCION);
                 $auxProducto->__SET('cantidad',$obj->PRO_CANTIDAD);
-                $auxProducto->__SET('categoria',$obj->PRO_CATEGORIA);
+                $auxProducto->__SET('categoria',$obj->CATPRO_NOMBRE);
                 $resultado [] = $auxProducto;
             }
         }
@@ -40,7 +41,7 @@ class clsProductoCRUD {
     public function Crear($obj){
         $resultado = false;
         try{
-            $consulta = "INSERT INTO PRODUCTO (PRO_NOMBRE,PRO_PRECIO,PRO_IMAGEN,PRO_DESCRIPCION,PRO_CANTIDAD,PRO_CATEGORIA) VALUES (?,?,?,?,?,?)";
+            $consulta = "INSERT INTO PRODUCTO (PRO_NOMBRE,PRO_PRECIO,PRO_IMAGEN,PRO_DESCRIPCION,PRO_CANTIDAD, CATPRO_ID) VALUES (?,?,?,?,?,?)";
             $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->precio,$obj->imagen,$obj->descripcion,$obj->cantidad,$obj->categoria));
             $resultado = true;
         }
@@ -53,7 +54,7 @@ class clsProductoCRUD {
     public function Editar($obj){
         $resultado = false;
          try{
-            $consulta = "UPDATE PRODUCTO SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?, PRO_CATEGORIA=?  WHERE PRO_ID =?";
+            $consulta = "UPDATE PRODUCTO SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?, CATPRO_ID=?  WHERE PRO_ID =?";
             $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->precio,$obj->imagen,$obj->descripcion,$obj->cantidad,$obj->categoria,$obj->id));
             $resultado = true;
         }
