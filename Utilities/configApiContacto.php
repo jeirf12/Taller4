@@ -1,10 +1,9 @@
 <?php
 	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\SMTP;
 	use PHPMailer\PHPMailer\Exception;
 
-	require 'PHPMailer/Exception.php';
-	require 'PHPMailer/PHPMailer.php';
-	require 'PHPMailer/SMTP.php';
+	require_once "vendor/autoload.php";
 	
 	$mail = new PHPMailer(true);
 	$nombre = $_POST['nombre'];
@@ -34,10 +33,10 @@
     	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     	$mail->send();
-    	echo 'mensaje enviado';
 
     //User
-    	$mail->setFrom('apicontactolsw3@gmail.com', 'Contacto');//correo desde el cual se enviaran los mensajes de contacto
+    	$mail->ClearAddresses();
+    	$mail->setFrom('apicontactolsw3@gmail.com', 'Apimacizo');//correo desde el cual se enviaran los mensajes de contacto
     	$mail->addAddress($correo);							//correo al cual le llegaran los mensasjes de contacto(usuario)
 
     	//Content
@@ -47,7 +46,6 @@
     	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     	$mail->send();
-    	echo 'mensaje enviado';
 
 	} catch (Exception $e) {
     	echo "error: {$mail->ErrorInfo}";

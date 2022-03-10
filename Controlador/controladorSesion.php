@@ -179,4 +179,23 @@ class controladorSesion extends controlador {
             $this->iniciarSesion();
         }
     }
+    public function ApiContacto(){
+        if($this->hasConnection()){
+            require 'Utilities/configApiContacto.php';
+            $this->message = 'Mensaje enviado correctamente';
+            $this->message = base64_encode($this->message);
+            $this->action = 'success';
+            $this->action = base64_encode($this->action);
+        }else{
+            $this->message = 'Fallo al enviar el menasje, revise su conexión';
+            $this->message = base64_encode($this->message);
+            $this->action = 'warning';
+            $this->action = base64_encode($this->action);
+        }
+        header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+    }
+    public function Contacto(){
+        $this->nombrePagina = "Contacto";
+        require "Vista/contacto.php";
+    }
 }
