@@ -8,7 +8,7 @@ class controladorSesion extends controlador {
 
     //metodos
     public function __construct(){
-        $this->conexion =  new clsConexion('localhost','taller4','root','');
+        $this->conexion =  new clsConexion('localhost','apimacizo','root','');
         $this->sesion = new clsSesion($this->conexion);
         $this->existeSesion = false;
     }

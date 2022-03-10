@@ -12,7 +12,7 @@ class controladorProducto extends controlador {
 
     //metodos
     public function __construct(){
-        $this->conexion = new clsConexion('localhost','taller4','root','');
+        $this->conexion = new clsConexion('localhost','apimacizo','root','');
         $this->crud = new clsProductoCRUD($this->conexion);
         $this->existeSesion = false;
     }

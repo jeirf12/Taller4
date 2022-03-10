@@ -21,11 +21,11 @@
           </div>
           <div>
             <?php if(isset($editarCarrito) && $editarCarrito): ?>
-            <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Editar Compra</a>
+            <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Editar Compra</a>
            <?php endif; ?>
           </div>
           <div>
-            <a class="button-danger" type="submit" href="?c=Carrito&a=Eliminar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Quitar Compra</a>
+            <a class="button-danger" type="submit" href="?c=Carrito&a=Eliminar&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Quitar Compra</a>
           </div>
         </div>
       </article>
