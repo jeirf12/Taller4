@@ -29,7 +29,7 @@
     	//Content
     	$mail->isHTML(true);                                  		//Set email format to HTML
     	$mail->Subject = $asunto;									//Asunto del contacto
-    	$mail->Body    = $mensaje;									//Mensaje del contacto
+    	$mail->Body    = $mensaje . 'Responder a: ' . $nombre . 'al correo: ' . $correo;//Mensaje del contacto
     	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     	$mail->send();
