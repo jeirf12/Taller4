@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 * {
+    --color-page: #ffffff;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -9,55 +10,108 @@
 }
 
 body {
-    width: 100% !important;
     background-image: url("fondo.jpg");
 }
 
 a {
     text-decoration: none;
+    color: #558FD2;
 }
 
 .header {
     position: fixed;
-    left: 0;
     top: 0;
     right: 0;
-    display: flex;
-    flex-direction: row;
+    left: 0;
     justify-content: space-around;
-    background-color: rgb(37, 37, 37);
-    align-items: center;
-    flex-wrap: nowrap;
-}
-
-.header-content {
-    display: flex;
-    font-weight: bold;
-}
-
-ul,
-li {
-    display: inline-block;
-}
-
-.header-content .icon {
-    display: inline-block;
-    padding: 10px;
-    font-size: 50px;
-}
-
-.menu-icon {
-    opacity: 0;
+    background-color: var(--color-page);
     color: white;
+    font-size: 14px;
+}
+
+.header, .center-header, .info-user, .header-left, .container {
+    display: flex;
+    align-items: center;
+}
+
+.header .center-header {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.bar-search a,.bar-search input{
+    display: inline-block;
+}
+
+.bar-search input {
+    border: none;
+    outline: none;
+}
+
+.header .center-header .bar-search a{
+    background-color: white;
+    text-align: center;
+}
+
+.header .logo, .navigation ul li, .info-user p {
+    display: inline-block;
+}
+
+.menu-icon i{
+    font-size: 30px;
+}
+
+.menu-icon{
+    display: none;
+}
+
+.header .header-left .center-header, .container {
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.header .header-left .center-header .navigation {
+    width: 350px;
+}
+
+.header .header-left {
+    flex-direction: row;
+}
+
+.navigation ul li {
+    padding: 2%;
+}
+
+.menu-icon{
+    padding-top: 3.8%;
 }
 
 .container {
-    margin-top: 6.8%;
-    border-radius: 0px;
+    margin-top: 6%;
 }
 
-.lbl-usuario {
-    color: white;
+.container h1 {
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(248, 238, 19);
+    padding: 1%;
+    text-align: center;
+}
+
+.footer-head {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .close-sesion {
@@ -66,15 +120,10 @@ li {
     text-align:center;
 }
 
-.button-main {
-    margin: 0 0 0 2%;
-}
-
-.button-admin td,
-a {
+.button-admin {
     border: none;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 10px;
     color: #FFF;
     cursor: pointer;
 }
@@ -90,19 +139,16 @@ a {
     text-align: center;
 }
 
-.table-admin tr,
-th {
+.table-admin tr th {
     color: #FFF;
     background-color: #212529;
 }
 
-.table-admin th,
-td {
+.table-admin tr td, tr th {
     padding: 12px 15px;
 }
 
-.table-admin tr,
-td {
+.table-admin tr td {
     color: #000;
     background-color: #E9ECEF;
     border-top: 2px solid #F7F7F9;
@@ -120,10 +166,6 @@ td {
     font-weight: bold;
     font-size: 4rem;
     white-space: pre-line;
-}
-
-h1 {
-    text-align: center;
 }
 
 .form-register,
@@ -145,17 +187,8 @@ input, select {
     width: 90%;
 }
 
-label,
-input,
-button {
+.form-register label, .form-login label, .form-save label, .form-register input,.form-login input,.form-save input, .form-register button, .form-login button, .form-save button, .form-save select {
     padding: 10px;
-}
-
-.form-register button {
-    cursor: pointer;
-    border: none;
-    border-radius: 15px;
-    color: #FFF;
 }
 
 .form-login {
@@ -176,12 +209,7 @@ button {
 
 .container button {
     margin-top: 10px;
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
     font-size: 16px;
-    color: #FFF;
 }
 
 .form-save {
@@ -189,8 +217,7 @@ button {
     padding: 8px 2%;
 }
 
-.form-save label,
-input, select, option {
+.form-save label, .form-save input, .form-save select, .form-save option {
     padding: 6px;
 }
 
@@ -230,33 +257,31 @@ input, select, option {
     outline: none;
 }
 
-/* Responsive pages */
-@media only screen and (max-width: 1223px) {
-    .container {
-        margin-top: 10%;
-    }
+.container-button {
+    display: block;
+    padding: 1% 0 1.5% 0;
 }
 
-@media only screen and (max-width: 790px) {
-    .header .header-left .center-header, .inicio-button{
-        display: none;
-    }
-
-    .icon {
-        display: inline;
-    }
-
-    .container {
-        margin-top: 18%;
-    }
-
-    .container div video {
-        width: 90%;
-    }
+.crcAbout {
+    padding: 0% 6% 0 6%;
+    text-align: justify;
 }
 
-@media only screen and (max-width: 500px) {
-    .container {
-        margin: 20% auto;
-    }
+.crcAbout h2 {
+    padding: 2% 0 2% 0;
+    text-align: center;
+}
+
+.crcAbout .content-map {
+    display: flex;
+    padding: 2% 2% 6% 2%;
+}
+
+.lbl-usuario {
+    color: #000000;
+}
+
+#map{
+    width: 600px;
+    height: 400px;
 }

@@ -9,7 +9,7 @@ class controladorCarrito extends controlador {
 
     //metodos
     public function __construct(){
-        $this->conexion = new clsConexion('localhost','taller4','root','');
+        $this->conexion = new clsConexion('localhost','apimacizo','root','');
         $this->crud = new clsCarritoCRUD($this->conexion);
         $this->existeSesion = false;
     }
@@ -36,13 +36,12 @@ class controladorCarrito extends controlador {
             $auxCarrito = $this->ObtenerCarritoVista();
             $compras = $this->crud->ObtenerProductos($_REQUEST['usuid']);
             if(!empty($compras)) {
-                $cant = $this->crud->obtenerCantidad($compras[0]->__get('carid'), $this->usuario->__get('id'), $auxCarrito->__get('proid'));
+                $cant = $this->crud->obtenerCantidad($this->usuario->__get('id'), $auxCarrito->__get('proid'));
                 $auxCarrito->__set('cantidad', $auxCarrito->__get('cantidad') + $cant);
-                $auxCarrito->__set('carid', $compras[0]->__get('carid'));
 
             }
             if ($auxCarrito->__get('usuid') == $this->usuario->__get('id') && $this->usuario->__get('rol') == 'noadmin'){
-                if($auxCarrito->__get('carid') > 0 && $cant > 0){
+                if($auxCarrito->__get('usuid') > 0 && $cant > 0){
                     $auxOp = 'agregado';
                     $resultado = $this->crud->Editar($auxCarrito);
                 }else{

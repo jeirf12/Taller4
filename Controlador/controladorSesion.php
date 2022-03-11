@@ -8,7 +8,7 @@ class controladorSesion extends controlador {
 
     //metodos
     public function __construct(){
-        $this->conexion =  new clsConexion('localhost','taller4','root','');
+        $this->conexion =  new clsConexion('localhost','apimacizo','root','');
         $this->sesion = new clsSesion($this->conexion);
         $this->existeSesion = false;
     }
@@ -194,8 +194,22 @@ class controladorSesion extends controlador {
         }
         header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
     }
+
     public function Contacto(){
         $this->nombrePagina = "Contacto";
+        $this->validaSesion();
         require "Vista/contacto.php";
+    }
+
+    public function Inicio(){
+        $this->nombrePagina = "Inicio";
+        $this->validaSesion();
+        require "Vista/inicio.php";
+    }
+
+    public function About(){
+        $this->nombrePagina = "Sobre Nosotros";
+        $this->validaSesion();
+        require "Vista/about.php";
     }
 }

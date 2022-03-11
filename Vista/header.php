@@ -6,57 +6,45 @@
   <link rel="stylesheet" type="text/css" href="Vista/css/popup.css">
   <link rel="stylesheet" type="text/css" href="Vista/css/contacto.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script src="Vista/js/popup.js"></script>
   <title><?php echo isset($this->nombrePagina) ? $this->nombrePagina : " "; ?></title>
 </head>
 <body>
   <header class="header">
-    <div class="">
-      <?php require_once "Vista/botonVolver.php"; ?>
+    <div class="logo"><img src="Vista/css/logo.png" alt="logo" width="300" height="70"></div>
+    <div class="bar-search">
+          <input type="text" name="search" placeholder="Busca tu producto aqui">
+          <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
     </div>
-    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
-    <div class="">
-      <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
-    </div>
-    <?php elseif($this->existeSesion):?>
-    <div class="">
-      <a class="button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
-    </div>
-    <?php endif;?>
-    <div class="">
-      <a class="button-google" type="submit" href="?c=Sesion&a=Contacto">Contacto</a>
-    </div>
-    <div class="header-content">
-      <img src="Vista/css/logo.png" alt="header">
-      <div class="icon">
-        <i class="fa-solid fa-bars menu-icon"></i>
+    <div class="header-left">
+            <div class="center-header">
+        
+        <nav class="navigation">
+          <ul>
+            <li><a href="?c=Sesion&a=Inicio">Inicio</a></li>
+            <li><a href="?c=Sesion&a=About">Sobre Nosotros</a></li>
+            <li><a href="?c=Producto&a=Listar">Productos</a></li>
+            <li><a href="?c=Sesion&a=Contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
+      <div class="info-user">
+        <p>
+          <span onclick="openModal();" class="lbl-usuario">
+          <?php echo $this->usuario->__get('nombre'); ?>
+          </span>
+        </p>
+        <p>
+          <a class="close-sesion button-admin button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
+        </p>
+      </div>
+      <?php else:?>
+        <div class="inicio-button"><a href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a></div>
+      <?php endif; ?>
+      <div class="menu-icon">
+        <i class="fa-solid fa-bars"></i>
       </div>
     </div>
-    <div class="navigation">
-    <ul>
-    <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
-      <?php if(isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
-        <li>
-          <a>Admin:</a>
-        </li>
-      <?php else: ?>
-        <li>
-          <a>Usuario:</a>
-        </li>
-      <?php endif;?>
-      <li>
-        <span class="lbl-usuario">
-        <?php echo $this->usuario->__get('nombre'); ?>
-        </span>
-      </li>
-      <li>
-        <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
-      </li>
-    <?php else:?>
-      <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
-    <?php endif; ?>
-    </ul>
-    </div>
-</header>
-<?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>
+  </header>
+  <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>

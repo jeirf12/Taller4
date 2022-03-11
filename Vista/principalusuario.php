@@ -2,6 +2,11 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
+    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
+    <div class="">
+      <a class="button-admin button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+    </div>
+    <?php endif;?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <div class="row">
     <?php foreach($this->productos as $producto): ?>
@@ -18,7 +23,7 @@
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
       </div>
-      <a class="button-success" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Agregar Carrito</a>
+      <a class="button-admin button-success" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Agregar Carrito</a>
     </div>
     </article>
     <?php endforeach; ?>
@@ -28,7 +33,11 @@
         <p class="messages">Lo sentimos! 
           En este momento no hay productos disponibles</p>
       </div>
+      <div class="footer-head">
+        <?php require_once "Vista/footer.php"; ?>
+      </div>
     <?php endif; ?>
   </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

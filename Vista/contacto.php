@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php require_once "Vista/header.php"; ?>
-    <div class="container">
         <div class="bodyContact">
             <form class="formContact" action="?c=Sesion&a=ApiContacto" method="POST">
                 <div class="formCon">
@@ -26,6 +25,6 @@
                 </div>
             </form>
         </div>
-    </div>
+        <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

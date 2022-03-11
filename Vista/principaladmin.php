@@ -2,6 +2,12 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
+    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
+      <div class="container-button">
+        <a class="button-admin button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
+      </div>
+    <?php endif;?>
+    <?php $counter = 0; ?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <table class="table-admin">
       <thead>
@@ -25,11 +31,12 @@
           <td><?php echo $producto->__get('cantidad'); ?></td>
           <td><?php echo $producto->__get('descripcion'); ?></td>
           <td><?php echo $producto->__get('categoria'); ?></td>
-          <div class="button-admin">
-            <td><a class="button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
-            <td><a href="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>" class="button-danger">eliminar</a></td>
+          <div>
+            <td><a class="button-admin button-google" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
+            <td><a class="button-admin button-danger" href="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>">eliminar</a></td>
           </div>
         </tr>
+        <?php $counter = $counter + 1; ?>
       <?php endforeach; ?>
       </tbody>
     </table>
@@ -39,5 +46,12 @@
       </div>
     <?php endif; ?>
   </div>
+  <?php if($counter <= 4): ?>
+    <div class="footer-head">
+      <?php require_once "Vista/footer.php"; ?>
+    </div>
+  <?php else: ?>
+    <?php require_once "Vista/footer.php"; ?>
+  <?php endif; ?>
 </body>
 </html>

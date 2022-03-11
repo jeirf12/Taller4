@@ -65,7 +65,7 @@ class clsProductoCRUD {
 
     public function Eliminar($codigo){
          try{ 
-            $consulta = "DELETE FROM carrito WHERE PRO_ID=?";
+            $consulta = "DELETE FROM agregacarrito WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));
             $consulta = "DELETE FROM producto WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));

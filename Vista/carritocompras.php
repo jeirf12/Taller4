@@ -3,6 +3,7 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <h1>Carrito de compras</h1>
+    <?php $counter = 0; ?>
     <?php if(isset($compras) && !empty($compras)): ?>
     <div class="row">
       <?php foreach($compras as $compra): ?>
@@ -21,14 +22,15 @@
           </div>
           <div>
             <?php if(isset($editarCarrito) && $editarCarrito): ?>
-            <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Editar Compra</a>
+            <a class="button-google" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Editar Compra</a>
            <?php endif; ?>
           </div>
           <div>
-            <a class="button-danger" type="submit" href="?c=Carrito&a=Eliminar&carid=<?php echo $compra->__get('carid'); ?>&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Quitar Compra</a>
+            <a class="button-admin button-danger" type="submit" href="?c=Carrito&a=Eliminar&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Quitar Compra</a>
           </div>
         </div>
       </article>
+      <?php $counter += 1; ?>
       <?php endforeach; ?>
     </div>
     <?php else: ?>
@@ -37,5 +39,12 @@
       </div>
     <?php endif; ?>
   </div>
+  <?php if($counter == 0): ?>
+    <div class="footer-head">
+      <?php require_once "Vista/footer.php"; ?>
+    </div>
+  <?php else: ?>
+    <?php require_once "Vista/footer.php"; ?>
+  <?php endif; ?>
 </body>
 </html>
