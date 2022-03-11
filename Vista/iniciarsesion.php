@@ -5,9 +5,9 @@
     <h1>Iniciar Sesión</h1>
     <form class="form-login" action="?c=Sesion&a=existeusuario" method="post">
       <label for="correo">Correo</label>
-      <input type="email" class="frm_input_tbox" name="correo" placeholder="Escriba su correo" required>
+      <input type="email" class="frm_input_tbox" name="correo" placeholder="Escriba su correo">
       <label for="contrasenia">Contraseña</label>
-      <input type="password" class="frm_input_tbox" name="contrasenia" placeholder="Escriba su contraseña" required>
+      <input type="password" class="frm_input_tbox" name="contrasenia" placeholder="Escriba su contraseña">
       <a  class="lnk_olvidecontrasenia" href="">¿Has olvidado la contraseña?</a>
       <button class="button-admin button-success" type="submit">Iniciar Sesión</button>
       <button class="button-admin button-danger" type="submit" formaction="?c=Sesion&a=RegistrarUsuario">¿No tienes Cuenta? ¡Cree una ahora!</button>

@@ -15,6 +15,7 @@ body {
 
 a {
     text-decoration: none;
+    color: #558FD2;
 }
 
 .header {
@@ -56,8 +57,6 @@ a {
     display: inline-block;
 }
 
-
-
 .menu-icon i{
     font-size: 30px;
 }
@@ -83,14 +82,12 @@ a {
     padding: 2%;
 }
 
-.info-user, .menu-icon{
+.menu-icon{
     padding-top: 3.8%;
 }
 
-
-
 .container {
-    margin-top: 10%;
+    margin-top: 7%;
 }
 
 .container h1 {
@@ -257,6 +254,19 @@ input, select {
 .container-button {
     display: block;
     padding: 0 0 1% 0;
+}
+
+.crcAbout {
+    padding: 0% 6% 0 6%;
+}
+
+.crcAbout h2 {
+    padding: 2% 0 2% 0;
+    text-align: center;
+}
+
+.lbl-usuario {
+    color: #000000;
 }
 
 #map{
