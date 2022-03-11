@@ -256,3 +256,9 @@ input, select {
     display: block;
     padding: 0 0 1% 0;
 }
+
+#map{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+}
