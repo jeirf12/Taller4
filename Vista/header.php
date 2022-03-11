@@ -31,7 +31,7 @@
       <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
       <div class="info-user">
         <p>
-          <span class="lbl-usuario">
+          <span onclick="openModal();" class="lbl-usuario">
           <?php echo $this->usuario->__get('nombre'); ?>
           </span>
         </p>

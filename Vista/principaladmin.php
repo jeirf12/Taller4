@@ -36,7 +36,7 @@
             <td><a class="button-admin button-danger" href="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>">eliminar</a></td>
           </div>
         </tr>
-        <?php $counter += 1; ?>
+        <?php $counter = $counter + 1; ?>
       <?php endforeach; ?>
       </tbody>
     </table>
@@ -46,7 +46,7 @@
       </div>
     <?php endif; ?>
   </div>
-  <?php if($counter <= 2): ?>
+  <?php if($counter <= 4): ?>
     <div class="footer-head">
       <?php require_once "Vista/footer.php"; ?>
     </div>

@@ -18,3 +18,8 @@ const Popup = {
 };
 
 document.addEventListener('DOMContentLoaded', () => Popup.init());
+
+function openModal(){
+    this.element = document.getElementById("mySesion");
+    this.element.classList.remove("modal-invisible");
+}

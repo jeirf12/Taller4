@@ -87,14 +87,20 @@ a {
 }
 
 .container {
-    margin-top: 7%;
+    margin-top: 6%;
 }
 
 .container h1 {
-    font-size: 4.5em;
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
 }
 
 .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: rgb(248, 238, 19);
     padding: 1%;
     text-align: center;
@@ -253,16 +259,22 @@ input, select {
 
 .container-button {
     display: block;
-    padding: 0 0 1% 0;
+    padding: 1% 0 1.5% 0;
 }
 
 .crcAbout {
     padding: 0% 6% 0 6%;
+    text-align: justify;
 }
 
 .crcAbout h2 {
     padding: 2% 0 2% 0;
     text-align: center;
+}
+
+.crcAbout .content-map {
+    display: flex;
+    padding: 2% 2% 6% 2%;
 }
 
 .lbl-usuario {
@@ -271,6 +283,5 @@ input, select {
 
 #map{
     width: 600px;
-    height: 600px;
-    margin: 0 auto;
+    height: 400px;
 }

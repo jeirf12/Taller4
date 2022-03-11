@@ -29,7 +29,9 @@
         </div>
         <div class="crcAbout">
             <h2>Ubicación</h2>
-            <div id="map"></div>
+            <div class="content-map">
+                <div id="map"></div>
+            </div>
         </div>
     </div>
     <?php require_once "Vista/footer.php"; ?>

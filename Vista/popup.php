@@ -7,7 +7,7 @@
     <?php elseif($this->action == "error"): ?>
     <i class="fa-solid fa-circle-xmark"></i>
     <?php endif; ?>
-    <p class="icon"><?php echo $this->message; ?></p>
+    <p class="icon-message"><?php echo $this->message; ?></p>
   </div>
 </div>
 <?php
