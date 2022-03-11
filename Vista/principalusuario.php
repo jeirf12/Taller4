@@ -2,6 +2,11 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
+    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
+    <div class="">
+      <a class="button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+    </div>
+    <?php endif;?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <div class="row">
     <?php foreach($this->productos as $producto): ?>
@@ -30,5 +35,6 @@
       </div>
     <?php endif; ?>
   </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

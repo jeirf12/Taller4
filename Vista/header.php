@@ -12,51 +12,39 @@
 </head>
 <body>
   <header class="header">
-    <div class="">
-      <?php require_once "Vista/botonVolver.php"; ?>
-    </div>
-    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
-    <div class="">
-      <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
-    </div>
-    <?php elseif($this->existeSesion):?>
-    <div class="">
-      <a class="button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
-    </div>
-    <?php endif;?>
-    <div class="">
-      <a class="button-google" type="submit" href="?c=Sesion&a=Contacto">Contacto</a>
-    </div>
-    <div class="header-content">
-      <img src="Vista/css/logo.png" alt="header">
+    <div class="logo"><img src="Vista/css/logo.png" alt="logo"></div>
+    <div class="header-left">
+      <div class="center-header">
+        <div class="bar-search">
+          <input type="text" name="search" placeholder="Busca tu producto aqui">
+          <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+        </div>
+        <nav class="navigation">
+          <ul>
+            <li><a href="?c=Sesion&a=Inicio">Inicio</a></li>
+            <li><a href="?c=Sesion&a=About">Sobre Nosotros</a></li>
+            <li><a href="?c=Producto&a=Listar">Productos</a></li>
+            <li><a href="?c=Sesion&a=Contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
+      <div class="info-user">
+        <p>
+          <span class="lbl-usuario">
+          <?php echo $this->usuario->__get('nombre'); ?>
+          </span>
+        </p>
+        <p>
+          <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
+        </p>
+      </div>
+      <?php else:?>
+        <div class="inicio-button"><a href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a></div>
+      <?php endif; ?>
       <div class="icon">
-        <i class="fa-solid fa-bars menu-icon"></i>
+        <i class="fa-solid fa-bars"></i>
       </div>
     </div>
-    <div class="navigation">
-    <ul>
-    <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
-      <?php if(isset($_SESSION['rol'])&&($_SESSION['rol'])=='admin'): ?>
-        <li>
-          <a>Admin:</a>
-        </li>
-      <?php else: ?>
-        <li>
-          <a>Usuario:</a>
-        </li>
-      <?php endif;?>
-      <li>
-        <span class="lbl-usuario">
-        <?php echo $this->usuario->__get('nombre'); ?>
-        </span>
-      </li>
-      <li>
-        <a class="close-sesion button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
-      </li>
-    <?php else:?>
-      <a class="button-danger" href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a>
-    <?php endif; ?>
-    </ul>
-    </div>
-</header>
-<?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>
+  </header>
+  <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>

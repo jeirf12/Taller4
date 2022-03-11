@@ -30,5 +30,6 @@
       <button class="button-success" type="submit">Guardar</button>
     </form>
   </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

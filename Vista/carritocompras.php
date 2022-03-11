@@ -37,5 +37,6 @@
       </div>
     <?php endif; ?>
   </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

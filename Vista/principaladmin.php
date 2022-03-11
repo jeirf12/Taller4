@@ -2,6 +2,11 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
+    <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
+      <div class="">
+        <a class="button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
+      </div>
+    <?php endif;?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <table class="table-admin">
       <thead>
@@ -39,5 +44,6 @@
       </div>
     <?php endif; ?>
   </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

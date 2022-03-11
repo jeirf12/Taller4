@@ -1,63 +1,106 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 * {
+    --color-page: #DC9E11;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    font-size: 14px;
     scroll-behavior: smooth;
     box-sizing: border-box;
 }
 
 body {
     width: 100% !important;
+    position: absolute;
     background-image: url("fondo.jpg");
+    overflow: auto;
 }
 
 a {
     text-decoration: none;
 }
 
+.header, .center-header, .info-user, .header-left {
+    display: flex;
+    align-items: center;
+}
+
 .header {
     position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: row;
+    width: 100%;
     justify-content: space-around;
-    background-color: rgb(37, 37, 37);
-    align-items: center;
-    flex-wrap: nowrap;
-}
-
-.header-content {
-    display: flex;
-    font-weight: bold;
-}
-
-ul,
-li {
-    display: inline-block;
-}
-
-.header-content .icon {
-    display: inline-block;
-    padding: 10px;
-    font-size: 50px;
-}
-
-.menu-icon {
-    opacity: 0;
+    background-color: var(--color-page);
     color: white;
+}
+
+.header .center-header .bar-search {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.header .center-header .bar-search input {
+    border: none;
+    outline: none;
+}
+
+.header .center-header .bar-search a{
+    background-color: white;
+    text-align: center;
+}
+
+.header .logo, .navigation ul li, .info-user p {
+    display: inline-block;
+}
+
+.menu-icon i{
+    font-size: 30px;
+}
+
+.menu-icon{
+    display: none;
+}
+
+.header .header-left .center-header {
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.header .header-left .center-header .navigation {
+    width: 350px;
+}
+
+.header .header-left {
+    flex-direction: row;
+}
+
+.navigation ul li {
+    padding: 2%;
+}
+
+.info-user, .menu-icon{
+    padding-top: 3.8%;
+}
+
+.inicio-button {
+    padding-top: 4.5%;
 }
 
 .container {
     margin-top: 6.8%;
-    border-radius: 0px;
+    text-align: center;
+    border: 1px solid black;
 }
 
-.lbl-usuario {
-    color: white;
+.container h1 {
+    font-size: 4.5em;
+}
+
+.footer {
+    width: 100%;
+    background-color: var(--color-page);
+    padding: 1%;
+    text-align: center;
 }
 
 .close-sesion {
@@ -228,35 +271,4 @@ input, select, option {
     font-size: small;
     text-align: right;
     outline: none;
-}
-
-/* Responsive pages */
-@media only screen and (max-width: 1223px) {
-    .container {
-        margin-top: 10%;
-    }
-}
-
-@media only screen and (max-width: 790px) {
-    .header .header-left .center-header, .inicio-button{
-        display: none;
-    }
-
-    .icon {
-        display: inline;
-    }
-
-    .container {
-        margin-top: 18%;
-    }
-
-    .container div video {
-        width: 90%;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .container {
-        margin: 20% auto;
-    }
 }

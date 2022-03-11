@@ -14,5 +14,6 @@
       <button class="button-success" type="submit">Registrarse</button>
     </form>
   </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

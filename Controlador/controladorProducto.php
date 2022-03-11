@@ -26,7 +26,7 @@ class controladorProducto extends controlador {
     }
     
     public function Listar(){
-        $this->nombrePagina = 'Página Principal';
+        $this->nombrePagina = 'Listado Productos';
         $this->productos = $this->crud->Listar();
         $this->categorias = $this->crud->getCategorias();
         $this->validaSesion();

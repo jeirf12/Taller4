@@ -6,7 +6,7 @@
 }
 
 .bodyContact {
-    background-image: url("fondo.jpg");
+    margin-top: 8%;
     font-family: 'Poppins', sans-serif;
     width: 100%;
     height:650px;
@@ -16,6 +16,7 @@
 }
 
 .h1Contact{
+    font-size: 4em;
     text-align: center;
     margin: 10px 0;
     font-weight: 800;

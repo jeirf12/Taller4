@@ -194,8 +194,19 @@ class controladorSesion extends controlador {
         }
         header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
     }
+
     public function Contacto(){
         $this->nombrePagina = "Contacto";
         require "Vista/contacto.php";
+    }
+
+    public function Inicio(){
+        $this->nombrePagina = "Inicio";
+        require "Vista/inicio.php";
+    }
+
+    public function About(){
+        $this->nombrePagina = "Sobre Nosotros";
+        require "Vista/about.php";
     }
 }
