@@ -31,7 +31,7 @@
     <?php else: ?>
       <div>
         <p class="messages">Lo sentimos! 
-          En este momento no hay productos disponibles</p>
+          No se encontraron productos</p>
       </div>
       <div class="footer-head">
         <?php require_once "Vista/footer.php"; ?>

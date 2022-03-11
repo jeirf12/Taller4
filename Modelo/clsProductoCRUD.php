@@ -37,6 +37,32 @@ class clsProductoCRUD {
         return $resultado;
     }
 
+    public function BuscarProducto($palabra){
+        try{
+        
+            $consulta = $this->auxPDO->prepare("SELECT * FROM `producto` P INNER JOIN `categoriaproducto` C ON P.CATPRO_ID = C.CATPRO_ID WHERE `pro_nombre` LIKE '%$palabra%'");
+         
+            $consulta->execute();
+            $resultado = array();
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+                $auxProducto = new clsProducto();
+                $auxProducto->__SET('id',$obj->PRO_ID);
+                $auxProducto->__SET('nombre',$obj->PRO_NOMBRE);
+                $auxProducto->__SET('precio',$obj->PRO_PRECIO);
+                $auxProducto->__SET('imagen',$obj->PRO_IMAGEN);
+                $auxProducto->__SET('descripcion',$obj->PRO_DESCRIPCION);
+                $auxProducto->__SET('cantidad',$obj->PRO_CANTIDAD);
+                $auxProducto->__SET('categoria',$obj->CATPRO_NOMBRE);
+                $resultado [] = $auxProducto;
+            }
+        }
+        catch (Exception $ex){
+            die($ex->getMessage());
+        }
+        
+        return $resultado;
+    }
+
     public function Crear($obj){
         $resultado = false;
         try{
