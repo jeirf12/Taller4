@@ -11,13 +11,14 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo"><img src="Vista/css/logo.png" alt="logo"></div>
-    <div class="header-left">
-      <div class="center-header">
-        <div class="bar-search">
+    <div class="logo"><img src="Vista/css/logo.png" alt="logo" width="300" height="70"></div>
+    <div class="bar-search">
           <input type="text" name="search" placeholder="Busca tu producto aqui">
           <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
-        </div>
+    </div>
+    <div class="header-left">
+            <div class="center-header">
+        
         <nav class="navigation">
           <ul>
             <li><a href="?c=Sesion&a=Inicio">Inicio</a></li>

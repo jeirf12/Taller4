@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 * {
-    --color-page: #DC9E11;
+    --color-page: #ffffff;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -22,8 +22,6 @@ a {
     top: 0;
     right: 0;
     left: 0;
-    padding-bottom: 1%;
-    padding-top: 1%;
     justify-content: space-around;
     background-color: var(--color-page);
     color: white;
@@ -35,12 +33,16 @@ a {
     align-items: center;
 }
 
-.header .center-header .bar-search {
+.header .center-header {
     display: flex;
     flex: 1 1 auto;
 }
 
-.header .center-header .bar-search input {
+.bar-search a,.bar-search input{
+    display: inline-block;
+}
+
+.bar-search input {
     border: none;
     outline: none;
 }
@@ -53,6 +55,8 @@ a {
 .header .logo, .navigation ul li, .info-user p {
     display: inline-block;
 }
+
+
 
 .menu-icon i{
     font-size: 30px;
@@ -83,9 +87,7 @@ a {
     padding-top: 3.8%;
 }
 
-.inicio-button {
-    padding-top: 4.5%;
-}
+
 
 .container {
     margin-top: 10%;
@@ -96,7 +98,7 @@ a {
 }
 
 .footer {
-    background-color: var(--color-page);
+    background-color: rgb(248, 238, 19);
     padding: 1%;
     text-align: center;
 }
