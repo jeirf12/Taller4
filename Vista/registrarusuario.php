@@ -11,7 +11,7 @@
       <label for="password">Contraseña</label>
       <input type="password"  class="frm_input_tbox"  name="contrasenia" placeholder="Escriba su contraseña" required>
       <?php require_once "Vista/botonVolver.php"; ?>
-      <button class="button-success" type="submit">Registrarse</button>
+      <button class="button-admin button-success" type="submit">Registrarse</button>
     </form>
   </div>
   <?php require_once "Vista/footer.php"; ?>

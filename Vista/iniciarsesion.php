@@ -5,14 +5,14 @@
     <h1>Iniciar Sesión</h1>
     <form class="form-login" action="?c=Sesion&a=existeusuario" method="post">
       <label for="correo">Correo</label>
-      <input type="email" class="frm_input_tbox" name="correo" placeholder="Escriba su correo">
+      <input type="email" class="frm_input_tbox" name="correo" placeholder="Escriba su correo" required>
       <label for="contrasenia">Contraseña</label>
-      <input type="password" class="frm_input_tbox" name="contrasenia" placeholder="Escriba su contraseña">
+      <input type="password" class="frm_input_tbox" name="contrasenia" placeholder="Escriba su contraseña" required>
       <a  class="lnk_olvidecontrasenia" href="">¿Has olvidado la contraseña?</a>
-      <button class="button-success" type="submit">Iniciar Sesión</button>
-      <button class="button-danger" type="submit" formaction="?c=Sesion&a=RegistrarUsuario">¿No tienes Cuenta? ¡Cree una ahora!</button>
+      <button class="button-admin button-success" type="submit">Iniciar Sesión</button>
+      <button class="button-admin button-danger" type="submit" formaction="?c=Sesion&a=RegistrarUsuario">¿No tienes Cuenta? ¡Cree una ahora!</button>
       <span>O Inicie sesión con...</span>
-      <button class="button-google" type="submit" formaction="?c=Sesion&a=Google"><i class="fa-brands fa-google">oogle</i></button>
+      <button class="button-admin button-google" type="submit" formaction="?c=Sesion&a=Google"><i class="fa-brands fa-google">oogle</i></button>
     </form>
   </div>
   <?php require_once "Vista/footer.php"; ?>

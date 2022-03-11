@@ -1,13 +1,5 @@
-::before,
-::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .bodyContact {
-    margin-top: 8%;
-    font-family: 'Poppins', sans-serif;
+    margin-top: 10%;
     width: 100%;
     height:650px;
     display: flex;
@@ -16,7 +8,7 @@
 }
 
 .h1Contact{
-    font-size: 4em;
+    font-size: 3em;
     text-align: center;
     margin: 10px 0;
     font-weight: 800;
@@ -49,7 +41,7 @@
     display: block;
     width: 100%;
     border:none;
-    border-bottom: 1px solid var(--colorTextos);
+    border-bottom: 1px solid black;
     resize: none;
 }
 
@@ -68,7 +60,7 @@
 }
 
 .labelCon{
-    color: var(--colorTextos);
+    color: black;
     font-size: 16px;
     position: absolute;
     left: 5px;
@@ -98,11 +90,8 @@
 }
 .buttonCon{
     background: #FC5C7D;
-    /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);
-    /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #6A82FB, #FC5C7D);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     display: block;
     width: 100px;
     height: 40px;
