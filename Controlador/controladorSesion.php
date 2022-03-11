@@ -197,16 +197,19 @@ class controladorSesion extends controlador {
 
     public function Contacto(){
         $this->nombrePagina = "Contacto";
+        $this->validaSesion();
         require "Vista/contacto.php";
     }
 
     public function Inicio(){
         $this->nombrePagina = "Inicio";
+        $this->validaSesion();
         require "Vista/inicio.php";
     }
 
     public function About(){
         $this->nombrePagina = "Sobre Nosotros";
+        $this->validaSesion();
         require "Vista/about.php";
     }
 }
