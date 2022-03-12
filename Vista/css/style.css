@@ -254,6 +254,10 @@ input, select {
     background-color: rgb(255, 255, 255);
     color: black;
 }
+.button-red{
+    background-color: rgb(252, 94, 94);
+    color: white;
+}
 
 .frm_input_tbox {
     border-radius: 30px;

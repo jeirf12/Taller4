@@ -42,7 +42,7 @@
               <?php echo $this->usuario->__get('nombre'); ?>
               </span>
             </a>
-            <a class="btn-dropclose button-google" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
+            <a class="btn-dropclose button-red" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
           </div>
         </div>
       </div>
