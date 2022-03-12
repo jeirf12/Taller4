@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo"><img src="Vista/css/logo.png" alt="logo" width="250" height="70"></div>
+    <div class="logo" ><img src="Vista/css/logo.png" alt="logo" height="70"></div>
     <div class="bar-search">
       <form id="frm-busqueda" action="?c=Producto&a=BuscarProducto" method="POST">
           <input type="text" name="word_search" placeholder="Busca tu producto aqui" >
