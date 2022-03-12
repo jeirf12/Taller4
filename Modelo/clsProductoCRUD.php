@@ -40,7 +40,7 @@ class clsProductoCRUD {
     public function BuscarProducto($palabra){
         try{
         
-            $consulta = $this->auxPDO->prepare("SELECT * FROM `producto` P INNER JOIN `categoriaproducto` C ON P.CATPRO_ID = C.CATPRO_ID WHERE `pro_nombre` LIKE '%$palabra%'");
+            $consulta = $this->auxPDO->prepare("SELECT * FROM `producto` P INNER JOIN `categoriaproducto` C ON P.CATPRO_ID = C.CATPRO_ID WHERE `pro_nombre` LIKE '%$palabra%' OR `catpro_nombre`  LIKE '%$palabra%'");
          
             $consulta->execute();
             $resultado = array();
