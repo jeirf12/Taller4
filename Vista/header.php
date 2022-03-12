@@ -16,7 +16,7 @@
     <div class="bar-search">
       <form id="frm-busqueda" action="?c=Producto&a=BuscarProducto" method="POST">
           <input type="text" name="word_search" placeholder="Busca tu producto aqui" >
-          <a href=""><i class="fa-solid fa-magnifying-glass" ></i></a>
+          <button name= "btn-search" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
       </form>
     </div>
     <div class="header-left">
