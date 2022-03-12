@@ -10,7 +10,7 @@
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" value="<?php echo (isset($producto)) ? $producto->__get('nombre') : ""; ?>" required>
       <label for="descripcion">Descripción</label>
-      <input type="text" name="descripcion" value="<?php echo (isset($producto)) ? $producto->__get('descripcion') : ""; ?>" required>
+      <input type="text" name="descripcion" value="<?php echo (isset($producto)) ? $producto->__get('descripcion') : ""; ?>">
       <label for="cantidad">Cantidad</label>
       <input type="number" name="cantidad" min='1' value="<?php echo (isset($producto)) ? $producto->__get('cantidad') : ""; ?>" required>
       <label for="categoria">Categoria</label>
