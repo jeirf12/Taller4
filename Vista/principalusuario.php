@@ -3,7 +3,7 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <?php if(isset($this->existeSesion) && $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
-    <div class="">
+    <div class="content-btncar">
       <a class="button-admin button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
     </div>
     <?php endif;?>

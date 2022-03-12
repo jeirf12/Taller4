@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 4%;
 }
 
 .h1Contact{
@@ -101,25 +102,61 @@
 }
 
 @media screen and (max-width:1100px){
+    .bodyContact {
+        margin-top: 12%;
+    }
     .formContact{
         width: 50%;
     }
 }
-
-@media screen and (max-width:600px){
+@media screen and (max-width:1000px){
+    .bodyContact {
+        margin-top: 14%;
+    }
+}
+@media screen and (max-width:824px){
+    .bodyContact {
+        margin-top: 17%;
+        margin-bottom: 6%;
+    }
+}
+@media screen and (max-width:700px){
+    .bodyContact {
+        margin-top: 20%;
+        margin-bottom: 9%;
+    }
+}
+@media screen and (max-width:640px){
+    .bodyContact {
+        margin-top: 24%;
+    }
     .formContact{
         width: 60%;
     }
 }
 
-@media screen and (max-width:450px){
+@media screen and (max-width:520px){
+    .bodyContact {
+        margin-top: 34%;
+    }
     .formContact{
         width: 80%;
     }
 }
 
-@media screen and (max-width:300px){
+@media screen and (max-width:400px){
+    .bodyContact {
+        margin-bottom: 14%;
+    }
     .formContact{
         width: 90%;
+    }
+}
+@media screen and (max-width:350px){
+    .bodyContact {
+        margin-top: 38%;
+    }
+    .h1Contact{
+        font-size: 2em;
     }
 }

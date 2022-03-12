@@ -31,7 +31,7 @@ a {
     box-shadow: 2px 2px 6px 2px rgba(0,0,0,0.4) ;
 }
 
-.header, .center-header, .info-user, .header-left, .container {
+.header, .center-header, .info-user, .header-left, .container, .body-container {
     display: flex;
     align-items: center;
 }
@@ -48,6 +48,7 @@ a {
 .bar-search button{
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
 .bar-search input {
@@ -66,6 +67,7 @@ a {
 
 .menu-icon i{
     font-size: 30px;
+    color: black;
 }
 
 .menu-icon{
@@ -73,7 +75,7 @@ a {
     padding-top: 3.8%;
 }
 
-.header .header-left .center-header, .container {
+.header .header-left .center-header, .container , .body-container{
     flex-direction: column;
     flex: 1 1 auto;
 }
@@ -245,6 +247,10 @@ input, select {
     background: rgb(25, 0, 255);
 }
 
+.content-btncar {
+    padding: 1% 0;
+}
+
 .button-car {
     display: block;
     text-align: center;
@@ -273,7 +279,7 @@ input, select {
 
 .container-button {
     display: block;
-    padding: 1% 0 1.5% 0;
+    padding: 1.5% 0;
 }
 
 .crcAbout {
@@ -295,7 +301,7 @@ input, select {
     color: #000000;
 }
 
-.content-video {
+.video {
     padding: 2%;
 }
 
@@ -313,4 +319,89 @@ input, select {
 .link-social a:hover {
     text-decoration: none;
     color: #A49169;
+}
+
+@media screen and (max-width:906px){
+    .navigation ul li, .inicio-button {
+        display: none;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .table-admin {
+        display: block;
+        overflow-x: auto;
+    }
+}
+@media screen and (max-width:797px){
+    .center-header {
+        width: 0px;
+    }
+    #map{
+        width: 400px;
+        height: 350px;
+    }
+}
+@media screen and (max-width:512px){
+    .bar-search {
+        display: none;
+    }
+    .video-content {
+        padding: 0;
+        width: 380px;
+        height: 200px;
+    }
+    .container h1 {
+        font-size: 2em;
+        text-align: center;
+    }
+    .messages {
+        font-size: 2rem;
+        line-height: 60px;
+    }
+    #map{
+        width: 360px;
+        height: 360px;
+    }
+}
+@media screen and (max-width:412px){
+    .video-content {
+        padding: 0;
+        width: 280px;
+        height: 200px;
+    }
+    .form-save {
+        min-width: 100px;
+        max-width: 280px;
+    }
+    #map{
+        width: 220px;
+        height: 160px;
+    }
+}
+@media screen and (max-width:300px){
+    .video-content {
+        padding: 0;
+        width: 180px;
+        height: 120px;
+    }
+    .form-save {
+        min-width: 100px;
+        max-width: 220px;
+    }
+    #map{
+        width: 80px;
+        height: 60px;
+    }
+}
+@media screen and (max-width:282px){
+    .video-content {
+        padding: 0;
+        width: 80px;
+        height: 60px;
+    }
+    .form-save {
+        min-width: 100px;
+        max-width: 195px;
+    }
 }
