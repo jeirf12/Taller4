@@ -46,7 +46,7 @@
       </div>
     <?php endif; ?>
   </div>
-  <?php if($counter <= 4): ?>
+  <?php if($counter <= 2): ?>
     <div class="footer-head">
       <?php require_once "Vista/footer.php"; ?>
     </div>

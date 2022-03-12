@@ -18,12 +18,12 @@ class controladorSesion extends controlador {
     }
 
     public function volverprincipal(){
-        $this->index();
+        header("Location: ?c=Producto&a=Listar");
     }
 
     public function index(){
         if(!empty($this->message)){
-            header("Location: ?c=Producto&a=Listar&msg=".$this->message."&act=".$this->action);
+            $this->Inicio();
         }else{
             header("Location: index.php");
         }
@@ -192,7 +192,7 @@ class controladorSesion extends controlador {
             $this->action = 'warning';
             $this->action = base64_encode($this->action);
         }
-        header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+        $this->Inicio();
     }
 
     public function Contacto(){
@@ -204,6 +204,10 @@ class controladorSesion extends controlador {
     public function Inicio(){
         $this->nombrePagina = "Inicio";
         $this->validaSesion();
+        $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
+        $this->message = base64_decode($this->message);
+        $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
+        $this->action = base64_decode($this->action);
         require "Vista/inicio.php";
     }
 

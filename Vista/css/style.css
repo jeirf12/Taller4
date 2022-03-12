@@ -16,6 +16,7 @@ body {
 a {
     text-decoration: none;
     color: #558FD2;
+    outline: none;
 }
 
 .header {
@@ -63,6 +64,7 @@ a {
 
 .menu-icon{
     display: none;
+    padding-top: 3.8%;
 }
 
 .header .header-left .center-header, .container {
@@ -82,8 +84,14 @@ a {
     padding: 2%;
 }
 
-.menu-icon{
-    padding-top: 3.8%;
+.navigation li:hover, .inicio-button:hover {
+    background-color: #ddd; 
+    border-radius: 15px;
+}
+
+.inicio-button {
+    text-align: center;
+    padding: 6px 5px;
 }
 
 .container {
@@ -92,15 +100,11 @@ a {
 
 .container h1 {
     font-size: 3em;
-    margin: 0;
-    padding: 0;
 }
 
 .footer {
     position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     background-color: rgb(248, 238, 19);
     padding: 1%;
     text-align: center;
@@ -281,7 +285,22 @@ input, select {
     color: #000000;
 }
 
+.content-video {
+    padding: 2%;
+}
+
 #map{
     width: 600px;
     height: 400px;
+}
+
+.link-social a {
+    color: black;
+    transition: color .3s;
+    font-size: 20px;
+}
+
+.link-social a:hover {
+    text-decoration: none;
+    color: #A49169;
 }

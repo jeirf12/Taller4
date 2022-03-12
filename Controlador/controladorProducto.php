@@ -19,7 +19,7 @@ class controladorProducto extends controlador {
 
     public function index(){
         if(!empty($this->message)){
-            header("Location: ?c=Producto&a=Listar&msg=".$this->message."&act=".$this->action);
+            $this->Listar();
         }else{
             header("Location: index.php");
         }
@@ -58,7 +58,7 @@ class controladorProducto extends controlador {
             $this->message = base64_encode($this->message);
             $this->action = "warning";
             $this->action = base64_encode($this->action);
-            header("Location: ?c=Producto&a=Listar&msg=".$this->message."&act=".$this->action);
+            header("Location: ?c=Sesion&a=Inicio&msg=".$this->message."&act=".$this->action);
         }else {
             $this->index();
         }
@@ -101,7 +101,7 @@ class controladorProducto extends controlador {
             $this->message = base64_encode($this->message);
             $this->action = 'warning';
             $this->action = base64_encode($this->action);
-            header("Location: ?c=Producto&a=Listar&msg=".$this->message."&act=".$this->action);
+            header("Location: ?c=Sesion&a=Inicio&msg=".$this->message."&act=".$this->action);
         }else {
             $this->message = "Debe iniciar sesión como administrador para hacer esta acción";
             $this->message = base64_encode($this->message);
@@ -125,7 +125,7 @@ class controladorProducto extends controlador {
             $this->message = base64_encode($this->message);
             $this->action = "warning";
             $this->action = base64_encode($this->action);
-            header("Location: ?c=Producto&a=Listar&msg=".$this->message."&act=".$this->action);
+            header("Location: ?c=Sesion&a=Inicio&msg=".$this->message."&act=".$this->action);
         }else{
             $this->message = "Debe iniciar sesión como administrador para hacer esta acción";
             $this->message = base64_encode($this->message);

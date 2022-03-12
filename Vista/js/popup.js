@@ -20,6 +20,19 @@ const Popup = {
 document.addEventListener('DOMContentLoaded', () => Popup.init());
 
 function openModal(){
-    this.element = document.getElementById("mySesion");
-    this.element.classList.remove("modal-invisible");
+    this.element = document.getElementById("myDropdown");
+    this.element.classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.open-btn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-menu");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
