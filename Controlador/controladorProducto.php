@@ -41,6 +41,24 @@ class controladorProducto extends controlador {
             require 'vista/principalusuario.php';
         }
     }
+
+    public function BuscarProducto(){
+      
+        $this->nombrePagina = 'Buscar Productos';
+        $this->productos = $this->crud->BuscarProducto($_REQUEST['word_search']);
+        $this->categorias = $this->crud->getCategorias();
+        $this->validaSesion();
+        $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
+        $this->message = base64_decode($this->message);
+        $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
+        $this->action = base64_decode($this->action);
+        if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
+            require 'vista/principaladmin.php';
+        }else{
+            $isForm = false;
+            require 'vista/principalusuario.php';
+        }
+    }
     
     public function CrearEditar(){
         $this->nombrePagina = "Crear Producto";
