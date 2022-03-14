@@ -7,7 +7,10 @@
   <link rel="stylesheet" type="text/css" href="Vista/css/contacto.css">
   <link rel="stylesheet" type="text/css" href="Vista/css/dropdown.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"/>
   <script src="Vista/js/popup.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
   <title><?php echo isset($this->nombrePagina) ? $this->nombrePagina : " "; ?></title>
 </head>
 <body>
@@ -52,6 +55,8 @@
       <div class="menu-icon">
         <i class="fa-solid fa-bars"></i>
       </div>
+      
     </div>
+    <script src="Vista/js/menu.js"></script>
   </header>
   <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>

@@ -77,11 +77,13 @@ a {
 .menu-icon i{
     font-size: 30px;
     color: black;
+    cursor: pointer;
 }
 
 .menu-icon{
     display: none;
     padding-top: 3.8%;
+
 }
 
 .header .header-left .center-header, .container , .body-container{
@@ -353,9 +355,6 @@ input, select {
     }
 }
 @media screen and (max-width:797px){
-    .center-header {
-        width: 0px;
-    }
     #map{
         width: 400px;
         height: 350px;
