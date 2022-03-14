@@ -2,7 +2,7 @@
 <html lang="en">
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
-    <h1>Registro Productos</h1>
+    <h1>Registrar/Editar Producto</h1>
     <form id="registerProducts" class="form-save" action="?c=Producto&a=Crear" method="post" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?php echo (isset($producto)) ? $producto->__get('id') : " " ; ?>">
       <label for="imagen">Imagen</label>  

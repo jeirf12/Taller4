@@ -61,7 +61,7 @@ class controladorProducto extends controlador {
     }
     
     public function CrearEditar(){
-        $this->nombrePagina = "Crear Producto";
+        $this->nombrePagina = "Registrar Producto";
         $isForm = false;
         $this->validaSesion();
         if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
