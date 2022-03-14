@@ -12,6 +12,7 @@
 }
 
 .card {
+    color: black;
     height: 100%;
     display: flex;
     flex-direction: column;

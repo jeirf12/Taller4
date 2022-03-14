@@ -11,6 +11,9 @@
 
 body {
     background-image: url("fondo.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 a {
@@ -34,6 +37,8 @@ a {
 .header, .center-header, .info-user, .header-left, .container, .body-container {
     display: flex;
     align-items: center;
+    color: rgb(0, 0, 0);
+    text-decoration: black;
 }
 
 .header .center-header {
@@ -41,6 +46,10 @@ a {
     flex: 1 1 auto;
 }
 
+.showheader {
+    padding: 0 40% 0 40%;
+    flex-wrap: wrap;
+}
 .bar-search button,.bar-search input{
     display: inline-block;
 }
@@ -109,6 +118,15 @@ a {
 .container h1 {
     font-size: 3em;
 }
+.crcAbout {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: -2%;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+}
+
 
 .footer {
     position: relative;

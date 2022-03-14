@@ -23,11 +23,11 @@
       <div class="center-header">
         <nav class="navigation">
           <ul>
-            <li><a href="?c=Sesion&a=Inicio">Inicio</a></li>
-            <li><a href="?c=Sesion&a=About">Sobre Nosotros</a></li>
-            <li><a href="?c=Producto&a=Listar">Productos</a></li>
+            <li><a href="?c=Sesion&a=Inicio" class="nav-inicio">Inicio</a></li>
+            <li><a href="?c=Sesion&a=About" class="nav-about">Sobre Nosotros</a></li>
+            <li><a href="?c=Producto&a=Listar" class="nav-productos">Productos</a></li>
             <?php if((isset($this->existeSesion) && !$this->existeSesion) || $this->usuario->__get('rol') == 'noadmin'): ?>
-            <li><a href="?c=Sesion&a=Contacto">Contacto</a></li>
+            <li><a href="?c=Sesion&a=Contacto" class="nav-contacto">Contacto</a></li>
             <?php endif; ?>
           </ul>
         </nav>
