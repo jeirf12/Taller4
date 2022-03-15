@@ -137,7 +137,7 @@ a {
     font-size: 3em;
     color: white
 }
-.crcAbout {
+.container-about {
     margin-left: 2%;
     margin-right: 2%;
     background-color: rgba(255, 255, 255, 0.7);
@@ -328,7 +328,7 @@ input, select {
 }
 
 .crcAbout .content-map {
-    display: flex;
+    margin: 0 auto;
     padding: 2% 2% 6% 2%;
 }
 
@@ -337,11 +337,11 @@ input, select {
 }
 
 .video {
-    padding: 2%;
+    padding: 0% 2% ;
 }
 
 #map{
-    width: 600px;
+    width: 100%;
     height: 400px;
 }
 
@@ -377,7 +377,7 @@ input, select {
         line-height: 60px;
     }
     #map{
-        width: 400px;
+   
         height: 350px;
     }
 }
@@ -399,7 +399,7 @@ input, select {
         line-height: 60px;
     }
     #map{
-        width: 360px;
+      
         height: 360px;
     }
 }
@@ -414,7 +414,7 @@ input, select {
         max-width: 280px;
     }
     #map{
-        width: 220px;
+      
         height: 160px;
     }
 }
