@@ -1,6 +1,6 @@
 jQuery('document').ready(function($){
     var menuBtn = $('.menu-icon'),
-      menu = $('.navigation ul'),
+      navul = $('.navigation ul li'),
       header = $('.header'),
       inicioBtn = $('.nav-inicio'),
       aboutBtn = $('.nav-about'),
@@ -8,12 +8,12 @@ jQuery('document').ready(function($){
       contactoBtn = $('.nav-contacto');
   
     menuBtn.click(() =>{
-      if(menu.hasClass('show')){
+      if(navul.hasClass('show')){
         header.removeClass('showheader')
-        menu.removeClass('show');
+        navul.removeClass('show');
       }else{
         header.addClass('showheader')
-        menu.addClass('show');
+        navul.addClass('show');
       }
     });
   

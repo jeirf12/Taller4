@@ -69,6 +69,7 @@ a {
 
 .showheader {
     padding: 0 40% 0 40%;
+    display: block;
     flex-wrap: wrap;
 }
 .bar-search button,.bar-search input{
@@ -369,6 +370,9 @@ input, select {
     .menu-icon {
         display: block;
     }
+    .navigation ul li.show{
+        display: block;
+    }
     .table-admin {
         display: block;
         overflow-x: auto;
@@ -423,9 +427,7 @@ input, select {
       
         height: 160px;
     }
-    .navigation{
-        flex-direction: column;
-    }
+
 }
 @media screen and (max-width:300px){
     .video-content {
