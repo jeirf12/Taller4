@@ -34,22 +34,13 @@ jQuery('document').ready(function($){
     });
     menuBtn.click(() =>{
       if(menu.hasClass('show')){
-<<<<<<< HEAD
-        inicioSesionbtn.removeClass('show');
-        header.removeClass('showheader');
-        menu.removeClass('show');
-      }else{
-        menu.addClass('show');
-        header.addClass('showheader');
-        inicioSesionbtn.addClass('show');
 
-=======
         header.removeClass('showheader')
         menu.removeClass('show');
       }else{
         header.addClass('showheader')
         menu.addClass('show');
->>>>>>> parent of 5be10ad (v12.1)
+
       }
     });
   
