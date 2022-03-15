@@ -25,8 +25,6 @@
                 </div>
             </form>
         </div>
-    <div class="footer-head">
         <?php require_once "Vista/footer.php"; ?>
-    </div>
 </body>
 </html>

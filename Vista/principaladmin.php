@@ -7,7 +7,6 @@
         <a class="button-admin button-success" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
       </div>
     <?php endif;?>
-    <?php $counter = 0; ?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
     <table class="table-admin">
       <thead>
@@ -36,7 +35,6 @@
             <td><a class="button-admin button-danger" href="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>">eliminar</a></td>
           </div>
         </tr>
-        <?php $counter = $counter + 1; ?>
       <?php endforeach; ?>
       </tbody>
     </table>
@@ -46,12 +44,6 @@
       </div>
     <?php endif; ?>
   </div>
-  <?php if($counter <= 2): ?>
-    <div class="footer-head">
-      <?php require_once "Vista/footer.php"; ?>
-    </div>
-  <?php else: ?>
-    <?php require_once "Vista/footer.php"; ?>
-  <?php endif; ?>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>
