@@ -54,7 +54,6 @@
       <div class="menu-icon">
         <i class="fa-solid fa-bars"></i>
       </div>
-      
     </div>
     <script src="Vista/js/menu.js"></script>
   </header>
