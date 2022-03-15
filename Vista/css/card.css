@@ -81,6 +81,9 @@
     .card-article {
         width: 45%;
     }
+    body {
+        margin-bottom: 16%;
+    }
 }
 @media screen and (max-width:774px){
     .container {
@@ -90,14 +93,20 @@
         width: 95%;
         margin: 2% 3%;
     }
-}
-@media screen and (max-width:574px){
-    .container {
-        margin-top: 20%;
+    body {
+        margin-bottom: 22%;
     }
 }
 @media screen and (max-width:574px){
     .container {
         margin-top: 35%;
+    }
+    body {
+        margin-bottom: 26%;
+    }
+}
+@media screen and (max-width:482px){
+    body {
+        margin-bottom: 44%;
     }
 }
