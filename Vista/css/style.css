@@ -423,6 +423,9 @@ input, select {
       
         height: 160px;
     }
+    .navigation{
+        flex-direction: column;
+    }
 }
 @media screen and (max-width:300px){
     .video-content {
