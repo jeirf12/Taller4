@@ -5,36 +5,74 @@ jQuery('document').ready(function($){
       inicioBtn = $('.nav-inicio'),
       aboutBtn = $('.nav-about'),
       productosBtn = $('.nav-productos'),
-      contactoBtn = $('.nav-contacto');
+      contactoBtn = $('.nav-contacto'),
+      inicioSesionbtn = $('.inicio-button'),
+      container = $('.container'),
+      bodycontact = $('.bodyContact'),
+      containerabout = $('.container-about');
   
+    container.click(() =>{
+      if(menu.hasClass('show')) {
+        inicioSesionbtn.removeClass('show');
+        header.removeClass('showheader');
+        menu.removeClass('show');
+      }
+    });
+    containerabout.click(() =>{
+      if(menu.hasClass('show')) {
+        inicioSesionbtn.removeClass('show');
+        header.removeClass('showheader');
+        menu.removeClass('show');
+      }
+    });
+    bodycontact.click(() =>{
+      if(menu.hasClass('show')) {
+        inicioSesionbtn.removeClass('show');
+        header.removeClass('showheader');
+        menu.removeClass('show');
+      }
+    });
     menuBtn.click(() =>{
-      if(navul.hasClass('show')){
-        header.removeClass('showheader')
-        navul.removeClass('show');
+      if(menu.hasClass('show')){
+        inicioSesionbtn.removeClass('show');
+        header.removeClass('showheader');
+        menu.removeClass('show');
       }else{
-        header.addClass('showheader')
-        navul.addClass('show');
+        menu.addClass('show');
+        header.addClass('showheader');
+        inicioSesionbtn.addClass('show');
+
       }
     });
   
     inicioBtn.click(() =>{
-      header.removeClass('showheader')
+      inicioSesionbtn.removeClass('show');
+      header.removeClass('showheader');
       menu.removeClass('show');
     });
   
     aboutBtn.click(() =>{
-      header.removeClass('showheader')
-      menu.removeClass('show')
+      inicioSesionbtn.removeClass('show');
+      header.removeClass('showheader');
+      menu.removeClass('show');
     });
   
     productosBtn.click(() =>{
-      header.removeClass('showheader')
-      menu.removeClass('show')
+      inicioSesionbtn.removeClass('show');
+      header.removeClass('showheader');
+      menu.removeClass('show');
     });
     
     contactoBtn.click(() =>{
-      header.removeClass('showheader')
-      menu.removeClass('show')
+      inicioSesionbtn.removeClass('show');
+      header.removeClass('showheader');
+      menu.removeClass('show');
     });
-    
+
+    inicioSesionbtn.click(()=> {
+      inicioSesionbtn.removeClass('show');
+      header.removeClass('showheader');
+      menu.removeClass('show');
+    });
   });
+

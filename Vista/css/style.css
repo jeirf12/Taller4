@@ -72,6 +72,7 @@ a {
     display: block;
     flex-wrap: wrap;
 }
+
 .bar-search button,.bar-search input{
     display: inline-block;
 }
@@ -364,13 +365,18 @@ input, select {
 }
 
 @media screen and (max-width:906px){
-    .navigation ul li, .inicio-button {
+    .navigation ul, .inicio-button {
         display: none;
     }
     .menu-icon {
         display: block;
     }
-    .navigation ul li.show{
+
+    .navigation ul.show {
+        display: block;
+    }
+    .navigation ul.show li {
+
         display: block;
     }
     .table-admin {
@@ -379,7 +385,7 @@ input, select {
     }
 }
 @media screen and (max-width:797px){
-    .center-header {
+    .center-header , .header .header-left .center-header .navigation{
         width: 100px;
     }
     .messages {
