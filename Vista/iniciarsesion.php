@@ -15,8 +15,8 @@
       <button class="button-admin button-google" type="submit" formaction="?c=Sesion&a=Google"><i class="fa-brands fa-google">oogle</i></button>
     </form>
   </div >
- 
-    <?php require_once "Vista/footer.php"; ?>
- 
+
+  <?php require_once "Vista/footer.php"; ?>
+
 </body>
 </html>

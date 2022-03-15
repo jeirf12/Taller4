@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer footer-head">
   <div>
     <div class="link-social">
       <a title="Mira nuestro perfil de Facebook" target="_blank" href="https://www.facebook.com/Apimacizo/" class="fa-brands fa-facebook"></a>

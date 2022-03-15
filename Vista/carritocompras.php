@@ -3,7 +3,6 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <h1>Carrito de compras</h1>
-    <?php $counter = 0; ?>
     <?php if(isset($compras) && !empty($compras)): ?>
     <div class="row">
       <?php foreach($compras as $compra): ?>
@@ -30,7 +29,6 @@
           </div>
         </div>
       </article>
-      <?php $counter += 1; ?>
       <?php endforeach; ?>
     </div>
     <?php else: ?>
@@ -39,12 +37,6 @@
       </div>
     <?php endif; ?>
   </div>
-  <?php if($counter == 0): ?>
-    <div class="footer-head">
-      <?php require_once "Vista/footer.php"; ?>
-    </div>
-  <?php else: ?>
-    <?php require_once "Vista/footer.php"; ?>
-  <?php endif; ?>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

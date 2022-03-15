@@ -33,9 +33,6 @@
         <p class="messages">Lo sentimos! 
           No se encontraron productos</p>
       </div>
-      <div class="footer-head">
-        <?php require_once "Vista/footer.php"; ?>
-      </div>
     <?php endif; ?>
   </div>
   <?php require_once "Vista/footer.php"; ?>
