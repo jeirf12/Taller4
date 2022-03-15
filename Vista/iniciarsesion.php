@@ -14,7 +14,9 @@
       <span>O Inicie sesión con...</span>
       <button class="button-admin button-google" type="submit" formaction="?c=Sesion&a=Google"><i class="fa-brands fa-google">oogle</i></button>
     </form>
+  </div >
+  <div class="footer-head">
+    <?php require_once "Vista/footer.php"; ?>
   </div>
-  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>
