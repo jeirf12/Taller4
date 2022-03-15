@@ -69,7 +69,6 @@ a {
 
 .showheader {
     padding: 0 40% 0 40%;
-    display: block;
     flex-wrap: wrap;
 }
 
@@ -371,6 +370,7 @@ input, select {
     .menu-icon {
         display: block;
     }
+<<<<<<< HEAD
 
     .navigation ul.show {
         display: block;
@@ -379,6 +379,8 @@ input, select {
 
         display: block;
     }
+=======
+>>>>>>> parent of 5be10ad (v12.1)
     .table-admin {
         display: block;
         overflow-x: auto;
@@ -433,7 +435,9 @@ input, select {
       
         height: 160px;
     }
-
+    .navigation{
+        flex-direction: column;
+    }
 }
 @media screen and (max-width:300px){
     .video-content {

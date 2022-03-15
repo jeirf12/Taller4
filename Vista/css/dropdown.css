@@ -30,5 +30,5 @@
 .btn-dropclose:hover {background-color: #ddd}
 
 .show {
-    display: inline-block;
+    display: block;
 }
