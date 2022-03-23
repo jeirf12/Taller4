@@ -37,7 +37,7 @@ class controladorSesion extends controlador {
             $this->message = base64_decode($this->message);
             $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
             $this->action = base64_decode($this->action);
-            require_once 'vista/iniciarsesion.php';         
+            require_once 'Vista/iniciarsesion.php';         
         }else{
             $this->index();
         }
@@ -95,7 +95,7 @@ class controladorSesion extends controlador {
     public function RegistrarUsuario(){
         if(!$this->isSesion()){
             $this->nombrePagina = "Registrar Usuario";
-            require 'vista/registrarusuario.php';        
+            require 'Vista/registrarusuario.php';        
         }else {
             $this->index();
         }

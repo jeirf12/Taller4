@@ -17,7 +17,7 @@ class clsCarritoCRUD {
     public function Crear($obj){
         $resultado = false;
         try{
-            $consulta = "INSERT INTO AGREGACARRITO (PRO_ID,USU_ID,CAR_CANTIDAD) VALUES (?,?,?)";
+            $consulta = "INSERT INTO `agregacarrito` (PRO_ID,USU_ID,CAR_CANTIDAD) VALUES (?,?,?)";
             $this->auxPDO->prepare($consulta)->execute(array($obj->proid,$obj->usuid,$obj->cantidad));
             $resultado = true;
         }
@@ -30,7 +30,7 @@ class clsCarritoCRUD {
     public function Editar($obj){
         $resultado = false;
          try{
-            $consulta = "UPDATE AGREGACARRITO SET CAR_CANTIDAD=? WHERE USU_ID = ? AND PRO_ID =?";
+            $consulta = "UPDATE `agregacarrito` SET CAR_CANTIDAD=? WHERE USU_ID = ? AND PRO_ID =?";
             $this->auxPDO->prepare($consulta)->execute(array($obj->cantidad, $obj->usuid, $obj->proid));
             $resultado = true;
         }
@@ -43,7 +43,7 @@ class clsCarritoCRUD {
     public function Eliminar($obj){
         $resultado = false;
         try{
-            $consulta = "DELETE FROM AGREGACARRITO WHERE USU_ID = ? AND PRO_ID =?";
+            $consulta = "DELETE FROM `agregacarrito` WHERE USU_ID = ? AND PRO_ID =?";
             $this->auxPDO->prepare($consulta)->execute(array($obj->usuid,$obj->proid));
             $resultado = true;
         }
@@ -56,7 +56,7 @@ class clsCarritoCRUD {
     public function ObtenerProductos($id){
         $resultado = array();
         try{
-            $consulta = $this->auxPDO->prepare("SELECT P.PRO_ID, CC.USU_ID, P.PRO_NOMBRE,P.PRO_PRECIO,P.PRO_IMAGEN,P.PRO_DESCRIPCION,CC.CAR_CANTIDAD,CP.CATPRO_NOMBRE FROM AGREGACARRITO CC INNER JOIN PRODUCTO P ON CC.PRO_ID = P.PRO_ID INNER JOIN CATEGORIAPRODUCTO CP ON P.CATPRO_ID = CP.CATPRO_ID WHERE USU_ID = ?");
+            $consulta = $this->auxPDO->prepare("SELECT P.PRO_ID, CC.USU_ID, P.PRO_NOMBRE,P.PRO_PRECIO,P.PRO_IMAGEN,P.PRO_DESCRIPCION,CC.CAR_CANTIDAD,CP.CATPRO_NOMBRE FROM `agregacarrito` CC INNER JOIN `producto` P ON CC.PRO_ID = P.PRO_ID INNER JOIN `categoriaproducto` CP ON P.CATPRO_ID = CP.CATPRO_ID WHERE USU_ID = ?");
             $consulta->execute(array($id));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
@@ -80,7 +80,7 @@ class clsCarritoCRUD {
     public function obtenerCantidad($usuid, $proid){
         $cantidad = 0;
         try{
-            $consulta = $this->auxPDO->prepare("SELECT sum(CAR_CANTIDAD) as suma FROM AGREGACARRITO WHERE PRO_ID = ? AND USU_ID = ?");
+            $consulta = $this->auxPDO->prepare("SELECT sum(CAR_CANTIDAD) as suma FROM `agregacarrito` WHERE PRO_ID = ? AND USU_ID = ?");
             $consulta->execute(array($proid, $usuid));
             if(($cantidad = $consulta->fetchALL()) != NULL){
                 $cantidad = intval($cantidad[0]['suma']);
