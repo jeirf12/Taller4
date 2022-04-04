@@ -19,7 +19,7 @@ class clsSesion {
     public function obtenerUsuario($id){
         $auxUsuario = new clsUsuario();
         try{ 
-            $consulta = "SELECT * FROM USUARIO WHERE USU_ID=?";
+            $consulta = "SELECT * FROM `usuario` WHERE USU_ID=?";
             $consulta=$this->auxPDO->prepare($consulta);
             
             $consulta->execute(array($id));
@@ -40,7 +40,7 @@ class clsSesion {
     public function getUserbyEmail($email){
         $auxUsuario = new clsUsuario();
         try{ 
-            $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL=?";
+            $consulta = "SELECT * FROM `usuario` WHERE USU_EMAIL=?";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($email));
 
@@ -77,7 +77,7 @@ class clsSesion {
 
     public function registrarUsuario($obj){
         try{ 
-            $consulta = "INSERT INTO USUARIO (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,'noadmin')";
+            $consulta = "INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,'noadmin')";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($obj->nombre,$obj->clave,$obj->correo));
             $resultado=true;
@@ -91,7 +91,7 @@ class clsSesion {
     public function existeUsuario($usuario, $clave) {
         $auxUsuario = new clsUsuario();
         try {
-            $consulta = "SELECT * FROM USUARIO WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
+            $consulta = "SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($usuario,$clave));
         

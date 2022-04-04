@@ -35,10 +35,10 @@ class controladorProducto extends controlador {
         $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
         $this->action = base64_decode($this->action);
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
-            require 'vista/principaladmin.php';
+            require 'Vista/principaladmin.php';
         }else{
             $isForm = false;
-            require 'vista/principalusuario.php';
+            require 'Vista/principalusuario.php';
         }
     }
 
@@ -53,10 +53,10 @@ class controladorProducto extends controlador {
         $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
         $this->action = base64_decode($this->action);
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
-            require 'vista/principaladmin.php';
+            require 'Vista/principaladmin.php';
         }else{
             $isForm = false;
-            require 'vista/principalusuario.php';
+            require 'Vista/principalusuario.php';
         }
     }
     
@@ -70,7 +70,7 @@ class controladorProducto extends controlador {
                 $producto = $this->crud->Obtener($_REQUEST['proid']);
             }
             $this->categorias = $this->crud->getCategorias();
-            require 'vista/guardarproducto.php';
+            require 'Vista/guardarproducto.php';
         }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
             $this->message = "El usuario actual no tiene permitido hacer esta acción";
             $this->message = base64_encode($this->message);

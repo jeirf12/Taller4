@@ -8,8 +8,6 @@
       <div class="video"><iframe class="video-content" width="500" height="300" src="https://www.youtube.com/embed/Y6fDKg8rAJA" title="Apimacizo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
-  <div class="footer-head">
-    <?php require_once "Vista/footer.php"; ?>
-  </div>
+  <?php require_once "Vista/footer.php"; ?>
 </body>
 </html>

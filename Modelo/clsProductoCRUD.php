@@ -67,7 +67,7 @@ class clsProductoCRUD {
     public function Crear($obj){
         $resultado = false;
         try{
-            $consulta = "INSERT INTO PRODUCTO (PRO_NOMBRE,PRO_PRECIO,PRO_IMAGEN,PRO_DESCRIPCION,PRO_CANTIDAD, CATPRO_ID) VALUES (?,?,?,?,?,?)";
+            $consulta = "INSERT INTO `producto` (PRO_NOMBRE,PRO_PRECIO,PRO_IMAGEN,PRO_DESCRIPCION,PRO_CANTIDAD, CATPRO_ID) VALUES (?,?,?,?,?,?)";
             $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->precio,$obj->imagen,$obj->descripcion,$obj->cantidad,$obj->categoria));
             $resultado = true;
         }
@@ -80,7 +80,7 @@ class clsProductoCRUD {
     public function Editar($obj){
         $resultado = false;
          try{
-            $consulta = "UPDATE PRODUCTO SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?, CATPRO_ID=?  WHERE PRO_ID =?";
+            $consulta = "UPDATE `producto` SET PRO_NOMBRE=?, PRO_PRECIO=?, PRO_IMAGEN=?, PRO_DESCRIPCION=?, PRO_CANTIDAD=?, CATPRO_ID=?  WHERE PRO_ID =?";
             $this->auxPDO->prepare($consulta)->execute(array($obj->nombre,$obj->precio,$obj->imagen,$obj->descripcion,$obj->cantidad,$obj->categoria,$obj->id));
             $resultado = true;
         }
@@ -92,9 +92,9 @@ class clsProductoCRUD {
 
     public function Eliminar($codigo){
          try{ 
-            $consulta = "DELETE FROM agregacarrito WHERE PRO_ID=?";
+            $consulta = "DELETE FROM `categoriaproducto` WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));
-            $consulta = "DELETE FROM producto WHERE PRO_ID=?";
+            $consulta = "DELETE FROM `producto` WHERE PRO_ID=?";
             $this->auxPDO->prepare($consulta)->execute(array($codigo));
         }
         catch (Exception $ex){
@@ -104,7 +104,7 @@ class clsProductoCRUD {
     
     public function Obtener($codigo){
          try{
-            $consulta = $this->auxPDO->prepare("SELECT * FROM PRODUCTO P INNER JOIN CATEGORIAPRODUCTO CP ON P.CATPRO_ID = CP.CATPRO_ID WHERE PRO_ID = ?");
+            $consulta = $this->auxPDO->prepare("SELECT * FROM `producto` P INNER JOIN `categoriaproducto` CP ON P.CATPRO_ID = CP.CATPRO_ID WHERE PRO_ID = ?");
             $consulta->execute(array($codigo));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
@@ -125,7 +125,7 @@ class clsProductoCRUD {
 
     public function getCategorias(){
         try{
-            $consulta = $this->auxPDO->prepare("SELECT * FROM CATEGORIAPRODUCTO");
+            $consulta = $this->auxPDO->prepare("SELECT * FROM `categoriaproducto`");
             $consulta->execute();
             $resultado = array();
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
