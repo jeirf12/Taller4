@@ -21,7 +21,7 @@
                         <textarea class="txtAreaCon"name="mensaje" id="" rows="3" required></textarea><span class="barra"></span>
                         <label class="labelCon">Mensaje</label>
                     </div>
-                    <button class="buttonCon" type="submit">Enviar</button>
+                    <button class="buttonCon btn-hover" type="submit">Enviar</button>
                 </div>
             </form>
         </div>

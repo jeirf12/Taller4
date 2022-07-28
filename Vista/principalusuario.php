@@ -4,7 +4,7 @@
   <div class="container">
     <?php if(isset($this->existeSesion) && $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
     <div class="content-btncar">
-      <a class="button-admin button-car button-google" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+      <a class="button-admin button-car button-google btn-hover" href="?c=Carrito&a=Listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
     </div>
     <?php endif;?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
@@ -23,7 +23,7 @@
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
       </div>
-      <a class="button-admin button-success" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Agregar Carrito</a>
+      <a class="button-admin button-success btn-hover" type="submit" href="?c=Carrito&a=CrearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Agregar Carrito</a>
     </div>
     </article>
     <?php endforeach; ?>
