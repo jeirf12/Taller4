@@ -57,6 +57,7 @@ a {
     background-color: rgba(255, 255, 255, 0.7);
     color: black;
     border-radius: 4px;
+    text-align: justify;
 }
 
 .body-container h1 {
