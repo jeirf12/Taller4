@@ -117,7 +117,7 @@ class controladorSesion extends controlador {
             $this->action = base64_encode($this->action);
             $this->iniciarSesion();
         }else{
-            $this->message = 'ERROR: Usuario no registrado por duplicación de correo';
+            $this->message = 'ERROR: Usuario no registrado. Favor comunicarse con el administrador';
             $this->action = 'error';
             $this->RegistrarUsuario();
         }
@@ -182,10 +182,17 @@ class controladorSesion extends controlador {
     public function ApiContacto(){
         if($this->hasConnection()){
             require 'Utilities/configApiContacto.php';
-            $this->message = 'Mensaje enviado correctamente';
-            $this->message = base64_encode($this->message);
-            $this->action = 'success';
-            $this->action = base64_encode($this->action);
+            if($mail->ErrorInfo != "") {
+                $this->message = 'Mensaje no se pudo enviar correctamente '.$mail->ErrorInfo;
+                $this->message = base64_encode($this->message);
+                $this->action = 'error';
+                $this->action = base64_encode($this->action);
+            } else {
+                $this->message = 'Mensaje enviado correctamente';
+                $this->message = base64_encode($this->message);
+                $this->action = 'success';
+                $this->action = base64_encode($this->action);
+            }
         }else{
             $this->message = 'Fallo al enviar el menasje, revise su conexión';
             $this->message = base64_encode($this->message);
