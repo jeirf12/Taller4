@@ -19,6 +19,7 @@ class clsSesion {
     public function obtenerUsuario($id){
         $auxUsuario = new clsUsuario();
         try{ 
+            if($this->auxPDO == NULL) return $auxUsuario;
             $consulta = "SELECT * FROM `usuario` WHERE USU_ID=?";
             $consulta=$this->auxPDO->prepare($consulta);
             
@@ -39,7 +40,8 @@ class clsSesion {
 
     public function getUserbyEmail($email){
         $auxUsuario = new clsUsuario();
-        try{ 
+        try{
+            if($this->auxPDO == NULL) return $auxUsuario;
             $consulta = "SELECT * FROM `usuario` WHERE USU_EMAIL=?";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($email));
@@ -76,14 +78,15 @@ class clsSesion {
     }
 
     public function registrarUsuario($obj){
+        $resultado = false;
         try{ 
+            if($this->auxPDO == NULL) return $resultado;
             $consulta = "INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,'noadmin')";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($obj->nombre,$obj->clave,$obj->correo));
             $resultado=true;
         }
         catch (Exception $ex){
-            $resultado = false;
         }
         return $resultado;
     }
@@ -91,6 +94,7 @@ class clsSesion {
     public function existeUsuario($usuario, $clave) {
         $auxUsuario = new clsUsuario();
         try {
+            if($this->auxPDO == NULL) return $auxUsuario;
             $consulta = "SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($usuario,$clave));
