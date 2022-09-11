@@ -1,77 +1,49 @@
-jQuery('document').ready(function($){
-    var menuBtn = $('.menu-icon'),
-      menu = $('.navigation ul'),
-      header = $('.header'),
-      inicioBtn = $('.nav-inicio'),
-      aboutBtn = $('.nav-about'),
-      productosBtn = $('.nav-productos'),
-      contactoBtn = $('.nav-contacto'),
-      inicioSesionbtn = $('.inicio-button'),
-      container = $('.container'),
-      bodycontact = $('.bodyContact'),
-      containerabout = $('.container-about');
-  
-    container.click(() =>{
-      if(menu.hasClass('show')) {
-        inicioSesionbtn.removeClass('show');
-        header.removeClass('showheader');
-        menu.removeClass('show');
-      }
-    });
-    containerabout.click(() =>{
-      if(menu.hasClass('show')) {
-        inicioSesionbtn.removeClass('show');
-        header.removeClass('showheader');
-        menu.removeClass('show');
-      }
-    });
-    bodycontact.click(() =>{
-      if(menu.hasClass('show')) {
-        inicioSesionbtn.removeClass('show');
-        header.removeClass('showheader');
-        menu.removeClass('show');
-      }
-    });
-    menuBtn.click(() =>{
-      if(menu.hasClass('show')){
-        inicioSesionbtn.removeClass('show');
-        header.removeClass('showheader');
-        menu.removeClass('show');
-      }else{
-        menu.addClass('show');
-        header.addClass('showheader');
-        inicioSesionbtn.addClass('show');
-      }
-    });
-  
-    inicioBtn.click(() =>{
-      inicioSesionbtn.removeClass('show');
-      header.removeClass('showheader');
-      menu.removeClass('show');
-    });
-  
-    aboutBtn.click(() =>{
-      inicioSesionbtn.removeClass('show');
-      header.removeClass('showheader');
-      menu.removeClass('show');
-    });
-  
-    productosBtn.click(() =>{
-      inicioSesionbtn.removeClass('show');
-      header.removeClass('showheader');
-      menu.removeClass('show');
-    });
-    
-    contactoBtn.click(() =>{
-      inicioSesionbtn.removeClass('show');
-      header.removeClass('showheader');
-      menu.removeClass('show');
-    });
+import {
+  loadClickEvent,
+} from './Events.js';
+let menu = document.querySelector(".navigation ul");
+let header = document.querySelector(".nav-inicio");
+let container = document.querySelector(".container");
+let bodycontact = document.querySelector(".bodyContact");
+let containerAbout = document.querySelector(".container-about");
+let menuBtn = document.querySelector(".menu-icon");
+let inicioBtn = document.querySelector(".nav-inicio");
+let aboutBtn = document.querySelector(".nav-about");
+let productosBtn = document.querySelector(".nav-productos");
+let contactoBtn = document.querySelector(".nav-contacto");
+let inicioSesionbtn = document.querySelector(".inicio-button");
 
-    inicioSesionbtn.click(()=> {
-      inicioSesionbtn.removeClass('show');
-      header.removeClass('showheader');
-      menu.removeClass('show');
-    });
-  });
+const removeClass = () => {
+  inicioSesionbtn?.classList.remove("show");
+  header.classList.remove("showheader");
+  menu.classList.remove("show");
+};
 
+const addClass = () => {
+  if (!menu.classList.contains("show")) {
+    inicioSesionbtn?.classList.add("show");
+    header.classList.add("showheader");
+    menu.classList.add("show");
+  } else removeClass();
+};
+
+const openModal = () => {
+  let element = document.getElementById("myDropdown");
+  element.classList.toggle("show");
+};
+
+let iconBtn = document.getElementById("btnOpenDropdown");
+if(iconBtn !== null) iconBtn.addEventListener("click", openModal);
+let element = document.getElementsByClassName("popup-close")[0];
+let popup = document.getElementById("myPopup");
+if(element !== undefined) loadClickEvent(element, () => { popup.classList.add("popup-invisible"); })
+
+loadClickEvent(menuBtn, addClass);
+loadClickEvent(inicioBtn, removeClass);
+loadClickEvent(aboutBtn, removeClass);
+loadClickEvent(productosBtn, removeClass);
+if(contactoBtn !== null) loadClickEvent(contactoBtn, removeClass);
+if(inicioSesionbtn !== null) loadClickEvent(inicioSesionbtn, removeClass);
+if(container !== null) loadClickEvent(container, removeClass);
+if(containerAbout !== null) loadClickEvent(containerAbout, removeClass);
+if(bodycontact !== null) loadClickEvent(bodycontact, removeClass);

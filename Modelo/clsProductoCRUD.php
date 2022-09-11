@@ -101,8 +101,6 @@ class clsProductoCRUD {
         $resultado = false;
         try{ 
             if($this->auxPDO != NULL) {
-                $consulta = "DELETE FROM `categoriaproducto` WHERE PRO_ID=?";
-                $this->auxPDO->prepare($consulta)->execute(array($codigo));
                 $consulta = "DELETE FROM `producto` WHERE PRO_ID=?";
                 $this->auxPDO->prepare($consulta)->execute(array($codigo));
                 $resultado = true;

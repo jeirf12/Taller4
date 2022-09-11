@@ -7,9 +7,7 @@
   <link rel="stylesheet" type="text/css" href="Vista/css/contacto.css">
   <link rel="stylesheet" type="text/css" href="Vista/css/dropdown.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="Vista/js/popup.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- 
+  <script src="Vista/js/Popup.js"></script>
   <title><?php echo isset($this->nombrePagina) ? $this->nombrePagina : " "; ?></title>
 </head>
 <body>
@@ -37,7 +35,7 @@
       <?php if(isset($this->existeSesion) && $this->existeSesion): ?>
       <div class="info-user">
         <div class="dropdown">
-        <button title="Cuenta: <?php echo $this->usuario->__get('rol'); ?>" class="button-close button-danger"><i onclick="openModal();" class="fa-solid fa-arrow-right-to-bracket button-admin open-btn"></i></button>
+        <button title="Cuenta: <?php echo $this->usuario->__get('rol'); ?>" class="button-close button-danger"><i id="btnOpenDropdown" class="fa-solid fa-arrow-right-to-bracket button-admin open-btn"></i></button>
           <div id="myDropdown" class="dropdown-menu">
             <a class="btn-dropmenu">
               <span  class="lbl-usuario">
@@ -55,6 +53,6 @@
         <i class="fa-solid fa-bars"></i>
       </div>
     </div>
-    <script src="Vista/js/menu.js"></script>
+    <script type="module" src="Vista/js/Menu.js"></script>
   </header>
   <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>
