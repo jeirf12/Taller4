@@ -2,7 +2,6 @@ import {
   loadClickEvent,
 } from './Events.js';
 let menu = document.querySelector(".navigation ul");
-let header = document.querySelector(".nav-inicio");
 let container = document.querySelector(".container");
 let bodycontact = document.querySelector(".bodyContact");
 let containerAbout = document.querySelector(".container-about");
@@ -11,18 +10,13 @@ let inicioBtn = document.querySelector(".nav-inicio");
 let aboutBtn = document.querySelector(".nav-about");
 let productosBtn = document.querySelector(".nav-productos");
 let contactoBtn = document.querySelector(".nav-contacto");
-let inicioSesionbtn = document.querySelector(".inicio-button");
 
 const removeClass = () => {
-  inicioSesionbtn?.classList.remove("show");
-  header.classList.remove("showheader");
   menu.classList.remove("show");
 };
 
 const addClass = () => {
   if (!menu.classList.contains("show")) {
-    inicioSesionbtn?.classList.add("show");
-    header.classList.add("showheader");
     menu.classList.add("show");
   } else removeClass();
 };
@@ -43,7 +37,6 @@ loadClickEvent(inicioBtn, removeClass);
 loadClickEvent(aboutBtn, removeClass);
 loadClickEvent(productosBtn, removeClass);
 if(contactoBtn !== null) loadClickEvent(contactoBtn, removeClass);
-if(inicioSesionbtn !== null) loadClickEvent(inicioSesionbtn, removeClass);
 if(container !== null) loadClickEvent(container, removeClass);
 if(containerAbout !== null) loadClickEvent(containerAbout, removeClass);
 if(bodycontact !== null) loadClickEvent(bodycontact, removeClass);

@@ -47,7 +47,7 @@
         </div>
       </div>
       <?php else:?>
-        <div class="inicio-button"><a href="?c=Sesion&a=iniciarSesion">Iniciar Sesion</a></div>
+        <script type="module" src="Vista/js/Buttons.js"></script>
       <?php endif; ?>
       <div class="menu-icon">
         <i class="fa-solid fa-bars"></i>

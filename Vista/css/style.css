@@ -116,25 +116,22 @@ a {
 }
 
 .header .header-left .center-header .navigation {
-    width: 350px;
+    width: 600px;
 }
 
 .header .header-left {
     flex-direction: row;
 }
 
-.navigation ul li {
-    padding: 2%;
+.navigation li {
+    display: inline-flex;
+    padding: 1% 2%;
 }
 
-.navigation li:hover, .inicio-button:hover {
+.navigation li:hover {
     background-color: #ddd; 
     border-radius: 15px;
-}
-
-.inicio-button {
-    text-align: center;
-    padding: 6px 5px;
+    cursor: pointer;
 }
 
 .container {
@@ -376,7 +373,10 @@ input, select {
 }
 
 @media screen and (max-width:906px){
-    .navigation ul, .inicio-button {
+    .center-header , .header .header-left .center-header .navigation{
+        width: 100px;
+    }
+    .navigation ul{
         display: none;
     }
     .menu-icon {
@@ -394,9 +394,6 @@ input, select {
     }
 }
 @media screen and (max-width:797px){
-    .center-header , .header .header-left .center-header .navigation{
-        width: 100px;
-    }
     .messages {
         font-size: 2.5rem;
         line-height: 60px;
