@@ -116,21 +116,25 @@ a {
 }
 
 .header .header-left .center-header .navigation {
-    width: 600px;
+    width: 490px;
 }
 
 .header .header-left {
     flex-direction: row;
 }
 
-.navigation li {
-    display: inline-flex;
+.navigation ul li {
     padding: 1% 2%;
 }
 
-.navigation li:hover {
+.navigation a {
+    display: block;
+    line-height: 32px;
+}
+
+.navigation a:hover {
     background-color: #ddd; 
-    border-radius: 15px;
+    border-radius: 12px;
     cursor: pointer;
 }
 
@@ -378,6 +382,9 @@ input, select {
     }
     .navigation ul{
         display: none;
+    }
+    .navigation a {
+        line-height: unset;
     }
     .menu-icon {
         display: block;
