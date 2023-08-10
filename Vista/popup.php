@@ -11,8 +11,6 @@
     <p class="icon-message"><?php echo $this->message; ?></p>
   </div>
 </div>
-<?php
- echo '<script type="text/javascript">';
- echo 'document.addEventListener("DOMContentLoaded", () => Popup.show("'.$this->action.'"));';
- echo '</script>';
-?>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", () => Popup.show("<?php echo $this->action ?>"))
+</script>

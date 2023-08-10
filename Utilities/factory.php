@@ -18,16 +18,16 @@ class Factory{
         $result = null;
         $type = strtolower($controller);
         switch($type){
-            case "producto": 
-                require_once "Controlador/controladorProducto.php";
+            case 'producto': 
+                require_once 'Controlador/controladorProducto.php';
                 $result = new controladorProducto();
                 break;
-            case "sesion":
-                require_once "Controlador/controladorSesion.php";
+            case 'sesion':
+                require_once 'Controlador/controladorSesion.php';
                 $result = new controladorSesion();
                 break;
-            case "carrito":
-                require_once "Controlador/controladorCarrito.php";
+            case 'carrito':
+                require_once 'Controlador/controladorCarrito.php';
                 $result = new controladorCarrito();
                 break;
         }

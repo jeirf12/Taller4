@@ -20,7 +20,7 @@ class clsSesion {
         $auxUsuario = new clsUsuario();
         try{ 
             if($this->auxPDO == NULL) return $auxUsuario;
-            $consulta = "SELECT * FROM `usuario` WHERE USU_ID=?";
+            $consulta = 'SELECT * FROM `usuario` WHERE USU_ID=?';
             $consulta=$this->auxPDO->prepare($consulta);
             
             $consulta->execute(array($id));
@@ -42,7 +42,7 @@ class clsSesion {
         $auxUsuario = new clsUsuario();
         try{
             if($this->auxPDO == NULL) return $auxUsuario;
-            $consulta = "SELECT * FROM `usuario` WHERE USU_EMAIL=?";
+            $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL=?';
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($email));
 
@@ -81,7 +81,7 @@ class clsSesion {
         $resultado = false;
         try{ 
             if($this->auxPDO == NULL) return $resultado;
-            $consulta = "INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,'noadmin')";
+            $consulta = 'INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,"noadmin")';
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($obj->nombre,$obj->clave,$obj->correo));
             $resultado=true;
@@ -95,7 +95,7 @@ class clsSesion {
         $auxUsuario = new clsUsuario();
         try {
             if($this->auxPDO == NULL) return $auxUsuario;
-            $consulta = "SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ";
+            $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ';
             $consulta=$this->auxPDO->prepare($consulta);
             $consulta->execute(array($usuario,$clave));
         
@@ -111,7 +111,7 @@ class clsSesion {
                 }
             }
         } catch (Exception $ex) {
-            echo "Ocurrio un error " . $ex;
+            echo 'Ocurrio un error ' . $ex;
         }
         return $auxUsuario;
     }

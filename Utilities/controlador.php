@@ -25,7 +25,7 @@ abstract class controlador{
     }
 
     public function hasConnection(){
-        $request = curl_init("https://www.google.com");
+        $request = curl_init('https://www.google.com');
         curl_setopt($request, CURLOPT_RETURNTRANSFER, TRUE);
         curl_exec($request);
         $result = curl_getinfo($request, CURLINFO_HTTP_CODE);

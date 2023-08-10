@@ -18,12 +18,14 @@ class controladorCarrito extends controlador {
         $this->validaSesion();
         if($this->existeSesion){
            $compras = $this->crud->ObtenerProductos($this->usuario->__get('id'));
-           $this->nombrePagina = "Lista de Compras";
-           $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
-           $this->action = (isset($_REQUEST['act'])) ? $_REQUEST['act'] : $this->action;
-           require_once "Vista/carritocompras.php";    
+           $this->nombrePagina = 'Lista de Compras';
+           $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
+           $this->action = (isset($_COOKIE['act'])) ? $_COOKIE['act'] : $this->action;
+           setcookie('msg', null, time() - 60);
+           setcookie('act', null, time() - 60);
+           require_once 'Vista/carritocompras.php';    
         }else {
-            header("Location: index.php");
+            header('Location: index.php');
         }
     }
        
@@ -50,29 +52,29 @@ class controladorCarrito extends controlador {
                 }
                 if($resultado){
                     $this->message = 'El producto se ha '.$auxOp.' al carrito correctamente.';     
-                    $this->action = "success";
+                    $this->action = 'success';
                 }else{
-                    $this->action = "error";
+                    $this->action = 'error';
                     $this->message = 'ERROR: No se ha '.$auxOp.' el producto.';
                 }
-                $this->message = base64_encode($this->message);
-                $this->action = base64_encode($this->action);
-                header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+                setcookie('msg', $this->message);
+                setcookie('act', $this->action);
+                header('Location: ?c=Producto&a=Listar');
             }else {
-                $this->message = "La acción no corresponde al usuario actual";
-                $this->message = base64_encode($this->message);
-                $this->action = "warning";
-                $this->action = base64_encode($this->action);
-                header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+                $this->message = 'La acción no corresponde al usuario actual';
+                $this->action = 'warning';
+                setcookie('msg', $this->message);
+                setcookie('act', $this->action);
+                header('Location: ?c=Producto&a=Listar');
             }   
-        }else if(!$this->existeSesion && isset($_REQUEST['proid']) && isset($_REQUEST["usuid"]) && !empty($_REQUEST["usuid"])){
-            header("Location: index.php");
+        }else if(!$this->existeSesion && isset($_REQUEST['proid']) && isset($_REQUEST['usuid']) && !empty($_REQUEST['usuid'])){
+            header('Location: index.php');
         } else { 
-            $this->message = "Debe iniciar sesión para agregar al carrito";
-            $this->message = base64_encode($this->message);
-            $this->action = "warning";
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->message.'&act='.$this->action);
+            $this->message = 'Debe iniciar sesión para agregar al carrito';
+            $this->action = 'warning';
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=iniciarSesion');
         }
     }
     
@@ -82,22 +84,22 @@ class controladorCarrito extends controlador {
         if($this->existeSesion){
             if ($auxCarrito->__get('usuid') == $this->usuario->__get('id') && $this->usuario->__get('rol') == 'noadmin') {
                 $this->crud->Eliminar($auxCarrito);
-                $this->message = "Producto eliminado del carrito de compras correctamente";
+                $this->message = 'Producto eliminado del carrito de compras correctamente';
                 $this->action = 'success';
                 $this->Listar();
             }else{
-                $this->message = "La acción no corresponde al usuario actual";
-                $this->message = base64_encode($this->message);
-                $this->action = "warning";
-                $this->action = base64_encode($this->action);
-                header('Location: ?c=Producto&a=Listar&msg='.$this->message.'&act='.$this->action);
+                $this->message = 'La acción no corresponde al usuario actual';
+                $this->action = 'warning';
+                setcookie('msg', $this->message);
+                setcookie('act', $this->action);
+                header('Location: ?c=Producto&a=Listar');
             }
         }else {
-            $this->message = "Debe iniciar sesión para eliminar del carrito";
-            $this->message = base64_encode($this->message);
-            $this->action = "warning";
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->messagea."&act=".$this->action);
+            $this->message = 'Debe iniciar sesión para eliminar del carrito';
+            $this->action = 'warning';
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=iniciarSesion');
         }
     }
     

@@ -18,25 +18,25 @@ class controladorSesion extends controlador {
     }
 
     public function volverprincipal(){
-        header("Location: ?c=Producto&a=Listar");
+        header('Location: ?c=Producto&a=Listar');
     }
 
     public function index(){
         if(!empty($this->message)){
             $this->Inicio();
         }else{
-            header("Location: index.php");
+            header('Location: index.php');
         }
     }
     
     public function iniciarSesion(){
         if(!$this->isSesion()){
-            $this->nombrePagina = "Iniciar Sesión";
+            $this->nombrePagina = 'Iniciar Sesión';
             $isForm = false;
-            $this->message = isset($_REQUEST['msg']) ? $_REQUEST['msg'] : $this->message;
-            $this->message = base64_decode($this->message);
-            $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
-            $this->action = base64_decode($this->action);
+            $this->message = isset($_COOKIE['msg']) ? $_COOKIE['msg'] : $this->message;
+            $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
+            setcookie('msg', null, time() - 60);
+            setcookie('act', null, time() - 60);
             require_once 'Vista/iniciarsesion.php';         
         }else{
             $this->index();
@@ -53,17 +53,17 @@ class controladorSesion extends controlador {
                 $this->usuario = $this->sesion->existeUsuario($correo, $clave);
                 if($this->usuario->__get('rol')=='admin' || $this->usuario->__get('rol') == 'noadmin'){
                     $this->existeSesion = $this->isSesion();
-                    $this->message = "Inicio sesión correctamente!";
-                    $this->message = base64_encode($this->message);
+                    $this->message = 'Inicio sesión correctamente!';
                     $this->action = 'success';
-                    $this->action = base64_encode($this->action);
+                    setcookie('msg', $this->message);
+                    setcookie('act', $this->action);
                     $this->index();
                 }
                 else{
                     $this->message = 'Usuario no encontrado verifique sus datos e intente nuevamente';
-                    $this->message = base64_encode($this->message);
                     $this->action = 'error';
-                    $this->action = base64_encode($this->action);
+                    setcookie('msg', $this->message);
+                    setcookie('act', $this->action);
                     $this->iniciarSesion();
                 }
             }
@@ -77,24 +77,24 @@ class controladorSesion extends controlador {
         include('Utilities/config.php');
         if(isset($_SESSION['access_token'])){
             if(!$this->hasConnection()){ 
-                $this->message = base64_encode("No se puede cerrar sesión, verifique su conexión a internet");
-                $this->action = base64_encode("warning");
+                $this->message = 'No se puede cerrar sesión, verifique su conexión a internet';
+                $this->action = 'warning';
                 $this->index();
             }
             $google_client->revokeToken();
             unset($_SESSION['access_token']);
         }
         $this->sesion->cerrarSesion();
-        $this->message = "Cerró sesión correctamente!";
-        $this->message = base64_encode($this->message);
+        $this->message = 'Cerró sesión correctamente!';
         $this->action = 'success';
-        $this->action = base64_encode($this->action);
+        setcookie('msg', $this->message);
+        setcookie('act', $this->action);
         $this->index();
     }
 
     public function RegistrarUsuario(){
         if(!$this->isSesion()){
-            $this->nombrePagina = "Registrar Usuario";
+            $this->nombrePagina = 'Registrar Usuario';
             require 'Vista/registrarusuario.php';        
         }else {
             $this->index();
@@ -112,9 +112,9 @@ class controladorSesion extends controlador {
         $resultado = $this->sesion->registrarUsuario($usuario);
         if($resultado){
             $this->message = 'Usuario registrado correctamente. Inicie sesion.';
-            $this->message = base64_encode($this->message);
             $this->action = 'success';
-            $this->action = base64_encode($this->action);
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
             $this->iniciarSesion();
         }else{
             $this->message = 'ERROR: Usuario no registrado. Favor comunicarse con el administrador';
@@ -125,8 +125,8 @@ class controladorSesion extends controlador {
 
     public function Google(){
         if(!$this->hasConnection()){
-            $this->message = base64_encode("No se puede iniciar sesión con Google, verifique su conexión a internet");
-            $this->action = base64_encode("warning");
+            $this->message = 'No se puede iniciar sesión con Google, verifique su conexión a internet';
+            $this->action = 'warning';
             $this->iniciarSesion();
         }else{
             include 'Utilities/config.php';
@@ -155,24 +155,24 @@ class controladorSesion extends controlador {
                     }
                     $this->usuario = $this->sesion->existeUsuario($user->__get('correo'), $user->__get('clave'));
                     if($this->usuario->__get('rol') == 'admin' || $this->usuario->__get('rol') == 'noadmin'){
-                        $this->message = "Inicio sesión correctamente!";
-                        $this->message = base64_encode($this->message);
+                        $this->message = 'Inicio sesión correctamente!';
                         $this->action = 'success';
-                        $this->action = base64_encode($this->action);
+                        setcookie('msg', $this->message);
+                        setcookie('act', $this->action);
                         $this->index();
                     }else{
                         $this->message = 'Usuario no encontrado verifique sus datos e intente nuevamente';
-                        $this->message = base64_encode($this->message);
                         $this->action = 'error';
-                        $this->action = base64_encode($this->action);
+                        setcookie('msg', $this->message);
+                        setcookie('act', $this->action);
                         $this->iniciarSesion();
                     }
                 }
             } else{
                 $this->message = 'Intente iniciar sesión nuevamente más tarde';
-                $this->message = base64_encode($this->message);
                 $this->action = 'warning';
-                $this->action = base64_encode($this->action);
+                setcookie('msg', $this->message);
+                setcookie('act', $this->action);
                 $this->iniciarSesion();
             }
         }else{
@@ -184,43 +184,39 @@ class controladorSesion extends controlador {
             require 'Utilities/configApiContacto.php';
             if($mail->ErrorInfo != "") {
                 $this->message = 'Mensaje no se pudo enviar correctamente '.$mail->ErrorInfo;
-                $this->message = base64_encode($this->message);
                 $this->action = 'error';
-                $this->action = base64_encode($this->action);
             } else {
                 $this->message = 'Mensaje enviado correctamente';
-                $this->message = base64_encode($this->message);
                 $this->action = 'success';
-                $this->action = base64_encode($this->action);
             }
         }else{
             $this->message = 'Fallo al enviar el menasje, revise su conexión';
-            $this->message = base64_encode($this->message);
             $this->action = 'warning';
-            $this->action = base64_encode($this->action);
         }
+        setcookie('msg', $this->message);
+        setcookie('act', $this->action);
         $this->Inicio();
     }
 
     public function Contacto(){
-        $this->nombrePagina = "Contacto";
+        $this->nombrePagina = 'Contacto';
         $this->validaSesion();
-        require "Vista/contacto.php";
+        require 'Vista/contacto.php';
     }
 
     public function Inicio(){
-        $this->nombrePagina = "Inicio";
+        $this->nombrePagina = 'Inicio';
         $this->validaSesion();
-        $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
-        $this->message = base64_decode($this->message);
-        $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
-        $this->action = base64_decode($this->action);
-        require "Vista/inicio.php";
+        $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
+        $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
+        setcookie('msg', null, time() - 60);
+        setcookie('act', null, time() - 60);
+        require 'Vista/inicio.php';
     }
 
     public function About(){
-        $this->nombrePagina = "Sobre Nosotros";
+        $this->nombrePagina = 'Sobre Nosotros';
         $this->validaSesion();
-        require "Vista/about.php";
+        require 'Vista/about.php';
     }
 }

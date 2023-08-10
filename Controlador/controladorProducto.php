@@ -21,7 +21,7 @@ class controladorProducto extends controlador {
         if(!empty($this->message)){
             $this->Listar();
         }else{
-            header("Location: index.php");
+            header('Location: index.php');
         }
     }
     
@@ -30,10 +30,10 @@ class controladorProducto extends controlador {
         $this->productos = $this->crud->Listar();
         $this->categorias = $this->crud->getCategorias();
         $this->validaSesion();
-        $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
-        $this->message = base64_decode($this->message);
-        $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
-        $this->action = base64_decode($this->action);
+        $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
+        $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
+        setcookie('msg', null, time() - 60);
+        setcookie('act', null, time() - 60);
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
             require 'Vista/principaladmin.php';
         }else{
@@ -43,15 +43,14 @@ class controladorProducto extends controlador {
     }
 
     public function BuscarProducto(){
-      
         $this->nombrePagina = 'Buscar Productos';
         $this->productos = $this->crud->BuscarProducto($_REQUEST['word_search']);
         $this->categorias = $this->crud->getCategorias();
         $this->validaSesion();
-        $this->message = (isset($_REQUEST['msg'])) ? $_REQUEST['msg'] : $this->message;
-        $this->message = base64_decode($this->message);
-        $this->action = isset($_REQUEST['act']) ? $_REQUEST['act'] : $this->action;
-        $this->action = base64_decode($this->action);
+        $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
+        $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
+        setcookie('msg', null, time() - 60);
+        setcookie('act', null, time() - 60);
         if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
             require 'Vista/principaladmin.php';
         }else{
@@ -61,22 +60,22 @@ class controladorProducto extends controlador {
     }
     
     public function CrearEditar(){
-        $this->nombrePagina = "Registrar Producto";
+        $this->nombrePagina = 'Registrar Producto';
         $isForm = false;
         $this->validaSesion();
         if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
             if(isset($_REQUEST['proid'])){
-                $this->nombrePagina = "Editar Producto";
+                $this->nombrePagina = 'Editar Producto';
                 $producto = $this->crud->Obtener($_REQUEST['proid']);
             }
             $this->categorias = $this->crud->getCategorias();
             require 'Vista/guardarproducto.php';
         }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
-            $this->message = "El usuario actual no tiene permitido hacer esta acción";
-            $this->message = base64_encode($this->message);
-            $this->action = "warning";
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=Inicio&msg=".$this->message."&act=".$this->action);
+            $this->message = 'El usuario actual no tiene permitido hacer esta acción';
+            $this->action = 'warning';
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=Inicio');
         }else {
             $this->index();
         }
@@ -97,10 +96,10 @@ class controladorProducto extends controlador {
        
             if($_REQUEST['id'] != " "){
                 $auxProducto ->__set('id',$_REQUEST['id']);
-                $auxMessage = "editado";
+                $auxMessage = 'editado';
                 $resultado = $this->crud->editar($auxProducto);
             }else{
-                $auxMessage = "creado";
+                $auxMessage = 'creado';
                 $resultado = $this->crud->crear($auxProducto);
             }
     
@@ -111,21 +110,21 @@ class controladorProducto extends controlador {
                 $this->message = 'No se ha '.$auxMessage.' el producto correctamente.';
                 $this->action = 'error';
             }
-            $this->message = base64_encode($this->message);
-            $this->action = base64_encode($this->action);
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
             $this->index();
         }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
-            $this->message = "El usuario actual no tiene permitido hacer esta acción";
-            $this->message = base64_encode($this->message);
+            $this->message = 'El usuario actual no tiene permitido hacer esta acción';
             $this->action = 'warning';
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=Inicio&msg=".$this->message."&act=".$this->action);
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=Inicio');
         }else {
-            $this->message = "Debe iniciar sesión como administrador para hacer esta acción";
-            $this->message = base64_encode($this->message);
+            $this->message = 'Debe iniciar sesión como administrador para hacer esta acción';
             $this->action = 'warning';
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->message."&act=".$this->action);
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=iniciarSesion');
         }
     }
     
@@ -133,23 +132,23 @@ class controladorProducto extends controlador {
         $this->validaSesion();
         if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
             $this->crud->Eliminar($_REQUEST['id']);
-            $this->message = "El producto fue eliminado con exito.";
-            $this->message = base64_encode($this->message);
-            $this->action = "success";
-            $this->action = base64_encode($this->action);
+            $this->message = 'El producto fue eliminado con exito.';
+            $this->action = 'success';
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
             $this->index();
         }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
-            $this->message = "El usuario actual no tiene permitido hacer esta acción";
-            $this->message = base64_encode($this->message);
-            $this->action = "warning";
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=Inicio&msg=".$this->message."&act=".$this->action);
+            $this->message = 'El usuario actual no tiene permitido hacer esta acción';
+            $this->action = 'warning';
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=Inicio');
         }else{
-            $this->message = "Debe iniciar sesión como administrador para hacer esta acción";
-            $this->message = base64_encode($this->message);
-            $this->action = "warning";
-            $this->action = base64_encode($this->action);
-            header("Location: ?c=Sesion&a=iniciarSesion&msg=".$this->message."&act=".$this->action);
+            $this->message = 'Debe iniciar sesión como administrador para hacer esta acción';
+            $this->action = 'warning';
+            setcookie('msg', $this->message);
+            setcookie('act', $this->action);
+            header('Location: ?c=Sesion&a=iniciarSesion');
         }
     }
 

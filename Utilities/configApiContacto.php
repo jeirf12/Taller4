@@ -3,7 +3,7 @@
 	use PHPMailer\PHPMailer\SMTP;
 	use PHPMailer\PHPMailer\Exception;
 
-	require_once "vendor/autoload.php";
+	require_once 'vendor/autoload.php';
 	
 	$mail = new PHPMailer(true);
 	$nombre = $_POST['nombre'];
@@ -48,6 +48,6 @@
     	$mail->send();
 
 	} catch (Exception $e) {
-    	echo "error: {$mail->ErrorInfo}";
+    	echo 'error: '.$mail->ErrorInfo;
 	}
 ?>
