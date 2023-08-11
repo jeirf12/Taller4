@@ -1,18 +1,25 @@
-const loadClickEvent = (element, method, parameter="") => {
-  element.addEventListener("click", () => {
-    if(parameter !== "") method(parameter);
-    else method();
-  });
+const addParemeterIfneeded = (method, parameter) => {
+  return parameter !== "" 
+    ? () => method(parameter)
+    : method;
 };
 
-const loadEvent = (element, method, parameter="") => {
-  element.addEventListener("load", () => {
-    if(parameter !== "") method(parameter);
-    else method();
-  }, true);
+const loadClickEvent = (element, method, parameter = "") => {
+  element.addEventListener("click", addParemeterIfneeded(method, parameter));
 };
 
-export {
-  loadClickEvent,
-  loadEvent,
+const loadEvent = (element, method, parameter = "") => {
+  element.addEventListener(
+    "load",
+    addParemeterIfneeded(method, parameter),
+    true
+  );
 };
+const addResizeEvent = (element, methodResize, parameter = "") => {
+  element.addEventListener(
+    "resize",
+    addParemeterIfneeded(methodResize, parameter)
+  );
+};
+
+export { loadClickEvent, loadEvent, addResizeEvent };

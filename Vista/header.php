@@ -14,7 +14,7 @@
   <header class="header">
     <div class="logo" ><img src="Vista/css/logo.png" alt="logo" height="70"></div>
     <div class="bar-search">
-      <form id="frm-busqueda" action="?c=Producto&a=BuscarProducto" method="POST">
+      <form id="frm-busqueda" action="?c=producto&a=buscarProducto" method="POST">
           <input type="text" name="word_search" placeholder="Busca tu producto aqui" >
           <button name= "btn-search" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
       </form>
@@ -23,11 +23,11 @@
       <div class="center-header">
         <nav class="navigation">
           <ul>
-            <li><a href="?c=Sesion&a=Inicio" class="nav-inicio">Inicio</a></li>
-            <li><a href="?c=Sesion&a=About" class="nav-about">Sobre Nosotros</a></li>
-            <li><a href="?c=Producto&a=Listar" class="nav-productos">Productos</a></li>
+            <li><a href="?c=sesion&a=inicio" class="nav-inicio">Inicio</a></li>
+            <li><a href="?c=sesion&a=sobreNosotros" class="nav-about">Sobre Nosotros</a></li>
+            <li><a href="?c=producto&a=listar" class="nav-productos">Productos</a></li>
             <?php if((isset($this->existeSesion) && !$this->existeSesion) || $this->usuario->__get('rol') == 'noadmin'): ?>
-            <li><a href="?c=Sesion&a=Contacto" class="nav-contacto">Contacto</a></li>
+            <li><a href="?c=sesion&a=contacto" class="nav-contacto">Contacto</a></li>
             <?php endif; ?>
           </ul>
         </nav>
@@ -42,7 +42,7 @@
               <?php echo $this->usuario->__get('nombre'); ?>
               </span>
             </a>
-            <a class="btn-dropclose button-red" href="?c=Sesion&a=CerrarSesion" type="submit">cerrar sesión</a>
+            <a class="btn-dropclose button-red" href="?c=sesion&a=cerrarSesion" type="submit">cerrar sesión</a>
           </div>
         </div>
       </div>

@@ -3,87 +3,85 @@ require_once 'Modelo/clsProductoCRUD.php';
 require_once 'Modelo/clsProducto.php'; 
 require_once 'Utilities/controlador.php';
 
-class controladorProducto extends controlador {
-    //atributos
+class ControladorProducto extends Controlador {
     private $crud;
     private $productos;
     private $datosSesion;
     private $categorias;
 
-    //metodos
-    public function __construct(){
-        $this->conexion = new clsConexion('localhost','apimacizo','root','');
+    public function __construct() {
+        $this->conexion = new clsConexion();
         $this->crud = new clsProductoCRUD($this->conexion);
         $this->existeSesion = false;
     }
 
-    public function index(){
-        if(!empty($this->message)){
-            $this->Listar();
-        }else{
+    public function index() {
+        if(!empty($this->message)) {
+            $this->listar();
+        } else {
             header('Location: index.php');
         }
     }
     
-    public function Listar(){
+    public function listar() {
         $this->nombrePagina = 'Listado Productos';
-        $this->productos = $this->crud->Listar();
-        $this->categorias = $this->crud->getCategorias();
+        $this->productos = $this->crud->listarProductos();
+        $this->categorias = $this->crud->obtenerCategoriasProductos();
         $this->validaSesion();
         $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
         $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
         setcookie('msg', null, time() - 60);
         setcookie('act', null, time() - 60);
-        if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
+        if(isset($_SESSION['rol']) && ($_SESSION['rol'] == 'admin')) {
             require 'Vista/principaladmin.php';
-        }else{
+        } else {
             $isForm = false;
             require 'Vista/principalusuario.php';
         }
     }
 
-    public function BuscarProducto(){
+    public function buscarProducto() {
         $this->nombrePagina = 'Buscar Productos';
-        $this->productos = $this->crud->BuscarProducto($_REQUEST['word_search']);
-        $this->categorias = $this->crud->getCategorias();
+        $this->productos = $this->crud->buscarProductoPorPalabras($_REQUEST['word_search']);
+        $this->categorias = $this->crud->obtenerCategoriasProductos();
         $this->validaSesion();
         $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
         $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
         setcookie('msg', null, time() - 60);
         setcookie('act', null, time() - 60);
-        if(isset($_SESSION['rol'])&&($_SESSION['rol']=='admin')){
+        if(isset($_SESSION['rol']) && ($_SESSION['rol'] == 'admin')) {
             require 'Vista/principaladmin.php';
-        }else{
+        } else {
             $isForm = false;
             require 'Vista/principalusuario.php';
         }
     }
     
-    public function CrearEditar(){
+    public function crearEditar() {
         $this->nombrePagina = 'Registrar Producto';
         $isForm = false;
         $this->validaSesion();
-        if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
-            if(isset($_REQUEST['proid'])){
+        if($this->existeSesion && $this->usuario->__get('rol') == 'admin') {
+            if(isset($_REQUEST['proid'])) {
                 $this->nombrePagina = 'Editar Producto';
-                $producto = $this->crud->Obtener($_REQUEST['proid']);
+                $producto = $this->crud->obtenerProductosPorCategoria($_REQUEST['proid']);
             }
-            $this->categorias = $this->crud->getCategorias();
+            $this->categorias = $this->crud->obtenerCategoriasProductos();
             require 'Vista/guardarproducto.php';
-        }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
+        } else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin') {
             $this->message = 'El usuario actual no tiene permitido hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
             header('Location: ?c=Sesion&a=Inicio');
-        }else {
+        } else {
             $this->index();
         }
     }
     
-    public function Crear(){
+    public function crear() {
         $this->validaSesion();
-        if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
+        if($this->existeSesion && $this->usuario->__get('rol') == 'admin') {
             $resultado = false;
             $auxProducto = new clsProducto();
             $auxProducto->__set('nombre',$_REQUEST['nombre']);
@@ -94,32 +92,32 @@ class controladorProducto extends controlador {
             $auxProducto->__set('cantidad',$_REQUEST['cantidad']);
             $auxProducto->__set('categoria',$_REQUEST['categoria']);
        
-            if($_REQUEST['id'] != " "){
+            if($_REQUEST['id'] != " ") {
                 $auxProducto ->__set('id',$_REQUEST['id']);
                 $auxMessage = 'editado';
-                $resultado = $this->crud->editar($auxProducto);
-            }else{
+                $resultado = $this->crud->editarProducto($auxProducto);
+            } else {
                 $auxMessage = 'creado';
-                $resultado = $this->crud->crear($auxProducto);
+                $resultado = $this->crud->crearProducto($auxProducto);
             }
     
-            if($resultado){
+            if($resultado) {
                 $this->message = 'El producto se ha '.$auxMessage.' correctamente.';
                 $this->action = 'success';
-            }else{
+            } else {
                 $this->message = 'No se ha '.$auxMessage.' el producto correctamente.';
                 $this->action = 'error';
             }
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
             $this->index();
-        }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
+        } else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin') {
             $this->message = 'El usuario actual no tiene permitido hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
             header('Location: ?c=Sesion&a=Inicio');
-        }else {
+        } else {
             $this->message = 'Debe iniciar sesión como administrador para hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
@@ -128,38 +126,27 @@ class controladorProducto extends controlador {
         }
     }
     
-    public function Eliminar(){
+    public function eliminar() {
         $this->validaSesion();
-        if($this->existeSesion && $this->usuario->__get('rol') == 'admin'){
-            $this->crud->Eliminar($_REQUEST['id']);
+        if($this->existeSesion && $this->usuario->__get('rol') == 'admin') {
+            $this->crud->eliminarProducto($_REQUEST['id']);
             $this->message = 'El producto fue eliminado con exito.';
             $this->action = 'success';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
             $this->index();
-        }else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin'){
+        } else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin') {
             $this->message = 'El usuario actual no tiene permitido hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
             header('Location: ?c=Sesion&a=Inicio');
-        }else{
+        } else {
             $this->message = 'Debe iniciar sesión como administrador para hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
             header('Location: ?c=Sesion&a=iniciarSesion');
         }
-    }
-
-    public function validaImagen(){
-        $size = $_FILES['imagen']['size'];
-        $data_img = '';
-        if ($size > 0){
-            $data =  fopen($_FILES['imagen']['tmp_name'],'r');
-            $data_img = fread($data, $size);
-            fclose($data);
-        } 
-        return $data_img;
     }
 }

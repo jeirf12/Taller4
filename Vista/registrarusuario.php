@@ -3,7 +3,7 @@
   <?php require_once "Vista/header.php"; ?>
   <div class="container">
     <h1>Registro Usuario</h1>
-    <form class="form-register" action="?c=Sesion&a=RegistroUsuario" method="post">
+    <form class="form-register" action="?c=sesion&a=registroUsuario" method="post">
       <label for="name">Nombre</label>
       <input type="text"  class="frm_input_tbox"  name="nombre" placeholder="Escriba su nombre" required>
       <label for="email">Correo</label>

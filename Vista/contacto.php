@@ -2,7 +2,7 @@
 <html lang="es">
 <?php require_once "Vista/header.php"; ?>
         <div class="bodyContact">
-            <form class="formContact" action="?c=Sesion&a=ApiContacto" method="POST">
+            <form class="formContact" action="?c=sesion&a=apiContacto" method="POST">
                 <div class="formCon">
                     <h1 class="h1Contact">Contactanos</h1>
                     <div class="grupo">

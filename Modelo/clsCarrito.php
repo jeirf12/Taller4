@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Description of clsCarrito
- *
- * @author AdrianFelipe
- */
 class clsCarrito {
     private $carid;
     private $proid;

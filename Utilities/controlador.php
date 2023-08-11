@@ -2,7 +2,7 @@
 require_once 'Modelo/clsConexion.php'; 
 require_once 'Modelo/clsUsuario.php'; 
 
-abstract class controlador{
+abstract class Controlador{
     protected $conexion;
     protected $usuario;
     protected $nombrePagina;
@@ -24,12 +24,23 @@ abstract class controlador{
         }
     }
 
+    public function validaImagen(){
+        $size = $_FILES['imagen']['size'];
+        $data_img = '';
+        if ($size > 0){
+            $data =  fopen($_FILES['imagen']['tmp_name'],'r');
+            $data_img = fread($data, $size);
+            fclose($data);
+        } 
+        return $data_img;
+    }
+
     public function hasConnection(){
         $request = curl_init('https://www.google.com');
         curl_setopt($request, CURLOPT_RETURNTRANSFER, TRUE);
         curl_exec($request);
         $result = curl_getinfo($request, CURLINFO_HTTP_CODE);
         curl_close($request);
-        return ($result >=200 && $result<300);
+        return ($result >= 200 && $result < 300);
     }
 }

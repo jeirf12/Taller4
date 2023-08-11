@@ -3,23 +3,20 @@ require_once 'Modelo/clsCarrito.php';
 require_once 'Modelo/clsProducto.php';
 
 class clsCarritoCRUD {
-    //atributos
     private $conexion;
     private $auxPDO;
     
-    //metodos
     public function __construct($pconexion) {
         $this->conexion = $pconexion;
-        $this->conexion->conectar();
-        $this->auxPDO = $this->conexion->conexionPDO;
+        $this->auxPDO = $this->conexion->conectar();
     }
     
-    public function Crear($obj){
+    public function agregarAlCarrito($obj){
         $resultado = false;
         try{
             if($this->auxPDO == NULL) return $resultado;
             $consulta = 'INSERT INTO `agregacarrito` (PRO_ID,USU_ID,CAR_CANTIDAD) VALUES (?,?,?)';
-            $this->auxPDO->prepare($consulta)->execute(array($obj->proid,$obj->usuid,$obj->cantidad));
+            $this->auxPDO->prepare($consulta)->execute(array($obj->proid, $obj->usuid, $obj->cantidad));
             $resultado = true;
         }
         catch (Exception $ex){
@@ -28,7 +25,7 @@ class clsCarritoCRUD {
         return $resultado;
     }
 
-    public function Editar($obj){
+    public function editarCantidadProductoCarrito($obj){
         $resultado = false;
          try{
             if($this->auxPDO == NULL) return $resultado;
@@ -42,12 +39,12 @@ class clsCarritoCRUD {
         return $resultado;
     }
 
-    public function Eliminar($obj){
+    public function eliminarProductoCarrito($obj){
         $resultado = false;
         try{
             if($this->auxPDO == NULL) return $resultado;
             $consulta = 'DELETE FROM `agregacarrito` WHERE USU_ID = ? AND PRO_ID =?';
-            $this->auxPDO->prepare($consulta)->execute(array($obj->usuid,$obj->proid));
+            $this->auxPDO->prepare($consulta)->execute(array($obj->usuid, $obj->proid));
             $resultado = true;
         }
         catch (Exception $ex){
@@ -56,7 +53,7 @@ class clsCarritoCRUD {
         return $resultado;
     }
 
-    public function ObtenerProductos($id){
+    public function obtenerProductosCarrito($id){
         $resultado = array();
         try{
             if($this->auxPDO == NULL) return $resultado;
@@ -64,13 +61,13 @@ class clsCarritoCRUD {
             $consulta->execute(array($id));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
                 $auxProducto = new clsProducto();
-                $auxProducto->__SET('id',$obj->PRO_ID);
-                $auxProducto->__SET('nombre',$obj->PRO_NOMBRE);
-                $auxProducto->__SET('precio',$obj->PRO_PRECIO);
-                $auxProducto->__SET('imagen',$obj->PRO_IMAGEN);
-                $auxProducto->__SET('descripcion',$obj->PRO_DESCRIPCION);
-                $auxProducto->__SET('cantidad',$obj->CAR_CANTIDAD);
-                $auxProducto->__SET('categoria',$obj->CATPRO_NOMBRE);
+                $auxProducto->__SET('id', $obj->PRO_ID);
+                $auxProducto->__SET('nombre', $obj->PRO_NOMBRE);
+                $auxProducto->__SET('precio', $obj->PRO_PRECIO);
+                $auxProducto->__SET('imagen', $obj->PRO_IMAGEN);
+                $auxProducto->__SET('descripcion', $obj->PRO_DESCRIPCION);
+                $auxProducto->__SET('cantidad', $obj->CAR_CANTIDAD);
+                $auxProducto->__SET('categoria', $obj->CATPRO_NOMBRE);
                 $auxProducto->__SET('usuid', $obj->USU_ID);
                 $resultado [] = $auxProducto;
             }
@@ -81,7 +78,7 @@ class clsCarritoCRUD {
         return $resultado;
     }
 
-    public function obtenerCantidad($usuid, $proid){
+    public function obtenerCantidadProductosCarritoPorProductoId($usuid, $proid){
         $cantidad = 0;
         try{
             if($this->auxPDO == NULL) return $cantidad;

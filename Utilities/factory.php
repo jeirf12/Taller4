@@ -1,11 +1,11 @@
 <?php
 
-class Factory{
+class Factory {
     private static $instance = [];
 
-    private function __construct(){}
+    private function __construct() {}
     
-    public static function getInstance(){
+    public static function getInstance() {
         $cls = static::class;
         if(!isset(self::$instance[$cls])){
             self::$instance[$cls] = new static();
@@ -14,22 +14,25 @@ class Factory{
         return self::$instance[$cls];
     }
 
-    public function getController($controller){
+    public function getController($controller) {
         $result = null;
         $type = strtolower($controller);
-        switch($type){
-            case 'producto': 
+        $entities = array(
+            'producto' => function() {
                 require_once 'Controlador/controladorProducto.php';
-                $result = new controladorProducto();
-                break;
-            case 'sesion':
+                return new ControladorProducto();
+            },
+            'sesion' => function() {
                 require_once 'Controlador/controladorSesion.php';
-                $result = new controladorSesion();
-                break;
-            case 'carrito':
+                return new ControladorSesion();
+            },
+            'carrito' => function() {
                 require_once 'Controlador/controladorCarrito.php';
-                $result = new controladorCarrito();
-                break;
+                return new ControladorCarrito();
+            }
+        );
+        if(array_key_exists($type, $entities)) {
+            $result = $entities[$type]();
         }
         return $result;
     }

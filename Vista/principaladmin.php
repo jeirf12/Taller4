@@ -4,7 +4,7 @@
   <div class="container">
     <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
       <div class="container-button">
-        <a class="button-admin button-success btn-hover" type="submit" href="?c=Producto&a=CrearEditar">Agregar</a>
+        <a class="button-admin button-success btn-hover" type="submit" href="?c=producto&a=crearEditar">Agregar</a>
       </div>
     <?php endif;?>
     <?php if(isset($this->productos) && !empty($this->productos)): ?>
@@ -31,8 +31,8 @@
           <td><?php echo $producto->__get('descripcion'); ?></td>
           <td><?php echo $producto->__get('categoria'); ?></td>
           <div>
-            <td><a class="button-admin button-google btn-hover" type="submit" href="?c=Producto&a=CrearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
-            <td><a class="button-admin button-danger btn-hover" href="?c=Producto&a=Eliminar&id=<?php echo $producto->__get('id'); ?>">eliminar</a></td>
+            <td><a class="button-admin button-google btn-hover" type="submit" href="?c=producto&a=crearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a></td>
+            <td><a class="button-admin button-danger btn-hover" href="?c=producto&a=eliminar&id=<?php echo $producto->__get('id'); ?>">eliminar</a></td>
           </div>
         </tr>
       <?php endforeach; ?>

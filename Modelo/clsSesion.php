@@ -6,8 +6,7 @@ class clsSesion {
 
     public function __construct($pconexion) {
         $this->conexion = $pconexion;
-        $this->conexion->conectar();
-        $this->auxPDO = $this->conexion->conexionPDO;
+        $this->auxPDO = $this->conexion->conectar();
     }
 
     public function fijarSesion($usuario) {
@@ -16,20 +15,20 @@ class clsSesion {
         $_SESSION['rol'] = $usuario->USU_ROL;
     }
 
-    public function obtenerUsuario($id){
+    public function obtenerUsuarioPorId($id){
         $auxUsuario = new clsUsuario();
         try{ 
             if($this->auxPDO == NULL) return $auxUsuario;
             $consulta = 'SELECT * FROM `usuario` WHERE USU_ID=?';
-            $consulta=$this->auxPDO->prepare($consulta);
+            $consulta = $this->auxPDO->prepare($consulta);
             
             $consulta->execute(array($id));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
-                $auxUsuario->__SET('id',$obj->USU_ID);
-                $auxUsuario->__SET('nombre',$obj->USU_NOMBRE);
-                $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
-                $auxUsuario->__SET('correo',$obj->USU_EMAIL);
-                $auxUsuario->__SET('rol',$obj->USU_ROL);
+                $auxUsuario->__SET('id', $obj->USU_ID);
+                $auxUsuario->__SET('nombre', $obj->USU_NOMBRE);
+                $auxUsuario->__SET('clave', $obj->USU_PASSWORD);
+                $auxUsuario->__SET('correo', $obj->USU_EMAIL);
+                $auxUsuario->__SET('rol', $obj->USU_ROL);
             }          
         }
         catch (Exception $ex){
@@ -38,20 +37,20 @@ class clsSesion {
         return $auxUsuario;
     }
 
-    public function getUserbyEmail($email){
+    public function obtenerUsuarioPorEmail($email){
         $auxUsuario = new clsUsuario();
         try{
             if($this->auxPDO == NULL) return $auxUsuario;
             $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL=?';
-            $consulta=$this->auxPDO->prepare($consulta);
+            $consulta = $this->auxPDO->prepare($consulta);
             $consulta->execute(array($email));
 
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
-                $auxUsuario->__SET('id',$obj->USU_ID);
-                $auxUsuario->__SET('nombre',$obj->USU_NOMBRE);
-                $auxUsuario->__SET('clave',$obj->USU_PASSWORD);
-                $auxUsuario->__SET('correo',$obj->USU_EMAIL);
-                $auxUsuario->__SET('rol',$obj->USU_ROL);
+                $auxUsuario->__SET('id', $obj->USU_ID);
+                $auxUsuario->__SET('nombre', $obj->USU_NOMBRE);
+                $auxUsuario->__SET('clave', $obj->USU_PASSWORD);
+                $auxUsuario->__SET('correo', $obj->USU_EMAIL);
+                $auxUsuario->__SET('rol', $obj->USU_ROL);
             }          
         }
         catch (Exception $ex){
@@ -60,7 +59,7 @@ class clsSesion {
         return $auxUsuario;
     }
 
-    public function datoUsuario() {
+    public function nombreUsuarioEnSession() {
         return $_SESSION['nombre'];
     }
 
@@ -68,7 +67,7 @@ class clsSesion {
         return isset($_SESSION['nombre']);
     }
 
-    public function datosSesion() {
+    public function obtenerDatosSesion() {
         return $_SESSION;
     }
 
@@ -82,9 +81,9 @@ class clsSesion {
         try{ 
             if($this->auxPDO == NULL) return $resultado;
             $consulta = 'INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,"noadmin")';
-            $consulta=$this->auxPDO->prepare($consulta);
-            $consulta->execute(array($obj->nombre,$obj->clave,$obj->correo));
-            $resultado=true;
+            $consulta = $this->auxPDO->prepare($consulta);
+            $consulta->execute(array($obj->nombre, $obj->clave, $obj->correo));
+            $resultado = true;
         }
         catch (Exception $ex){
         }
@@ -96,18 +95,18 @@ class clsSesion {
         try {
             if($this->auxPDO == NULL) return $auxUsuario;
             $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ';
-            $consulta=$this->auxPDO->prepare($consulta);
-            $consulta->execute(array($usuario,$clave));
+            $consulta = $this->auxPDO->prepare($consulta);
+            $consulta->execute(array($usuario, $clave));
         
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
-                $auxpass=password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
+                $auxpass = password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
                 if (password_verify($clave, $auxpass)) {
                     $this->fijarSesion($obj);
-                    $auxUsuario->__set('id',$obj->USU_ID);
-                    $auxUsuario->__set('nombre',$obj->USU_NOMBRE);
-                    $auxUsuario->__set('clave',$obj->USU_PASSWORD);
-                    $auxUsuario->__set('correo',$obj->USU_EMAIL);
-                    $auxUsuario->__set('rol',$obj->USU_ROL);
+                    $auxUsuario->__set('id', $obj->USU_ID);
+                    $auxUsuario->__set('nombre', $obj->USU_NOMBRE);
+                    $auxUsuario->__set('clave', $obj->USU_PASSWORD);
+                    $auxUsuario->__set('correo', $obj->USU_EMAIL);
+                    $auxUsuario->__set('rol', $obj->USU_ROL);
                 }
             }
         } catch (Exception $ex) {
