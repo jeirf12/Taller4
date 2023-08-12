@@ -33,10 +33,12 @@ class ControladorProducto extends Controlador {
         setcookie('msg', null, time() - 60);
         setcookie('act', null, time() - 60);
         if(isset($_SESSION['rol']) && ($_SESSION['rol'] == 'admin')) {
-            require 'Vista/principaladmin.php';
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/principaladmin.php';
+            require 'Vista/componentes/paginas/envoltura.php';
         } else {
             $isForm = false;
-            require 'Vista/principalusuario.php';
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/principalusuario.php';
+            require 'Vista/componentes/paginas/envoltura.php';
         }
     }
 
@@ -50,10 +52,12 @@ class ControladorProducto extends Controlador {
         setcookie('msg', null, time() - 60);
         setcookie('act', null, time() - 60);
         if(isset($_SESSION['rol']) && ($_SESSION['rol'] == 'admin')) {
-            require 'Vista/principaladmin.php';
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/principaladmin.php';
+            require 'Vista/componentes/paginas/envoltura.php';
         } else {
             $isForm = false;
-            require 'Vista/principalusuario.php';
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/principalusuario.php';
+            require 'Vista/componentes/paginas/envoltura.php';
         }
     }
     
@@ -67,7 +71,8 @@ class ControladorProducto extends Controlador {
                 $producto = $this->crud->obtenerProductosPorCategoria($_REQUEST['proid']);
             }
             $this->categorias = $this->crud->obtenerCategoriasProductos();
-            require 'Vista/guardarproducto.php';
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/guardarproducto.php';
+            require 'Vista/componentes/paginas/envoltura.php';
         } else if($this->existeSesion && $this->usuario->__get('rol') == 'noadmin') {
             $this->message = 'El usuario actual no tiene permitido hacer esta acción';
             $this->action = 'warning';

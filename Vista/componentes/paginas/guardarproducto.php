@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php require_once "Vista/header.php"; ?>
-  <div class="container">
-    <h1>Registrar/Editar Producto</h1>
+    <h1 class="h1color">Registrar/Editar Producto</h1>
     <form id="registerProducts" class="form-save" action="?c=producto&a=crear" method="post" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?php echo (isset($producto)) ? $producto->__get('id') : " " ; ?>">
       <label for="imagen">Imagen</label>  
@@ -26,10 +22,6 @@
       </select>
       <label for="precio">Precio/Unidad</label>
       <input type="number" name="precio" min='1' value="<?php echo (isset($producto)) ? $producto->__get('precio') : "" ; ?>" required>
-      <?php require_once "Vista/botonVolver.php"; ?>
+      <?php require_once "Vista/componentes/navegacion/botonVolver.php"; ?>
       <button class="button-admin button-success btn-hover" type="submit">Guardar</button>
     </form>
-  </div>
-  <?php require_once "Vista/footer.php"; ?>
-</body>
-</html>

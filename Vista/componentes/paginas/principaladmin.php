@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php require_once "Vista/header.php"; ?>
-  <div class="container">
     <?php if(isset($this->existeSesion)&& $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='admin'): ?>
       <div class="container-button">
         <a class="button-admin button-success btn-hover" type="submit" href="?c=producto&a=crearEditar">Agregar</a>
@@ -43,7 +39,3 @@
         <p class="messages">No hay productos registrados todavia</p>
       </div>
     <?php endif; ?>
-  </div>
-  <?php require_once "Vista/footer.php"; ?>
-</body>
-</html>

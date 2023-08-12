@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php require_once "Vista/header.php"; ?>
-  <div class="container">
-    <h1>Carrito de compras</h1>
+    <h1 class="h1color">Carrito de compras</h1>
     <?php if(isset($compras) && !empty($compras)): ?>
     <div class="row">
       <?php foreach($compras as $compra): ?>
@@ -36,7 +32,3 @@
         <p class="messages">No existe compras registradas</p>
       </div>
     <?php endif; ?>
-  </div>
-  <?php require_once "Vista/footer.php"; ?>
-</body>
-</html>

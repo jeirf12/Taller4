@@ -35,7 +35,8 @@ class ControladorSesion extends Controlador {
             $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
             setcookie('msg', null, time() - 60);
             setcookie('act', null, time() - 60);
-            require_once 'Vista/iniciarsesion.php';         
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/iniciarsesion.php';
+            require_once 'Vista/componentes/paginas/envoltura.php';
         } else {
             $this->index();
         }
@@ -92,7 +93,8 @@ class ControladorSesion extends Controlador {
     public function registrarUsuario() {
         if(!$this->isSesion()) {
             $this->nombrePagina = 'Registrar Usuario';
-            require 'Vista/registrarusuario.php';        
+            $this->vistaEnvoltura = 'Vista/componentes/paginas/registrarusuario.php';
+            require 'Vista/componentes/paginas/envoltura.php';
         } else {
             $this->index();
         }
@@ -199,7 +201,8 @@ class ControladorSesion extends Controlador {
     public function contacto() {
         $this->nombrePagina = 'Contacto';
         $this->validaSesion();
-        require 'Vista/contacto.php';
+        $this->vistaEnvoltura = 'Vista/componentes/paginas/contacto.php';
+        require 'Vista/componentes/paginas/envoltura.php';
     }
 
     public function inicio() {
@@ -209,12 +212,14 @@ class ControladorSesion extends Controlador {
         $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
         setcookie('msg', null, time() - 60);
         setcookie('act', null, time() - 60);
-        require 'Vista/inicio.php';
+        $this->vistaEnvoltura = 'Vista/componentes/paginas/inicio.php';
+        require 'Vista/componentes/paginas/envoltura.php';
     }
 
     public function sobreNosotros() {
         $this->nombrePagina = 'Sobre Nosotros';
         $this->validaSesion();
-        require 'Vista/about.php';
+        $this->vistaEnvoltura = 'Vista/componentes/paginas/sobreNosotros.php';
+        require 'Vista/componentes/paginas/envoltura.php';
     }
 }

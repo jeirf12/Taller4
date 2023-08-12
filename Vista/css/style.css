@@ -41,6 +41,9 @@ a {
   box-shadow: 2px 2px 6px 2px rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
+.h1color {
+  color: #fff;
+}
 
 .header,
 .center-header,
@@ -154,7 +157,6 @@ a {
 
 .container h1 {
   font-size: 3em;
-  color: white;
 }
 .container-about {
   margin-left: 2%;

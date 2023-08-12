@@ -55,4 +55,4 @@
     </div>
     <script type="module" src="Vista/js/Menu.js"></script>
   </header>
-  <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/popup.php"; } ?>
+  <?php if(isset($this->message) && !empty($this->message)) { require_once "Vista/componentes/navegacion/popup.php"; } ?>

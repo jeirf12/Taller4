@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php require_once "Vista/header.php"; ?>
-  <div class="container">
     <?php if(isset($this->existeSesion) && $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
     <div class="content-btncar">
       <a class="button-admin button-car button-google btn-hover" href="?c=carrito&a=listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
@@ -34,7 +30,3 @@
           No se encontraron productos</p>
       </div>
     <?php endif; ?>
-  </div>
-  <?php require_once "Vista/footer.php"; ?>
-</body>
-</html>

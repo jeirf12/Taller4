@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-    <?php require_once "Vista/header.php"; ?>
-    <div class="container">
         <div class="container-about">
         <div class="crcAbout">
             <h2>¿Quiénes somos?</h2>
@@ -35,9 +31,5 @@
             </div>
         </div>
         </div>
-    </div>
-    <?php require_once "Vista/footer.php"; ?>
-    <script src="Vista/js/Script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIaZoTbc5NNZ6Hsw2gImr4buDdJd7hVTE&callback=iniciarMap"></script>
-</body>
-</html>
+        <script src="Vista/js/Script.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIaZoTbc5NNZ6Hsw2gImr4buDdJd7hVTE&callback=iniciarMap"></script>

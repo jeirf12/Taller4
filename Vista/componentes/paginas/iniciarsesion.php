@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php require_once "Vista/header.php"; ?>
-  <div class="container">
-    <h1>Iniciar Sesión</h1>
+    <h1 class="h1color">Iniciar Sesión</h1>
     <form class="form-login" action="?c=sesion&a=existeusuario" method="post">
       <label for="correo">Correo</label>
       <input type="email" class="frm_input_tbox" name="correo" placeholder="Escriba su correo">
@@ -14,7 +10,3 @@
       <span>O Inicie sesión con...</span>
       <button class="button-admin button-google btn-hover" type="submit" formaction="?c=sesion&a=google"><i class="fa-brands fa-google">oogle</i></button>
     </form>
-  </div >
-  <?php require_once "Vista/footer.php"; ?>
-</body>
-</html>

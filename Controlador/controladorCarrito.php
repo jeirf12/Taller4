@@ -21,7 +21,8 @@ class ControladorCarrito extends Controlador {
            $this->action = (isset($_COOKIE['act'])) ? $_COOKIE['act'] : $this->action;
            setcookie('msg', null, time() - 60);
            setcookie('act', null, time() - 60);
-           require_once 'Vista/carritocompras.php';    
+           $this->vistaEnvoltura = 'Vista/componentes/paginas/carritocompras.php';
+           require 'Vista/componentes/paginas/envoltura.php';
         } else {
             header('Location: index.php');
         }
