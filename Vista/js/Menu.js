@@ -13,10 +13,12 @@ let headerLeft = document.querySelector(".header-left");
 let navigation = document.getElementsByTagName("nav");
 
 const removeClass = () => {
-  menu.classList.remove("show");
-  header[0].classList.remove("showResponsiveNavbar");
-  headerLeft.classList.remove("showResponsiveNavbar");
-  navigation[0].style.width = "0px";
+  if(menu.classList.contains("show")) {
+    menu.classList.remove("show");
+    header[0].classList.remove("showResponsiveNavbar");
+    headerLeft.classList.remove("showResponsiveNavbar");
+    navigation[0].style.width = "0px";
+  }
 };
 
 const addClass = () => {
