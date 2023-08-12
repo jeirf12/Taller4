@@ -6,7 +6,6 @@ class clsSesion {
 
     public function __construct($pconexion) {
         $this->conexion = $pconexion;
-        $this->auxPDO = $this->conexion->conectar();
     }
 
     public function fijarSesion($usuario) {
@@ -15,45 +14,45 @@ class clsSesion {
         $_SESSION['rol'] = $usuario->USU_ROL;
     }
 
-    public function obtenerUsuarioPorId($id){
+    public function obtenerUsuarioPorId($id) {
         $auxUsuario = new clsUsuario();
-        try{ 
-            if($this->auxPDO == NULL) return $auxUsuario;
+        try { 
+            $this->auxPDO = $this->conexion->conectar();
+            if($this->auxPDO == null) return $auxUsuario;
             $consulta = 'SELECT * FROM `usuario` WHERE USU_ID=?';
             $consulta = $this->auxPDO->prepare($consulta);
-            
             $consulta->execute(array($id));
-            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
                 $auxUsuario->__SET('id', $obj->USU_ID);
                 $auxUsuario->__SET('nombre', $obj->USU_NOMBRE);
                 $auxUsuario->__SET('clave', $obj->USU_PASSWORD);
                 $auxUsuario->__SET('correo', $obj->USU_EMAIL);
                 $auxUsuario->__SET('rol', $obj->USU_ROL);
             }          
-        }
-        catch (Exception $ex){
+            $this->conexion->desconectar();
+        } catch (Exception $ex) {
             die($ex->getMessage());
         }
         return $auxUsuario;
     }
 
-    public function obtenerUsuarioPorEmail($email){
+    public function obtenerUsuarioPorEmail($email) {
         $auxUsuario = new clsUsuario();
-        try{
-            if($this->auxPDO == NULL) return $auxUsuario;
+        try {
+            $this->auxPDO = $this->conexion->conectar();
+            if($this->auxPDO == null) return $auxUsuario;
             $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL=?';
             $consulta = $this->auxPDO->prepare($consulta);
             $consulta->execute(array($email));
-
-            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
                 $auxUsuario->__SET('id', $obj->USU_ID);
                 $auxUsuario->__SET('nombre', $obj->USU_NOMBRE);
                 $auxUsuario->__SET('clave', $obj->USU_PASSWORD);
                 $auxUsuario->__SET('correo', $obj->USU_EMAIL);
                 $auxUsuario->__SET('rol', $obj->USU_ROL);
             }          
-        }
-        catch (Exception $ex){
+            $this->conexion->desconectar();
+        } catch (Exception $ex) {
             die($ex->getMessage());
         }
         return $auxUsuario;
@@ -76,16 +75,18 @@ class clsSesion {
         session_destroy();
     }
 
-    public function registrarUsuario($obj){
+    public function registrarUsuario($obj) {
         $resultado = false;
-        try{ 
-            if($this->auxPDO == NULL) return $resultado;
+        try { 
+            $this->auxPDO = $this->conexion->conectar();
+            if($this->auxPDO == null) return $resultado;
             $consulta = 'INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,"noadmin")';
             $consulta = $this->auxPDO->prepare($consulta);
             $consulta->execute(array($obj->nombre, $obj->clave, $obj->correo));
+            $this->conexion->desconectar();
             $resultado = true;
-        }
-        catch (Exception $ex){
+        } catch (Exception $ex) {
+            die($ex->getMessage());
         }
         return $resultado;
     }
@@ -93,12 +94,12 @@ class clsSesion {
     public function existeUsuario($usuario, $clave) {
         $auxUsuario = new clsUsuario();
         try {
-            if($this->auxPDO == NULL) return $auxUsuario;
+            $this->auxPDO = $this->conexion->conectar();
+            if($this->auxPDO == null) return $auxUsuario;
             $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ';
             $consulta = $this->auxPDO->prepare($consulta);
             $consulta->execute(array($usuario, $clave));
-        
-            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj){
+            foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
                 $auxpass = password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
                 if (password_verify($clave, $auxpass)) {
                     $this->fijarSesion($obj);
@@ -109,8 +110,9 @@ class clsSesion {
                     $auxUsuario->__set('rol', $obj->USU_ROL);
                 }
             }
+            $this->conexion->desconectar();
         } catch (Exception $ex) {
-            echo 'Ocurrio un error ' . $ex;
+            echo 'Ocurrio un error'.$ex;
         }
         return $auxUsuario;
     }
