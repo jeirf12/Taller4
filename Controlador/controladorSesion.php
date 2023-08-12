@@ -11,14 +11,6 @@ class ControladorSesion extends Controlador {
         $this->existeSesion = false;
     }
 
-    public function volver() {
-        $this->iniciarSesion();
-    }
-
-    public function volverprincipal() {
-        header('Location: ?c=Producto&a=Listar');
-    }
-
     public function index() {
         if(!empty($this->message)) {
             $this->inicio();
@@ -198,13 +190,6 @@ class ControladorSesion extends Controlador {
         $this->inicio();
     }
 
-    public function contacto() {
-        $this->nombrePagina = 'Contacto';
-        $this->validaSesion();
-        $this->vistaEnvoltura = 'Vista/componentes/paginas/contacto.php';
-        require 'Vista/componentes/paginas/envoltura.php';
-    }
-
     public function inicio() {
         $this->nombrePagina = 'Inicio';
         $this->validaSesion();
@@ -213,6 +198,13 @@ class ControladorSesion extends Controlador {
         setcookie('msg', null, time() - 60);
         setcookie('act', null, time() - 60);
         $this->vistaEnvoltura = 'Vista/componentes/paginas/inicio.php';
+        require 'Vista/componentes/paginas/envoltura.php';
+    }
+
+    public function contacto() {
+        $this->nombrePagina = 'Contacto';
+        $this->validaSesion();
+        $this->vistaEnvoltura = 'Vista/componentes/paginas/contacto.php';
         require 'Vista/componentes/paginas/envoltura.php';
     }
 

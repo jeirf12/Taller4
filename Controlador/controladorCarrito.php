@@ -58,13 +58,13 @@ class ControladorCarrito extends Controlador {
                 }
                 setcookie('msg', $this->message);
                 setcookie('act', $this->action);
-                header('Location: ?c=Producto&a=Listar');
+                header('Location: ?c=producto&a=listar');
             } else {
                 $this->message = 'La acción no corresponde al usuario actual';
                 $this->action = 'warning';
                 setcookie('msg', $this->message);
                 setcookie('act', $this->action);
-                header('Location: ?c=Producto&a=Listar');
+                header('Location: ?c=producto&a=listar');
             }   
         } else if(!$this->existeSesion && isset($_REQUEST['proid']) && isset($_REQUEST['usuid']) && !empty($_REQUEST['usuid'])) {
             header('Location: index.php');
@@ -73,7 +73,7 @@ class ControladorCarrito extends Controlador {
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=iniciarSesion');
+            header('Location: ?c=sesion&a=iniciarSesion');
         }
     }
     
@@ -91,14 +91,14 @@ class ControladorCarrito extends Controlador {
                 $this->action = 'warning';
                 setcookie('msg', $this->message);
                 setcookie('act', $this->action);
-                header('Location: ?c=Producto&a=Listar');
+                header('Location: ?c=producto&a=listar');
             }
         } else {
             $this->message = 'Debe iniciar sesión para eliminar del carrito';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=iniciarSesion');
+            header('Location: ?c=sesion&a=iniciarSesion');
         }
     }
     

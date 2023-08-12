@@ -78,7 +78,7 @@ class ControladorProducto extends Controlador {
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=Inicio');
+            header('Location: ?c=sesion&a=inicio');
         } else {
             $this->index();
         }
@@ -121,13 +121,13 @@ class ControladorProducto extends Controlador {
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=Inicio');
+            header('Location: ?c=sesion&a=inicio');
         } else {
             $this->message = 'Debe iniciar sesión como administrador para hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=iniciarSesion');
+            header('Location: ?c=sesion&a=iniciarSesion');
         }
     }
     
@@ -145,13 +145,13 @@ class ControladorProducto extends Controlador {
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=Inicio');
+            header('Location: ?c=sesion&a=inicio');
         } else {
             $this->message = 'Debe iniciar sesión como administrador para hacer esta acción';
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            header('Location: ?c=Sesion&a=iniciarSesion');
+            header('Location: ?c=sesion&a=iniciarSesion');
         }
     }
 }
