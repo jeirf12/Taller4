@@ -10,11 +10,11 @@
     <div class="center-header">
       <nav class="navigation">
         <ul>
-          <li><a href="?c=sesion&a=inicio" class="nav-inicio">Inicio</a></li>
-          <li><a href="?c=sesion&a=sobreNosotros" class="nav-about">Sobre Nosotros</a></li>
-          <li><a href="?c=producto&a=listar" class="nav-productos">Productos</a></li>
+          <li><a class="nav-inicio">Inicio</a></li>
+          <li><a class="nav-about">Sobre Nosotros</a></li>
+          <li><a class="nav-productos">Productos</a></li>
           <?php if((isset($this->existeSesion) && !$this->existeSesion) || $this->usuario->__get('rol') == 'noadmin'): ?>
-          <li><a href="?c=sesion&a=contacto" class="nav-contacto">Contacto</a></li>
+          <li><a class="nav-contacto">Contacto</a></li>
           <?php endif; ?>
         </ul>
       </nav>

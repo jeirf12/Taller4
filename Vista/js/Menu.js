@@ -12,15 +12,6 @@ let header = document.getElementsByTagName("header");
 let headerLeft = document.querySelector(".header-left");
 let navigation = document.getElementsByTagName("nav");
 
-const removeClass = () => {
-  if(menu.classList.contains("show")) {
-    menu.classList.remove("show");
-    header[0].classList.remove("showResponsiveNavbar");
-    headerLeft.classList.remove("showResponsiveNavbar");
-    navigation[0].style.width = "0px";
-  }
-};
-
 const addClass = () => {
   if (!menu.classList.contains("show")) {
     menu.classList.add("show");
@@ -28,6 +19,15 @@ const addClass = () => {
     headerLeft.classList.add("showResponsiveNavbar");
     navigation[0].style.width = "490px";
   } else removeClass();
+};
+
+const removeClass = () => {
+  if(menu.classList.contains("show")) {
+    menu.classList.remove("show");
+    header[0].classList.remove("showResponsiveNavbar");
+    headerLeft.classList.remove("showResponsiveNavbar");
+    navigation[0].style.width = "0px";
+  }
 };
 
 const openModal = () => {
@@ -44,6 +44,20 @@ const resizeMode = () => {
     headerLeft.classList.remove("showResponsiveNavbar");
   }
 };
+
+const openLink = (url) => window.location.href = url;
+
+let i = 0;
+let links = [
+  '?c=sesion&a=inicio',
+  '?c=sesion&a=sobreNosotros',
+  '?c=producto&a=listar',
+  '?c=sesion&a=contacto',
+  '?c=sesion&a=iniciarSesion',
+];
+for (let ele of menu.children) {
+  loadClickEvent(ele, openLink, links[i++]);
+}
 
 let iconBtn = document.getElementById("btnOpenDropdown");
 if (iconBtn !== null) iconBtn.addEventListener("click", openModal);

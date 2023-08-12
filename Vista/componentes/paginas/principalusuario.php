@@ -1,13 +1,14 @@
 <?php if(isset($this->existeSesion) && $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
 <div class="content-btncar">
-  <a class="button-admin button-car button-google btn-hover" href="?c=carrito&a=listar&codUsu=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Ver carrito</a>
+  <a id="carritoid<?php echo $this->usuario->__get("id");?>" class="button-admin button-car button-google btn-hover">Ver carrito</a>
+  <?php require "Utilities/vercarritoboton.php"; ?>
 </div>
 <?php endif;?>
 <?php if(isset($this->productos) && !empty($this->productos)): ?>
 <div class="row">
   <?php foreach($this->productos as $producto): ?>
   <article class="card-article">
-    <div class="card">
+  <div id="card<?php echo $producto->__get('id'); ?>" class="card">
       <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product">
       <div class="card-content">
         <h4><?php echo $producto->__get('nombre'); ?></h4>
@@ -19,7 +20,7 @@
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
       </div>
-      <a class="button-admin button-success btn-hover" type="submit" href="?c=carrito&a=crearEditar&proid=<?php echo $producto->__get('id');?>&usuid=<?php echo isset($this->usuario) ? $this->usuario->__get('id') : " "; ?>">Agregar Carrito</a>
+      <?php require 'Utilities/agregarcarritoboton.php'; ?>
     </div>
   </article>
   <?php endforeach; ?>

@@ -17,14 +17,15 @@
       </div>
       <div>
         <?php if(isset($editarCarrito) && $editarCarrito): ?>
-        <a class="button-google btn-hover" type="submit" href="?c=carrito&a=crearEditar&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Editar Compra</a>
+        <a id="editarCompra<?php echo $compra->__get("id");?>" class="button-google btn-hover">Editar Compra</a>
         <?php endif; ?>
       </div>
       <div>
-        <a class="button-admin button-danger btn-hover" type="submit" href="?c=carrito&a=eliminar&proid=<?php echo $compra->__get('id'); ?>&usuid=<?php echo $compra->__get('usuid'); ?>">Quitar Compra</a>
+        <a id="eliminarCompra<?php echo $compra->__get("id"); ?>" class="button-admin button-danger btn-hover">Quitar Compra</a>
       </div>
     </div>
   </article>
+  <?php require "Utilities/eliminarproductocarritoboton.php" ?>
   <?php endforeach; ?>
 </div>
 <?php else: ?>

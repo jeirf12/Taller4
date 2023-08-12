@@ -28,15 +28,14 @@
       <td><?php echo $producto->__get('cantidad'); ?></td>
       <td><?php echo $producto->__get('descripcion'); ?></td>
       <td><?php echo $producto->__get('categoria'); ?></td>
-      <div>
-        <td>
-          <a class="button-admin button-google btn-hover" type="submit" href="?c=producto&a=crearEditar&proid=<?php echo $producto->__get('id'); ?>">editar</a>
-        </td>
-        <td>
-          <a class="button-admin button-danger btn-hover" href="?c=producto&a=eliminar&id=<?php echo $producto->__get('id'); ?>">eliminar</a>
-        </td>
-      </div>
+      <td>
+        <a id="gestioneditar<?php echo $producto->__get("id");?>" class="button-admin button-google btn-hover">editar</a>
+      </td>
+      <td>
+        <a id="gestioneliminar<?php echo $producto->__get("id");?>" class="button-admin button-danger btn-hover">eliminar</a>
+      </td>
     </tr>
+    <?php require "Utilities/gestionproductoboton.php"; ?>
   <?php endforeach; ?>
   </tbody>
 </table>
