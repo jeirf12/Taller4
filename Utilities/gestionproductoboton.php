@@ -1,7 +1,7 @@
 <?php
     $idproducto = $producto->__get('id');
     echo '<script type="module">';
-    echo 'import { loadClickEvent } from "../Vista/js/Events.js";';
+    echo 'import { loadClickEvent } from "./Vista/js/Events.js";';
     echo 'let editarbtn = document.getElementById("gestioneditar'.$idproducto.'");';
     echo 'let eliminarbtn = document.getElementById("gestioneliminar'.$idproducto.'");';
     echo 'const openLink = (url) => window.location.href = url;';

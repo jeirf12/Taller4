@@ -2,7 +2,7 @@
     $idproducto = $compra->__get('id');
     $idusuario = $compra->__get('usuid');
     echo '<script type="module">';
-    echo 'import { loadClickEvent } from "../Vista/js/Events.js";';
+    echo 'import { loadClickEvent } from "./Vista/js/Events.js";';
     /* echo 'let editarbtn = document.getElementById("editarCompra'.$idproducto.'");'; */
     echo 'let eliminarbtn = document.getElementById("eliminarCompra'.$idproducto.'");';
     echo 'const openLink = (url) => window.location.href = url;';
