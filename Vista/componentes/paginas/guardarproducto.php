@@ -1,5 +1,5 @@
-<h1 class="h1color">Registrar/Editar Producto</h1>
 <form id="registerProducts" class="form-save" action="?c=producto&a=crear" method="post" enctype="multipart/form-data">
+<h1 class="h1color"><?php echo isset($producto) ? 'Editar' : 'Registrar Nuevo' ?> Producto</h1>
   <input type="hidden" name="id" value="<?php echo (isset($producto)) ? $producto->__get('id') : " " ; ?>">
   <label for="imagen">Imagen</label>  
   <input type="file" id="imagen" name="imagen" required>

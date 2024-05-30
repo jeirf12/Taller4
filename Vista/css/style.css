@@ -41,8 +41,14 @@ a {
   box-shadow: 2px 2px 6px 2px rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
+
 .h1color {
-  color: #fff;
+  color: rgba(220, 10, 10, 0.9);
+  width: 100%;
+  text-align: center;
+}
+.h1secondary {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .header,
@@ -241,8 +247,6 @@ tr th {
 .form-register,
 .form-login,
 .form-save {
-  min-width: 300px;
-  max-width: 400px;
   border: 1px solid #e1e1e1;
   border-radius: 15px;
   padding: 2%;
@@ -252,61 +256,62 @@ tr th {
   background-color: rgba(255, 255, 255, 0.815);
 }
 
-label,
-input,
-select {
-  display: block;
-  width: 90%;
-}
-
-.form-register label,
-.form-login label,
-.form-save label,
-.form-register input,
-.form-login input,
-.form-save input,
-.form-register button,
-.form-login button,
-.form-save button,
-.form-save select {
-  padding: 10px;
+.form-register {
+  width: 100%;
+  max-width: 800px;
 }
 
 .form-login {
-  display: flex;
-  flex-direction: column;
-  padding: 1% 2%;
-  margin-top: 0;
+  width: 100%;
+  max-width: 600px;
 }
 
-.form-login span {
-  padding-top: 10px;
-  text-align: center;
-}
-
+.form-register input,
+.form-login input, 
 .form-login button {
-  width: 97%;
+  width: 100%;
+  padding: 6px;
+  border-radius: 0.5rem;
+  border: 1px solid #dddfe2;
+  margin-bottom: 2%;
 }
 
-.container button {
-  margin-top: 10px;
-  font-size: 16px;
+.form-login p {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2%;
 }
 
 .form-save {
-  margin-top: 0;
-  padding: 8px 2%;
+  width: 100%;
+  max-width: 800px;
 }
 
 .form-save label,
 .form-save input,
 .form-save select,
 .form-save option {
+  width: 100%;
   padding: 6px;
 }
 
+.form-save input,
+.form-save select {
+  border-radius: 0.5rem;
+  border: 1px solid #dddfe2;
+}
+
+.form-save input[type=file], 
+.form-save select {
+  cursor: pointer;
+}
+
+.form-save input[type=file] {
+  border: none;
+}
+
 .button-success {
-  background: rgb(24, 202, 0);
+  background: rgba(16, 187, 62, 1);
 }
 
 .button-danger {
@@ -346,11 +351,9 @@ select {
 }
 
 .lnk_olvidecontrasenia {
-  padding-right: 20px;
   color: #000;
   font-size: small;
-  text-align: right;
-  outline: none;
+  font-weight: bold;
 }
 
 .container-button {
@@ -426,6 +429,10 @@ select {
   .table-admin {
     display: block;
     overflow-x: auto;
+  }
+  .form-save {
+    min-width: 300px;
+    max-width: 400px;
   }
 }
 @media screen and (max-width: 797px) {

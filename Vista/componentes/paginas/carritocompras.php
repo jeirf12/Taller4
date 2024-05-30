@@ -1,4 +1,4 @@
-<h1 class="h1color">Carrito de compras</h1>
+<h1 class="h1secondary">Carrito de compras</h1>
 <?php if(isset($compras) && !empty($compras)): ?>
 <div class="row">
   <?php foreach($compras as $compra): ?>
@@ -25,7 +25,7 @@
       </div>
     </div>
   </article>
-  <?php require "Utilities/eliminarproductocarritoboton.php" ?>
+  <?php require "Utilities/gestionproductocarritoboton.php" ?>
   <?php endforeach; ?>
 </div>
 <?php else: ?>

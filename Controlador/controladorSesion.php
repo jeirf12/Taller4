@@ -39,6 +39,8 @@ class ControladorSesion extends Controlador {
             $correo = isset($_REQUEST['correo']) ? $_REQUEST['correo'] : " ";
             $clave = isset($_REQUEST['contrasenia']) ? $_REQUEST['contrasenia'] : " ";
             if (empty($correo) && empty($clave)) {
+                $this->message = 'El correo o la contraseña no es correcta, inténtelo nuevamente';
+                $this->action = 'warning';
                 $this->iniciarSesion();
             } else {
                 $this->usuario = $this->sesion->existeUsuario($correo, $clave);
