@@ -7,7 +7,7 @@ class clsConexion {
     private $conexionPdo;
     private $estadoConexion;
 
-    public function __construct($host = 'localhost', $nombreBaseDatos = 'apimacizo', $usuario = 'root', $clave = '') {
+    public function __construct($host = '127.0.0.1', $nombreBaseDatos = 'apimacizo', $usuario = 'root', $clave = '') {
         $this->host = $host;
         $this->nombreBaseDatos = $nombreBaseDatos;
         $this->usuario = $usuario;
@@ -17,7 +17,7 @@ class clsConexion {
     
     public function conectar(){
         try{
-            $dsn = 'mysql:host='. $this->host.';'.'dbname='.$this->nombreBaseDatos;
+            $dsn = 'mysql:host='.$this->host.';dbname='.$this->nombreBaseDatos;
             $this->conexionPdo = new PDO($dsn, $this->usuario, $this->clave);
             $this->conexionPdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $this->estadoConexion = true;
