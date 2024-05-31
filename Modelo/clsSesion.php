@@ -82,7 +82,7 @@ class clsSesion {
             if($this->auxPDO == null) return $resultado;
             $consulta = 'INSERT INTO `usuario` (USU_NOMBRE,USU_PASSWORD,USU_EMAIL,USU_ROL) VALUES (?,?,?,"noadmin")';
             $consulta = $this->auxPDO->prepare($consulta);
-            $consulta->execute(array($obj->nombre, $obj->clave, $obj->correo));
+            $consulta->execute(array($obj->nombre, password_hash($obj->clave, PASSWORD_BCRYPT, [ 'cost' => 10 ]), $obj->correo));
             $this->conexion->desconectar();
             $resultado = true;
         } catch (Exception $ex) {
@@ -96,12 +96,11 @@ class clsSesion {
         try {
             $this->auxPDO = $this->conexion->conectar();
             if($this->auxPDO == null) return $auxUsuario;
-            $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL = ? AND USU_PASSWORD = ? ';
+            $consulta = 'SELECT * FROM `usuario` WHERE USU_EMAIL = ?';
             $consulta = $this->auxPDO->prepare($consulta);
-            $consulta->execute(array($usuario, $clave));
+            $consulta->execute(array($usuario));
             foreach ($consulta->fetchALL(PDO::FETCH_OBJ) as $obj) {
-                $auxpass = password_hash($obj->USU_PASSWORD, PASSWORD_DEFAULT);//proteccion de inyeccion
-                if (password_verify($clave, $auxpass)) {
+                if (password_verify($clave, $obj->USU_PASSWORD)) {
                     $this->fijarSesion($obj);
                     $auxUsuario->__set('id', $obj->USU_ID);
                     $auxUsuario->__set('nombre', $obj->USU_NOMBRE);
