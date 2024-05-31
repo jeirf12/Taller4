@@ -1,9 +1,9 @@
 .row{
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    width: 100%;
+    gap: 0% 4%;
     padding: 2%;
+    width: 100%;
 }
 
 .card-article {

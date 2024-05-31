@@ -158,7 +158,6 @@ a {
 
 .container {
   margin-top: 6%;
-  margin-bottom: 1%;
 }
 
 .container h1 {
@@ -189,7 +188,7 @@ a {
 }
 
 .close-sesion {
-  border-radius: 15px;
+  border-radius: 0.5rem;
   display: block;
   text-align: center;
 }
@@ -197,15 +196,16 @@ a {
 .button-admin {
   border: none;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   color: #fff;
   cursor: pointer;
 }
 
 .table-admin {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
-  border-radius: 35px;
+  border-spacing: 0;
+  border-radius: 1rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -213,13 +213,21 @@ a {
   text-align: center;
 }
 
-.table-admin tr th {
+.table-admin > thead > tr > th {
   color: #fff;
   background-color: #212529;
 }
 
+.table-admin > thead > tr > th:first-child {
+  border-top-left-radius: 1rem;
+}
+
+.table-admin > thead > tr > th:last-child {
+  border-top-right-radius: 1rem;
+}
+
 .table-admin tr td,
-tr th {
+.table-admin tr th {
   padding: 12px 15px;
 }
 
