@@ -8,10 +8,10 @@ class clsConexion {
     private $estadoConexion;
 
     public function __construct($host = '127.0.0.1', $nombreBaseDatos = 'apimacizo', $usuario = 'root', $clave = '') {
-        $this->host = $host;
-        $this->nombreBaseDatos = $nombreBaseDatos;
-        $this->usuario = $usuario;
-        $this->clave = $clave;
+        $this->host = $_ENV['DB_HOST'] ?? $host;
+        $this->nombreBaseDatos = $_ENV['DB_NAME'] ?? $nombreBaseDatos;
+        $this->usuario = $_ENV['DB_USERNAME'] ?? $usuario;
+        $this->clave = $_ENV['DB_PASSWORD'] ?? $clave;
         $this->desconectar();
     }
     

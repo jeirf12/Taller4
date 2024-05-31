@@ -1,5 +1,8 @@
 <?php
 require 'Utilities/factory.php';
+require_once 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 $controlador = (isset($_REQUEST['c'])) ? $_REQUEST['c'] : 'sesion';
 $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'inicio';

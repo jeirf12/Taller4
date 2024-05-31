@@ -2,8 +2,6 @@
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
 	use PHPMailer\PHPMailer\Exception;
-
-	require_once 'vendor/autoload.php';
 	
 	$mail = new PHPMailer(true);
 	$nombre = $_POST['nombre'];
@@ -17,14 +15,14 @@
     	$mail->isSMTP();                                            //Send using SMTP
     	$mail->Host       = 'smtp.gmail.com';                     	//Set the SMTP server to send through
     	$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    	$mail->Username   = 'apicontactolsw3@gmail.com';            //SMTP username
-    	$mail->Password   = 'ap1-contacto';                         //SMTP password
+    	$mail->Username   = $_ENV['EMAIL_PAGE'];            //SMTP username
+    	$mail->Password   = $_ENV['PASSWORD_EMAIL_PAGE'];                         //SMTP password
     	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    	$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    	$mail->Port       = $_ENV['EMAIL_PORT'];                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
    	//Admin
-    	$mail->setFrom('apicontactolsw3@gmail.com', 'Contacto');//correo desde el cual se enviaran los mensajes de contacto
-    	$mail->addAddress('apicontactolsw3@gmail.com');		//correo al cual le llegaran los mensasjes de contacto(pagina)
+    	$mail->setFrom($_ENV['EMAIL_PAGE'], 'Contacto');//correo desde el cual se enviaran los mensajes de contacto
+    	$mail->addAddress($_ENV['EMAIL_PAGE']);		//correo al cual le llegaran los mensasjes de contacto(pagina)
    
     	//Content
     	$mail->isHTML(true);                                  		//Set email format to HTML
@@ -36,7 +34,7 @@
 
     //User
     	$mail->ClearAddresses();
-    	$mail->setFrom('apicontactolsw3@gmail.com', 'Apimacizo');//correo desde el cual se enviaran los mensajes de contacto
+    	$mail->setFrom($_ENV['EMAIL_PAGE'], 'Apimacizo');//correo desde el cual se enviaran los mensajes de contacto
     	$mail->addAddress($correo);							//correo al cual le llegaran los mensasjes de contacto(usuario)
 
     	//Content
