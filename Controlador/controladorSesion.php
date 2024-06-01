@@ -98,6 +98,13 @@ class ControladorSesion extends Controlador {
         $nombre = $_REQUEST['nombre'];
         $correo = $_REQUEST['correo'];
         $clave = $_REQUEST['contrasenia'];
+        if(empty($nombre) || empty($correo) || empty($clave)) { 
+            $this->message = 'ERROR: Usuario no registrado. Los campos no pueden ser vacios';
+            $this->action = 'error';
+            $this->RegistrarUsuario();
+            return;
+        }
+
         $usuario = new clsUsuario();
         $usuario->__SET('nombre',$nombre);
         $usuario->__SET('clave',$clave);
