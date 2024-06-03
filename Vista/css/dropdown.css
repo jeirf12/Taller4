@@ -8,6 +8,10 @@
   background-color: #2980B9;
 }
 
+.dropdown {
+    width: 100%;
+}
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -27,7 +31,9 @@
     text-align: center;
 }
 
-.btn-dropclose:hover {background-color: #ddd}
+.btn-dropclose:hover {
+    background-color: #ddd
+}
 
 .show {
     display: block;

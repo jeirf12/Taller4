@@ -66,6 +66,10 @@ class ControladorSesion extends Controlador {
     }
     
     public function cerrarSesion() {
+        if(!$this->isSesion()) {
+            $this->index();
+            return;
+        }
         include('Utilities/config.php');
         if(isset($_SESSION['access_token'])) {
             if(!$this->hasConnection()) { 
@@ -95,6 +99,11 @@ class ControladorSesion extends Controlador {
     }
 
     public function registroUsuario() {
+        if($this->isSesion()) {
+            $this->index();
+            return;
+        }
+
         $nombre = $_REQUEST['nombre'];
         $correo = $_REQUEST['correo'];
         $clave = $_REQUEST['contrasenia'];
@@ -124,6 +133,10 @@ class ControladorSesion extends Controlador {
     }
 
     public function google() {
+        if($this->isSesion()) {
+            $this->index();
+            return;
+        }
         if(!$this->hasConnection()) {
             $this->message = 'No se puede iniciar sesión con Google, verifique su conexión a internet';
             $this->action = 'warning';
@@ -135,6 +148,10 @@ class ControladorSesion extends Controlador {
     }
 
     public function apiGoogle() {
+        if($this->isSesion()) {
+            $this->index();
+            return;
+        }
         if(isset($_GET['code'])) {
             include 'Utilities/config.php';
             $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
@@ -181,6 +198,10 @@ class ControladorSesion extends Controlador {
     }
 
     public function apiContacto() {
+        if($this->isSesion()) {
+            $this->index();
+            return;
+        }
         if($this->hasConnection()) {
             require 'Utilities/configApiContacto.php';
             if($mail->ErrorInfo != "") {
@@ -211,6 +232,11 @@ class ControladorSesion extends Controlador {
     }
 
     public function contacto() {
+        $this->validaSesion();
+        if(!$this->isSesion() || $this->usuario->__get('rol') == 'admin') {
+            $this->index();
+            return;
+        }
         $this->nombrePagina = 'Contacto';
         $this->validaSesion();
         $this->vistaEnvoltura = 'Vista/componentes/paginas/contacto.php';

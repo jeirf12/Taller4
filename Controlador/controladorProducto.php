@@ -96,6 +96,11 @@ class ControladorProducto extends Controlador {
             $auxProducto->__set('descripcion',$_REQUEST['descripcion']);
             $auxProducto->__set('cantidad',$_REQUEST['cantidad']);
             $auxProducto->__set('categoria',$_REQUEST['categoria']);
+            if(empty($auxProducto->__get('nombre')) || empty($auxProducto->__get('precio')) || empty($auxProducto->__get('imagen')) || empty($auxProducto->__get('descripcion')) || empty($auxProducto->__get('cantidad')) || empty($auxProducto->__get('categoria'))) {
+                $this->message = 'El producto no puede llevar campos vacios, verifique e intenta nuevamente';
+                $this->action = 'warning';
+                $this->crearEditar();
+            }
        
             if($_REQUEST['id'] != " ") {
                 $auxProducto ->__set('id',$_REQUEST['id']);

@@ -66,3 +66,15 @@
     transform: translateY(100px);
   }
 }
+
+.popup-buttons {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-evenly;
+}
+
+.popup-buttons > a {
+  border-radius: 0.5rem;
+  line-height: 40px;
+  color: #fff;
+}

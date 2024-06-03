@@ -17,6 +17,7 @@ class ControladorCarrito extends Controlador {
         if($this->existeSesion) {
            $compras = $this->crud->obtenerProductosCarrito($this->usuario->__get('id'));
            $this->nombrePagina = 'Lista de Compras';
+           $isForm = false;
            $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
            $this->action = (isset($_COOKIE['act'])) ? $_COOKIE['act'] : $this->action;
            setcookie('msg', null, time() - 60);
@@ -103,6 +104,10 @@ class ControladorCarrito extends Controlador {
     }
     
     public function obtenerInfoVistaCarrito(){
+        if(!$this->existeSesion) {
+            header('Location: index');
+            return;
+        }
         $auxCarrito = new clsCarrito();
         $auxCarrito->__SET('carid', isset($_REQUEST['carid']) ? $_REQUEST['carid'] : 0);
         $auxCarrito->__SET('proid', $_REQUEST['proid']);

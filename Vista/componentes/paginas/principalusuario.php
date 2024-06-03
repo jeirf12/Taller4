@@ -1,7 +1,6 @@
 <?php if(isset($this->existeSesion) && $this->existeSesion && isset($_SESSION['rol']) && ($_SESSION['rol'])=='noadmin'): ?>
 <div class="content-btncar">
-  <a id="carritoid<?php echo $this->usuario->__get("id");?>" class="button-admin button-car button-google btn-hover">Ver carrito</a>
-  <?php require "Utilities/vercarritoboton.php"; ?>
+  <a id="verCompra<?php echo $this->usuario->__get('id');?>" class="button-admin button-car button-google btn-hover" onclick="accionCarroCompra(<?php echo $this->usuario->__get('id'); ?>, 0, 'ver')">Ver carrito</a>
 </div>
 <?php endif;?>
 <?php if(isset($this->productos) && !empty($this->productos)): ?>
@@ -20,7 +19,7 @@
         <p>Precio: <?php echo $producto->__get('precio'); ?></p>
         <p>Cantidad: <?php echo $producto->__get('cantidad'); ?></p>
       </div>
-      <?php require 'Utilities/agregarcarritoboton.php'; ?>
+      <a id="crearCompra<?php echo $producto->__get('id'); ?>" onclick="accionCarroCompra(<?php echo isset($this->usuario) ? $this->usuario->__get('id') : 0; ?>, <?php echo $producto->__get('id'); ?>, 'crear')" class="button-user button-success btn-hover">Agregar a carrito</a>
     </div>
   </article>
   <?php endforeach; ?>

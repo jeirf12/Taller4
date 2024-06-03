@@ -1,3 +1,4 @@
+<?php require_once 'Vista/componentes/navegacion/botonVolver.php'; ?>
 <h1 class="h1secondary">Carrito de compras</h1>
 <?php if(isset($compras) && !empty($compras)): ?>
 <div class="row">
@@ -17,15 +18,14 @@
       </div>
       <div>
         <?php if(isset($editarCarrito) && $editarCarrito): ?>
-        <a id="editarCompra<?php echo $compra->__get("id");?>" class="button-google btn-hover">Editar Compra</a>
+        <a id="editarCompra<?php echo $compra->__get("id");?>" class="button-google btn-hover" onclick="accionCarroCompra(<?php echo $this->usuario->__get('id');?>, <?php echo $compra->__get('id'); ?>, 'editar')">Editar Compra</a>
         <?php endif; ?>
       </div>
       <div>
-        <a id="eliminarCompra<?php echo $compra->__get("id"); ?>" class="button-admin button-danger btn-hover">Quitar Compra</a>
+        <a id="eliminarCompra<?php echo $compra->__get("id"); ?>" class="button-user button-danger btn-hover" onclick="accionCarroCompra(<?php echo $this->usuario->__get('id');?>, <?php echo $compra->__get('id'); ?>, 'eliminar')">Quitar Compra</a>
       </div>
     </div>
   </article>
-  <?php require "Utilities/gestionproductocarritoboton.php" ?>
   <?php endforeach; ?>
 </div>
 <?php else: ?>

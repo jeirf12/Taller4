@@ -23,5 +23,5 @@
   <label for="precio">Precio/Unidad</label>
   <input type="number" name="precio" min='1' value="<?php echo (isset($producto)) ? $producto->__get('precio') : "" ; ?>" required>
   <?php require_once "Vista/componentes/navegacion/botonVolver.php"; ?>
-  <button class="button-admin button-success btn-hover" type="submit">Guardar</button>
+  <button class="button-user button-success btn-hover" type="submit">Guardar</button>
 </form>

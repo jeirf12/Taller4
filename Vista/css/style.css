@@ -29,12 +29,25 @@ a {
   outline: none;
 }
 
+.header,
+.info-user,
+.header-left,
+.container,
+.body-container {
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  text-decoration: black;
+}
+
 .header {
+  width: 100%;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-evenly;
   background-color: var(--color-page);
   color: white;
   font-size: 14px;
@@ -47,20 +60,9 @@ a {
   width: 100%;
   text-align: center;
 }
+
 .h1secondary {
   color: rgba(255, 255, 255, 0.9);
-}
-
-.header,
-.center-header,
-.info-user,
-.header-left,
-.container,
-.body-container {
-  display: flex;
-  align-items: center;
-  color: rgb(0, 0, 0);
-  text-decoration: black;
 }
 
 .body-container {
@@ -79,18 +81,18 @@ a {
   margin: 0;
 }
 
-.header .center-header {
-  flex: 1 1 auto;
-}
-
 .showheader {
   padding: 0 40% 0 40%;
   flex-wrap: wrap;
 }
 
+.bar-search > .frm-busqueda {
+  width: 100%;
+}
+
 .bar-search button,
 .bar-search input {
-  display: inline-block;
+  display: inline;
 }
 
 .bar-search button {
@@ -104,14 +106,8 @@ a {
   outline: none;
 }
 
-.header .center-header .bar-search a {
-  background-color: white;
-  text-align: center;
-}
-
 .header .logo,
-.navigation ul li,
-.info-user p {
+.navigation ul li {
   display: inline-block;
 }
 
@@ -126,19 +122,14 @@ a {
   padding-top: 3.8%;
 }
 
-.header .header-left .center-header,
 .container,
 .body-container {
   flex-direction: column;
   flex: 1 1 auto;
 }
 
-.header .header-left .center-header .navigation {
+.navigation {
   width: 490px;
-}
-
-.header .header-left {
-  flex-direction: row;
 }
 
 .navigation ul li {
@@ -150,7 +141,7 @@ a {
   line-height: 32px;
 }
 
-.navigation a:hover {
+.navigation a:hover, .navigation .dropdown:hover {
   background-color: #ddd;
   border-radius: 12px;
   cursor: pointer;
@@ -193,12 +184,17 @@ a {
   text-align: center;
 }
 
-.button-admin {
+.button-admin, .button-user {
+  margin-top: 1%;
   border: none;
   padding: 10px;
   border-radius: 0.5rem;
   color: #fff;
   cursor: pointer;
+}
+
+.button-admin {
+  width: 100%;
 }
 
 .table-admin {
@@ -216,6 +212,7 @@ a {
 .table-admin > thead > tr > th {
   color: #fff;
   background-color: #212529;
+  font-size: 1.5rem;
 }
 
 .table-admin > thead > tr > th:first-child {
@@ -231,10 +228,21 @@ a {
   padding: 12px 15px;
 }
 
+.table-admin tr:not(:last-of-type) {
+  border-bottom: 2px solid #f7f7f9;
+}
+
 .table-admin tr td {
   color: #000;
   background-color: #e9ecef;
-  border-top: 2px solid #f7f7f9;
+}
+
+.table-admin > tbody > tr:last-of-type > td:first-child {
+  border-bottom-left-radius: 1rem;
+}
+
+.table-admin > tbody > tr:last-of-type > td:last-child {
+  border-bottom-right-radius: 1rem;
 }
 
 .content-messages {
@@ -305,6 +313,7 @@ a {
 
 .form-save input,
 .form-save select {
+  margin-bottom: 2%;
   border-radius: 0.5rem;
   border: 1px solid #dddfe2;
 }
@@ -324,8 +333,6 @@ a {
 
 .button-danger {
   background: rgb(0, 148, 148);
-  display: block;
-  text-align: center;
 }
 
 .button-google {
@@ -338,6 +345,7 @@ a {
 
 .content-btncar {
   padding: 1% 0;
+  width: 96%;
 }
 
 .button-car {
@@ -365,7 +373,9 @@ a {
 }
 
 .container-button {
-  display: block;
+  display: flex;
+  width: 80%;
+  text-align: center;
   padding: 1.5% 0;
 }
 
@@ -418,7 +428,16 @@ a {
   text-align: center;
 }
 
-@media screen and (max-width: 906px) {
+@media screen and (max-width: 1200px) {
+  .container {
+    margin-top: 8%;
+  }
+  .container-button {
+    margin-bottom: 2%;
+  }
+}
+
+@media screen and (max-width: 970px) {
   .navigation ul {
     display: none;
   }
@@ -438,6 +457,9 @@ a {
     display: block;
     overflow-x: auto;
   }
+}
+
+@media screen and (max-width: 906px) {
   .form-save {
     min-width: 300px;
     max-width: 400px;

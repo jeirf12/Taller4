@@ -9,8 +9,18 @@
     <i class="fa-solid fa-circle-xmark"></i>
     <?php endif; ?>
     <p class="icon-message"><?php echo $this->message; ?></p>
+    <?php if(isset($this->isDelete) && $this->isDelete == true): ?>
+      <div class="popup-buttons">
+        <a id="popup-cancel" class="button-admin button-red btn-hover" href="">Cancelar</a>
+        <a id="popup-ok" class="button-admin button-google btn-hover" href="">Acepto</a>
+      </div>
+    <?php endif; ?>
   </div>
 </div>
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", () => Popup.show("<?php echo $this->action ?>"))
+  <?php if(isset($this->isDelete) && $this->isDelete == true): ?>
+    document.addEventListener("DOMContentLoaded", () => Popup.show("<?php echo $this->action ?>", true))
+  <?php else: ?>
+    document.addEventListener("DOMContentLoaded", () => Popup.show("<?php echo $this->action ?>"))
+  <?php endif; ?>
 </script>

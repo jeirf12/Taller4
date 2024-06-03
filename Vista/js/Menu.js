@@ -36,7 +36,7 @@ const openModal = () => {
 };
 
 const resizeMode = () => {
-  if (window.matchMedia("(max-width: 906px)").matches) {
+  if (window.matchMedia("(max-width: 970px)").matches) {
     navigation[0].style.width = "0px";
   } else {
     navigation[0].style.width = "490px";
@@ -56,7 +56,7 @@ let links = [
   '?c=sesion&a=iniciarSesion',
 ];
 for (let ele of menu.children) {
-  loadClickEvent(ele, openLink, links[i++]);
+  if(ele.children[0].localName === 'a') loadClickEvent(ele, openLink, links[i++]);
 }
 
 let iconBtn = document.getElementById("btnOpenDropdown");
