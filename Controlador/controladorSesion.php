@@ -233,7 +233,7 @@ class ControladorSesion extends Controlador {
 
     public function contacto() {
         $this->validaSesion();
-        if(!$this->isSesion() || $this->usuario->__get('rol') == 'admin') {
+        if(isset($this->usuario) && $this->usuario->__get('rol') == 'admin') {
             $this->index();
             return;
         }
