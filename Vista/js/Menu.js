@@ -36,7 +36,7 @@ const openModal = () => {
 };
 
 const resizeMode = () => {
-  if (window.matchMedia("(max-width: 970px)").matches) {
+  if (window.matchMedia("(max-width: 1070px)").matches) {
     navigation[0].style.width = "0px";
   } else {
     navigation[0].style.width = "490px";

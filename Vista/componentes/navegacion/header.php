@@ -1,9 +1,14 @@
 <header class="header">
   <div class="logo" ><img src="Vista/css/logo.png" alt="logo" height="70"></div>
   <div class="bar-search">
-    <form id="frm-busqueda" action="?c=producto&a=buscarProducto" method="POST">
-        <input type="text" name="word_search" placeholder="Busca tu producto aqui" >
-        <button name="btn-search" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
+    <form id="frm-busqueda" class="frm-busqueda" action="?c=producto&a=buscarProducto" method="POST">
+        <div class="grupo-busqueda">
+          <input class="input-search" type="text" name="word_search" placeholder="Busca tu producto aqui" >
+          <span class="barra-busqueda"></span>
+        </div>
+        <div>
+          <button name="btn-search" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
+        </div>
     </form>
   </div>
   <div class="header-left">
