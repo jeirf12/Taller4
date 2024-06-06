@@ -5,7 +5,16 @@
   <?php foreach($compras as $compra): ?>
   <article class="card-article">
     <div class="card">
-      <img src="<?php echo "data:image/jpeg; base64,".base64_encode($compra->__get('imagen')).'"'; ?>" alt="">
+        <?php
+          $src = "";
+          if(isset($compra)) {
+            $imagen = $compra->__get('imagen');
+            $infoImage = new finfo(FILEINFO_MIME_TYPE);
+            $mime_type = $infoImage->buffer($imagen);
+            $src = "data:".$mime_type."; base64,".base64_encode($imagen).'"';
+          } 
+        ?>
+      <img src="<?php echo $src; ?>" alt="">
       <div class="card-content">
         <h4><?php echo $compra->__get('nombre'); ?></h4>
         <details class="description">
@@ -22,7 +31,7 @@
         <?php endif; ?>
       </div>
       <div>
-        <a id="eliminarCompra<?php echo $compra->__get("id"); ?>" class="button-user button-danger btn-hover" onclick="accionCarroCompra(<?php echo $this->usuario->__get('id');?>, <?php echo $compra->__get('id'); ?>, 'eliminar')">Quitar Compra</a>
+      <a id="eliminarCompra<?php echo $compra->__get("id"); ?>" class="button-user button-danger btn-hover" onclick="popupQuitarCompra('¿Desea quitar la compra <?php echo $compra->__get("nombre"); ?>?', <?php echo $this->usuario->__get("id"); ?>, <?php echo $compra->__get("id"); ?>, 'eliminar')">Quitar Compra</a>
       </div>
     </div>
   </article>

@@ -6,3 +6,12 @@ const accionCarroCompra = (idUsuario, idProducto, accion) => {
     window.location.href = `?c=carrito&a=listar&codUsu=${idUsuario}`;  
   }
 }
+
+const popupQuitarCompra = (mensaje, idUsuario, idProducto, accion) => {
+  Popup.init();
+  Popup.show('warning', mensaje, true);
+  let ok = document.getElementById('popup-ok');
+  ok.addEventListener('click', () => {
+    accionCarroCompra(idUsuario, idProducto, accion);
+  });
+}

@@ -5,3 +5,11 @@ const accionProducto = (idproducto, accion) => {
   }
 }
 
+const popupEliminar = (mensaje, idProducto, accion) => {
+  Popup.init();
+  Popup.show('warning', mensaje, true);
+  let ok = document.getElementById('popup-ok');
+  ok.addEventListener('click', () => {
+    accionProducto(idProducto, accion);
+  });
+}

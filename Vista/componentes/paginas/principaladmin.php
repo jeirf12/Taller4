@@ -21,7 +21,16 @@
   <?php foreach($this->productos as $producto): ?>
     <tr>
       <td>
-        <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-product" class="rounded-img">
+        <?php
+          $src = "";
+          if(isset($producto)) {
+            $imagen = $producto->__get('imagen');
+            $infoImage = new finfo(FILEINFO_MIME_TYPE);
+            $mime_type = $infoImage->buffer($imagen);
+            $src = "data:".$mime_type."; base64,".base64_encode($imagen).'"';
+          } 
+        ?>
+        <img src="<?php echo $src; ?>" alt="Avatar-product" class="rounded-img">
       </td>
       <td><?php echo $producto->__get('nombre'); ?></td>
       <td><?php echo $producto->__get('precio'); ?></td>
@@ -32,7 +41,7 @@
         <a id="gestioneditar<?php echo $producto->__get("id");?>" class="button-admin button-google btn-hover" onclick="accionProducto(<?php echo $producto->__get('id'); ?>, 'editar')">editar</a>
       </td>
       <td>
-      <a id="gestioneliminar<?php echo $producto->__get("id");?>" onclick="accionProducto(<?php echo $producto->__get('id'); ?>, 'eliminar')" class="button-admin button-danger btn-hover">eliminar</a>
+      <a id="gestioneliminar<?php echo $producto->__get("id");?>" onclick="popupEliminar('¿Desea eliminar el producto <?php echo $producto->__get('nombre');?>?', <?php echo $producto->__get("id");?>, 'eliminar');" class="button-admin button-danger btn-hover">eliminar</a>
       </td>
     </tr>
   <?php endforeach; ?>

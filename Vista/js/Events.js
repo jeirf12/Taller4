@@ -8,6 +8,10 @@ const loadClickEvent = (element, method, parameter = "") => {
   element.addEventListener("click", addParemeterIfneeded(method, parameter));
 };
 
+const loadChangeEvent = (element, method, parameter = "") => {
+  element.addEventListener("change", parameter !== "" ? (event) => method(event, parameter) : method);
+};
+
 const loadEvent = (element, method, parameter = "") => {
   element.addEventListener(
     "load",
@@ -22,4 +26,4 @@ const addResizeEvent = (element, methodResize, parameter = "") => {
   );
 };
 
-export { loadClickEvent, loadEvent, addResizeEvent };
+export { loadClickEvent, loadChangeEvent, loadEvent, addResizeEvent };

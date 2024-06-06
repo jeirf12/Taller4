@@ -10,5 +10,6 @@
   <script src="Vista/js/Popup.js"></script>
   <script src="Vista/js/GestionarProducto.js"></script>
   <script src="Vista/js/GestionarCarrito.js"></script>
+  <script src="Vista/js/Imagen.js" type="module"></script>
   <title><?php echo isset($this->nombrePagina) ? $this->nombrePagina : " "; ?></title>
 </head>

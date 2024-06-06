@@ -30,6 +30,17 @@
   animation-name: slideout;
 }
 
+.popup-content-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.popup-message-content > * {
+  display: inline-block;
+}
+
 .popup-success {
   background: #00c02b;
   border-color: #009d23;
@@ -50,7 +61,6 @@
 
 .popup-close {
   color: #fff;
-  float: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -71,10 +81,15 @@
   display: flex;
   flex: 1 1 auto;
   justify-content: space-evenly;
+  gap: 2%;
+}
+
+.popup-buttons-invisible {
+  display: none;
 }
 
 .popup-buttons > a {
   border-radius: 0.5rem;
-  line-height: 40px;
+  line-height: 20px;
   color: #fff;
 }

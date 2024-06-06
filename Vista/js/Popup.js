@@ -2,21 +2,28 @@ const Popup = {
   init() {
     this.hideTimeout = null;
     this.element = document.getElementById("myPopup");
+    this.buttons = document.getElementById("popup-buttons")
     this.content = document.getElementById("myPopupContent");
   },
-  show(state, withButton) {
+  show(state, message, withButton) {
     clearTimeout(this.hideTimeout);
     this.element.classList.remove("popup-invisible");
     if (state) {
       this.content.classList.add("popup-"+state);
+      document.getElementById("message-icon-popup").textContent = message;
     }
 
     if(withButton) {
+      this.content.style.animationDuration = "0s";
+      this.content.style.transform = "translateY(10px)";
+      this.buttons.classList.remove("popup-buttons-invisible");
       document.getElementById('popup-cancel').onclick = () => {
         this.element.classList.add("popup-invisible");
+        this.buttons.classList.add("popup-buttons-invisible");
       };
       document.getElementById('popup-ok').onclick = () => {
         this.element.classList.add("popup-invisible");
+        this.buttons.classList.add("popup-buttons-invisible");
       };
     } else {
       this.hideTimeout = setTimeout(() => {
@@ -25,5 +32,3 @@ const Popup = {
     }
   }
 };
-
-document.addEventListener('DOMContentLoaded', () => Popup.init());

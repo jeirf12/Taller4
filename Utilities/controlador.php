@@ -25,8 +25,11 @@ abstract class Controlador{
     }
 
     public function validaImagen(){
-        $size = $_FILES['imagen']['size'];
         $data_img = '';
+        if(!isset($_FILES['imagen']) && !$_FILES['imagen']['error'] == UPLOAD_ERR_OK) { 
+            return $data_img; 
+        }
+        $size = $_FILES['imagen']['size'];
         if ($size > 0){
             $data =  fopen($_FILES['imagen']['tmp_name'],'r');
             $data_img = fread($data, $size);

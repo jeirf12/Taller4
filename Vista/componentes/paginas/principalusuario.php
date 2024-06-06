@@ -8,7 +8,16 @@
   <?php foreach($this->productos as $producto): ?>
   <article class="card-article">
   <div id="card<?php echo $producto->__get('id'); ?>" class="card">
-      <img src="<?php echo "data:image/jpeg; base64,".base64_encode($producto->__get('imagen')).'"'; ?>" alt="Avatar-Product">
+        <?php
+          $src = "";
+          if(isset($producto)) {
+            $imagen = $producto->__get('imagen');
+            $infoImage = new finfo(FILEINFO_MIME_TYPE);
+            $mime_type = $infoImage->buffer($imagen);
+            $src = "data:".$mime_type."; base64,".base64_encode($imagen).'"';
+          } 
+        ?>
+      <img src="<?php echo $src; ?>" alt="Avatar-Product">
       <div class="card-content">
         <h4><?php echo $producto->__get('nombre'); ?></h4>
         <details class="description">

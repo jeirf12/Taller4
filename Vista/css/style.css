@@ -256,7 +256,7 @@ a {
 
 .table-admin tr td,
 .table-admin tr th {
-  padding: 12px 15px;
+  padding: 3% 15px;
 }
 
 .table-admin tr:not(:last-of-type) {
@@ -349,13 +349,62 @@ a {
   border: 1px solid #dddfe2;
 }
 
-.form-save input[type=file], 
 .form-save select {
   cursor: pointer;
 }
 
-.form-save input[type=file] {
-  border: none;
+.box-imagen {
+  font-size: 1.25rem;
+  background-color: #c8dadf;
+  position: relative;
+  outline: 2px dashed #92b0b3;
+  outline-offset: -10px;
+  transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  border-radius: 0.5rem;
+  padding: 20px 5px;
+}
+
+.show-imagen {
+  width: 100%;
+  display: none;
+}
+
+.show-imagen > img {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+}
+
+.open-imagen {
+  display: block;
+}
+
+.box-file {
+  width: 0.1px !important;
+  height: 0.1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.box-file + label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+}
+
+.box-file + label > strong:hover {
+  color: #39bfd3;
 }
 
 .button-success {

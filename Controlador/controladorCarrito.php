@@ -79,8 +79,8 @@ class ControladorCarrito extends Controlador {
     }
     
     public function eliminar() {
-        $auxCarrito = $this->obtenerInfoVistaCarrito();
         $this->validaSesion();
+        $auxCarrito = $this->obtenerInfoVistaCarrito();
         if($this->existeSesion) {
             if ($auxCarrito->__get('usuid') == $this->usuario->__get('id') && $this->usuario->__get('rol') == 'noadmin') {
                 $this->crud->eliminarProductoCarrito($auxCarrito);
