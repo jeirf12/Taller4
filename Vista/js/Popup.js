@@ -14,8 +14,9 @@ const Popup = {
     }
 
     if(withButton) {
-      this.content.style.animationDuration = "0s";
+      this.content.style.animationDuration = "2s";
       this.content.style.transform = "translateY(10px)";
+      this.content.style.margin = "20% auto";
       this.buttons.classList.remove("popup-buttons-invisible");
       document.getElementById('popup-cancel').onclick = () => {
         this.element.classList.add("popup-invisible");
