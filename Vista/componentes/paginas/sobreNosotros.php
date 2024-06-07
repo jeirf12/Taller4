@@ -32,4 +32,4 @@
     </div>
 </div>
 <script src="Vista/js/Script.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIaZoTbc5NNZ6Hsw2gImr4buDdJd7hVTE&callback=iniciarMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIaZoTbc5NNZ6Hsw2gImr4buDdJd7hVTE&callback=iniciarmapa"></script>
