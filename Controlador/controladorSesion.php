@@ -198,7 +198,8 @@ class ControladorSesion extends Controlador {
     }
 
     public function apiContacto() {
-        if($this->isSesion()) {
+        $this->validaSesion();
+        if(isset($this->usuario) && $this->usuario->__get('rol') == 'admin') {
             $this->index();
             return;
         }
