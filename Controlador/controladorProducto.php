@@ -28,10 +28,10 @@ class ControladorProducto extends Controlador {
         $this->productos = $this->crud->listarProductos();
         $this->categorias = $this->crud->obtenerCategoriasProductos();
         $this->validaSesion();
+        setcookie('msg', '', time() - 60);
+        setcookie('act', '', time() - 60);
         $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
         $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
-        setcookie('msg', null, time() - 60);
-        setcookie('act', null, time() - 60);
         if(isset($_SESSION['rol']) && ($_SESSION['rol'] == 'admin')) {
             $this->vistaEnvoltura = 'Vista/componentes/paginas/principaladmin.php';
             require 'Vista/componentes/paginas/envoltura.php';
@@ -47,10 +47,10 @@ class ControladorProducto extends Controlador {
         $this->productos = $this->crud->buscarProductoPorPalabras($_REQUEST['word_search']);
         $this->categorias = $this->crud->obtenerCategoriasProductos();
         $this->validaSesion();
+        setcookie('msg', '', time() - 60);
+        setcookie('act', '', time() - 60);
         $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
         $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
-        setcookie('msg', null, time() - 60);
-        setcookie('act', null, time() - 60);
         if(isset($_SESSION['rol']) && ($_SESSION['rol'] == 'admin')) {
             $this->vistaEnvoltura = 'Vista/componentes/paginas/principaladmin.php';
             require 'Vista/componentes/paginas/envoltura.php';
@@ -160,3 +160,4 @@ class ControladorProducto extends Controlador {
         }
     }
 }
+?>

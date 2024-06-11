@@ -18,10 +18,10 @@ class ControladorCarrito extends Controlador {
            $compras = $this->crud->obtenerProductosCarrito($this->usuario->__get('id'));
            $this->nombrePagina = 'Lista de Compras';
            $isForm = false;
+           setcookie('msg', '', time() - 60);
+           setcookie('act', '', time() - 60);
            $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
            $this->action = (isset($_COOKIE['act'])) ? $_COOKIE['act'] : $this->action;
-           setcookie('msg', null, time() - 60);
-           setcookie('act', null, time() - 60);
            $this->vistaEnvoltura = 'Vista/componentes/paginas/carritocompras.php';
            require 'Vista/componentes/paginas/envoltura.php';
         } else {
@@ -116,3 +116,4 @@ class ControladorCarrito extends Controlador {
         return $auxCarrito;
     }
 }
+?>

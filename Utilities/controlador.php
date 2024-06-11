@@ -9,6 +9,7 @@ abstract class Controlador{
     protected $existeSesion;
     protected $message;
     protected $action;
+    protected $vistaEnvoltura;
     
     public function isSesion(){
         return isset($_SESSION['nombre']);
@@ -47,3 +48,4 @@ abstract class Controlador{
         return ($result >= 200 && $result < 300);
     }
 }
+?>

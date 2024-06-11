@@ -149,3 +149,4 @@ class clsProductoCRUD {
         return $resultado;
     }
 }
+?>

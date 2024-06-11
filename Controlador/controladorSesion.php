@@ -23,10 +23,10 @@ class ControladorSesion extends Controlador {
         if(!$this->isSesion()) {
             $this->nombrePagina = 'Iniciar Sesión';
             $isForm = false;
+            setcookie('msg', '', time() - 60);
+            setcookie('act', '', time() - 60);
             $this->message = isset($_COOKIE['msg']) ? $_COOKIE['msg'] : $this->message;
             $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
-            setcookie('msg', null, time() - 60);
-            setcookie('act', null, time() - 60);
             $this->vistaEnvoltura = 'Vista/componentes/paginas/iniciarsesion.php';
             require_once 'Vista/componentes/paginas/envoltura.php';
         } else {
@@ -224,10 +224,10 @@ class ControladorSesion extends Controlador {
     public function inicio() {
         $this->nombrePagina = 'Inicio';
         $this->validaSesion();
-        $this->message = (isset($_COOKIE['msg'])) ? $_COOKIE['msg'] : $this->message;
+        setcookie('msg', '', time() - 60);
+        setcookie('act', '', time() - 60);
+        $this->message = isset($_COOKIE['msg']) ? $_COOKIE['msg'] : $this->message;
         $this->action = isset($_COOKIE['act']) ? $_COOKIE['act'] : $this->action;
-        setcookie('msg', null, time() - 60);
-        setcookie('act', null, time() - 60);
         $this->vistaEnvoltura = 'Vista/componentes/paginas/inicio.php';
         require 'Vista/componentes/paginas/envoltura.php';
     }
@@ -251,3 +251,4 @@ class ControladorSesion extends Controlador {
         require 'Vista/componentes/paginas/envoltura.php';
     }
 }
+?>

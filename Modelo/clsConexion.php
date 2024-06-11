@@ -36,3 +36,4 @@ class clsConexion {
 
     public function __GET($atr){return $this->$atr;}
 }
+?>

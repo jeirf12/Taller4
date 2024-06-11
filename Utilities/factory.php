@@ -37,3 +37,4 @@ class Factory {
         return $result;
     }
 }
+?>
