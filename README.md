@@ -2,7 +2,7 @@
 This project is based to raise awareness about beekeeping and its various products that are obtained by hand, and are located in the Colombian
 massif as an alternative to counteract the effects of illicit crops, bringing together a large community of 133 beekeepers of which 18 are women.
 
-#Pre-Requisites
+# Pre-Requisites
 Before installing the local configuration you must configure the `custom.ini` file with the following:
 ```
 post_max_size = 16M
