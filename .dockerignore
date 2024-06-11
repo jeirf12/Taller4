@@ -1,0 +1,7 @@
+.git/
+vendor/
+*.sql
+compose.yml
+Dockerfile
+.gitignore
+.dockerignore

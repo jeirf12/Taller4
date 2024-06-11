@@ -1,0 +1,45 @@
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_NAME=${DB_NAME}
+      - GOOGLE_IDCLIENT=${GOOGLE_IDCLIENT}
+      - GOOGLE_SECRET_KEY=${GOOGLE_SECRET_KEY}
+      - GOOGLE_REDIRECT_RESOURCE=${GOOGLE_REDIRECT_RESOURCE}
+      - EMAIL_PAGE=${EMAIL_PAGE}
+      - PASSWORD_EMAIL_PAGE=${PASSWORD_EMAIL_PAGE}
+      - EMAIL_PORT=${EMAIL_PORT}
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+
+  mysqldb:
+    image: mysql:8.3
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - db_data:/var/lib/mysql
+      - .:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      interval: 10s
+      retries: 10
+
+volumes:
+  db_data:
