@@ -50,7 +50,11 @@ class ControladorSesion extends Controlador {
                     $this->action = 'success';
                     setcookie('msg', $this->message);
                     setcookie('act', $this->action);
-                    $this->index();
+                    if(isset($_COOKIE['proid'])) {
+                        header('Location: ?c=carrito&a=crearEditar&proid='.$_COOKIE['proid'].'&usuid='.$this->usuario.__get('id'));
+                    } else {
+                        $this->index();
+                    }
                 } else {
                     $this->message = 'Usuario no encontrado verifique sus datos e intente nuevamente';
                     $this->action = 'error';

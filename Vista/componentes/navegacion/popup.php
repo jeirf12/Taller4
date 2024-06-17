@@ -2,13 +2,7 @@
   <div id="myPopupContent" class="popup-content">
     <div class="popup-content-main">
       <span class="popup-message-content">
-        <?php if($this->action == "success"): ?>
-          <i class="fa-solid fa-circle-check"></i>
-        <?php elseif($this->action == "warning"): ?>
-          <i class="fa-solid fa-circle-exclamation"></i>
-        <?php elseif($this->action == "error"): ?>
-          <i class="fa-solid fa-circle-xmark"></i>
-        <?php endif; ?>
+        <i id="icon-popup" class="fa-solid"></i>
         <p id="message-icon-popup" class="icon-message"></p>
       </span>
       <span class="popup-close">&times;</span>
