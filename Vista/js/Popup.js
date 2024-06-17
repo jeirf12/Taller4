@@ -1,6 +1,7 @@
 const Popup = {
   init() {
     this.hideTimeout = null;
+    this.action = { "success": "check", "warning": "exclamation", "error": "xmark" };
     this.element = document.getElementById("myPopup");
     this.buttons = document.getElementById("popup-buttons")
     this.content = document.getElementById("myPopupContent");
@@ -11,6 +12,7 @@ const Popup = {
     if (state) {
       this.content.classList.add("popup-"+state);
       document.getElementById("message-icon-popup").textContent = message;
+      document.getElementById("icon-popup").classList.add(`fa-circle-${this.action[state]}`);
     }
 
     if(withButton) {
