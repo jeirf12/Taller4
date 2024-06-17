@@ -30,8 +30,8 @@ class ControladorCarrito extends Controlador {
     }
        
     public function crearEditar() {
-        $this->validaSesion();
         if($this->isSesion()) {
+            $this->validaSesion();
             $resultado = false;
             $auxOp = '';
             $cant = 0;
@@ -74,9 +74,6 @@ class ControladorCarrito extends Controlador {
             $this->action = 'warning';
             setcookie('msg', $this->message);
             setcookie('act', $this->action);
-            if(isset($_REQUEST['proid'])) {
-                setcookie('proid', $_REQUEST['proid']);
-            }
             header('Location: ?c=sesion&a=iniciarSesion');
         }
     }
